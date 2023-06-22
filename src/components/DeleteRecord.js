@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import { useLocation, useNavigate, Link } from "react-router-dom";
 
 const styles = {
   pageContainer: {
@@ -71,6 +72,10 @@ function DeleteRecord() {
       setErrorMessage('Failed to delete record. Please try again.');
     }
   };
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate("/home");
+  };
 
   return (
     <Container>
@@ -102,6 +107,9 @@ function DeleteRecord() {
                 >
                   Delete Record
                 </Button>
+                <button style={styles.button} type="button" onClick={handleButtonClick}>
+           Home
+          </button>
               </Form>
             </div>
           </div>
