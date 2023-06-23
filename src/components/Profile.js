@@ -61,7 +61,7 @@ const styles = {
     minHeight: "100vh",
   },
   container: {
-    maxWidth: "600px", // Adjust the width here
+    maxWidth: "600px", 
     margin: "0 auto",
     padding: "20px",
     border: "1px solid #ccc",
