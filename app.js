@@ -42,7 +42,21 @@ app.put("/update/:email", async (req, res) => {
   }
 });
 
+app.get("/user/:email", async (req, res) => {
+  try {
+    const { email } = req.params;
 
+    const user = await collection.findOne({ email: email });
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    res.send(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 
 
 

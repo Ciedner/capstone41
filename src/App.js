@@ -6,6 +6,9 @@ import DeleteRecord from "./components/DeleteRecord";
 import ChangePassword from "./components/ChangePassword";
 import FindSpot from "./components/FindSpot";
 import Profile from "./components/Profile";
+import Transaction from "./components/Transaction"
+import Gcash from "./MoP/Gcash"
+import PayPal from "./MoP/PayPal"
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
           <Route path="/change" element={<ChangePassword />} />
           <Route path="/find" element={<FindSpot />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/transact" element={<Transaction />} />
+          <Route path="/gcash" element={<Gcash />} />
+          <Route path="/paypal" element={<PayPal />} />
         </Routes>
       </Router>
     </div>

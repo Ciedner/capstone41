@@ -9,7 +9,7 @@ import {
   MDBCardBody,
   MDBCardImage,
 } from "mdb-react-ui-kit";
-import Profile from "./Profile";
+
 
 function Home() {
   const location = useLocation();
@@ -35,6 +35,11 @@ function Home() {
     navigate ("/profile");
   };
 
+  const handleTransaction = () => {
+    navigate ("/transact");
+  };
+  
+
   const backgroundStyle = {
     backgroundImage: 'url("https://i.nextmedia.com.au/News/crn-14_carpark_iStock-177136206.jpg")',
     backgroundSize: "cover",
@@ -47,7 +52,7 @@ function Home() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "calc(100vh - 56px)", // Adjust height to account for navbar height
+    height: "calc(100vh - 56px)", 
   };
 
   const cardStyle = {
@@ -103,15 +108,15 @@ function Home() {
               <MDBCol>
                 <MDBCard style={cardStyle}>
                   <MDBCardImage
-                    src="https://via.placeholder.com/300"
+                    src="https://cdn-icons-png.flaticon.com/512/4222/4222025.png"
                     alt="Card image"
                     top
                   />
                   <MDBCardBody>
-                    <h5 className="card-title">Card 3</h5>
-                    <p className="card-text">Some quick example text.</p>
-                    <MDBBtn color="primary" onClick={() => { /* Action for Button 3 */ }}>
-                      Go somewhere
+                    <h5 className="card-title">Transaction</h5>
+                    <p className="card-text">View transaction</p>
+                    <MDBBtn color="primary" onClick={handleTransaction}>
+                      Go 
                     </MDBBtn>
                   </MDBCardBody>
                 </MDBCard>
