@@ -9,7 +9,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 const multer = require('multer');
 const storage = multer.diskStorage({
-
   destination: (req, file, cb) => {
     cb(null, 'uploads/'); // Set the destination folder for uploaded avatars
   },
@@ -20,15 +19,24 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Define the endpoint for uploading avatars
-app.post('/upload-avatar', upload.single('avatar'), (req, res) => {
+app.post('/upload-avatar', upload.single('avatar'), async (req, res) => {
   try {
     if (!req.file) {
       res.status(400).json({ error: 'No file uploaded' });
       return;
     }
 
-    // Here, you can save the avatar file path or URL in your database for the logged-in user
+    const { email } = req.query;
     const avatarUrl = `http://localhost:8000/${req.file.path}`; // Assuming the avatar files are served at this URL
+
+    const user = await collection.findOne({ email: email });
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    // Update the user's profile with the new avatar URL
+    user.avatar = avatarUrl;
+    await user.save();
 
     // Return the avatar URL in the response
     res.json({ avatarUrl });
@@ -76,7 +84,6 @@ app.put("/update/:email", async (req, res) => {
   }
 });
 
-
 app.get("/user/:email", async (req, res) => {
   try {
     const { email } = req.params;
@@ -92,8 +99,6 @@ app.get("/user/:email", async (req, res) => {
     res.status(500).send(error);
   }
 });
-
-
 
 app.get('/', cors(), (req, res) => {});
 app.post('/', async (req, res) => {
