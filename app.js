@@ -7,6 +7,36 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+const multer = require('multer');
+const storage = multer.diskStorage({
+
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Set the destination folder for uploaded avatars
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname); // Set the filename to be unique
+  }
+});
+const upload = multer({ storage });
+
+// Define the endpoint for uploading avatars
+app.post('/upload-avatar', upload.single('avatar'), (req, res) => {
+  try {
+    if (!req.file) {
+      res.status(400).json({ error: 'No file uploaded' });
+      return;
+    }
+
+    // Here, you can save the avatar file path or URL in your database for the logged-in user
+    const avatarUrl = `http://localhost:8000/${req.file.path}`; // Assuming the avatar files are served at this URL
+
+    // Return the avatar URL in the response
+    res.json({ avatarUrl });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
 
 app.delete("/delete/:email", async (req, res) => {
   try {
@@ -27,20 +57,25 @@ app.delete("/delete/:email", async (req, res) => {
 app.put("/update/:email", async (req, res) => {
   try {
     const { email } = req.params;
-    const { newPassword } = req.body;
+    const updatedUserData = req.body;
 
     const updatedRecord = await collection.findOneAndUpdate(
       { email: email },
-      { $set: { password: newPassword } },
+      { $set: updatedUserData },
       { returnOriginal: false }
     );
+
+    if (!updatedRecord) {
+      return res.status(404).send("User not found");
+    }
 
     res.send(updatedRecord);
   } catch (error) {
     console.error(error);
-    res.status(500).send("An error occurred while updating the record.");
+    res.status(500).send("An error occurred while updating the user record.");
   }
 });
+
 
 app.get("/user/:email", async (req, res) => {
   try {

@@ -9,11 +9,36 @@ import {
   MDBCardBody,
   MDBCardImage,
 } from "mdb-react-ui-kit";
+import { FaUserCircle } from 'react-icons/fa';
 
+import axios from 'axios';
 
 function Home() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const loggedInUser = localStorage.getItem('user');
+        
+        if (loggedInUser) {
+          const response = await axios.get(`http://localhost:8000/user/${loggedInUser}`);
+          
+          if (response.data) {
+            setUserData(response.data);
+          }
+        } else {
+          navigate("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchUserData();
+  }, [navigate]);
 
   const handleButtonClick = () => {
     navigate("/");
@@ -58,6 +83,21 @@ function Home() {
   const cardStyle = {
     width: "300px",
   };
+  const styles = {
+    welcomeMessage: {
+      position: "absolute",
+      top: "10px",
+      right: "10px",
+      margin: "0",
+      color: "#fff",
+      fontFamily: "Rockwell, sans-serif",
+    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)"
+    },
+    icon: {
+      marginRight: "5px",
+    },
+  };
+  
 
   return (
     <div className="homepage">
@@ -66,8 +106,10 @@ function Home() {
           <div className="container">
             <Link className="navbar-brand" to="/">
               SpotWise Parking Management System
+              <p style={styles.welcomeMessage}>
+  <FaUserCircle style={styles.icon} /> {userData?.email || ""}
+</p>
             </Link>
-          
           </div>
         </nav>
         <div style={dashboardStyle}>
@@ -113,8 +155,8 @@ function Home() {
                     top
                   />
                   <MDBCardBody>
-                    <h5 className="card-title">Transaction</h5>
-                    <p className="card-text">View transaction</p>
+                    <h5 className="card-title">Payment</h5>
+                    <p className="card-text">Choose Payment</p>
                     <MDBBtn color="primary" onClick={handleTransaction}>
                       Go 
                     </MDBBtn>

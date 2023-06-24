@@ -17,11 +17,13 @@ import axios from 'axios';
 function UpdateUserForm() {
   const [showPopup, setShowPopup] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
-  
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,22 +35,63 @@ function UpdateUserForm() {
     navigate("/delete");
   };
 
+  
   const handleUpdate = () => {
-    navigate("/change");
-  };
+    if (selectedFile) {
+      const formData = new FormData();
+      formData.append("avatar", selectedFile);
 
+      // Perform the upload logic here (e.g., using axios)
+      axios
+        .post("http://localhost:8000/upload-avatar", formData)
+        .then((response) => {
+          const avatarUrl = response.data.avatarUrl;
+
+          // Update the user's profile with the new avatar URL
+          const updatedUserData = { ...userData, avatar: avatarUrl };
+
+          // Store the updated user data in local storage
+          localStorage.setItem("user", JSON.stringify(updatedUserData));
+
+          // Perform the update logic (e.g., using axios)
+          axios
+            .put(`http://localhost:8000/user/${userData.id}`, updatedUserData)
+            .then(() => {
+              // Once the update is successful, update the profile image state
+              setProfileImage(avatarUrl);
+              setShowPopup(false); // Close the popup after saving
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      // Other update logic...
+      navigate("/change");
+    }
+  };
   const handleLogOut = () => {
+    localStorage.removeItem('user');
     navigate("/");
   };
+  
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/user/${location.state?.email}`);
-        console.log("Response:", response);
-  
-        if (response.data) {
-          setUserData(response.data);
-          console.log("User Data:", response.data);
+        const loggedInUser = localStorage.getItem('user');
+        
+        if (loggedInUser) {
+          const response = await axios.get(`http://localhost:8000/user/${loggedInUser}`);
+          
+          if (response.data) {
+            setUserData(response.data);
+          }
+        } else {
+          navigate("/");
         }
       } catch (error) {
         console.log(error);
@@ -56,10 +99,14 @@ function UpdateUserForm() {
     };
   
     fetchUserData();
-  }, [location.state?.email]);
-  
-  
-  
+  }, [navigate]);
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (!loggedInUser) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div style={styles.pageContainer}>
@@ -68,33 +115,22 @@ function UpdateUserForm() {
         <div className="text-center">
           <div className="vh-100" style={{ backgroundColor: '#eee' }}>
             <MDBRow className="justify-content-center align-items-center h-100">
-              <MDBCol md="12" xl="6"> 
+              <MDBCol md="12" xl="6">
                 <MDBCard style={{ borderRadius: '15px' }}>
                   <MDBCardBody className="text-center">
                     <div className="mt-3 mb-4">
                       <MDBCardImage
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                        src={profileImage || "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"}
                         className="rounded-circle"
                         fluid
-                        style={{ width: '150px' }} 
+                        style={{ width: '150px' }}
                       />
                     </div>
-                      <>
-                      <MDBTypography tag="h4">{userData?.username || ""}</MDBTypography>
-<MDBCardText className="text-muted mb-4">{userData?.email || ""}</MDBCardText>
-
-                      </>
-                    <div className="mb-4 pb-2">
-                      <MDBBtn outline floating>
-                        <MDBIcon fab icon="facebook" size="lg" />
-                      </MDBBtn>
-                      <MDBBtn outline floating className="mx-1">
-                        <MDBIcon fab icon="twitter" size="lg" />
-                      </MDBBtn>
-                      <MDBBtn outline floating>
-                        <MDBIcon fab icon="skype" size="lg" />
-                      </MDBBtn>
-                    </div>
+                    <>
+                      <MDBCardText className="text-muted mb-4">Email: {userData?.email || ""}</MDBCardText>
+                      <MDBCardText className="text-muted mb-4">Vehicle: {userData?.vehicle || ""}</MDBCardText>
+                      <MDBCardText className="text-muted mb-4">Vehicle plate: {userData?.plate || ""}</MDBCardText>
+                    </>
                     <MDBBtn rounded size="lg" onClick={togglePopup}>
                       Edit Profile
                     </MDBBtn>
@@ -128,7 +164,21 @@ function UpdateUserForm() {
             </MDBRow>
           </div>
         </div>
-        <form></form>
+        <form>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              setSelectedFile(e.target.files[0]);
+              setProfileImage(URL.createObjectURL(e.target.files[0])); // Update profileImage with the selected file URL
+            }}
+          />
+        </form>
+        <div style={styles.buttonContainer}>
+          <MDBBtn rounded size="lg" onClick={handleUpdate}>
+            Save
+          </MDBBtn>
+        </div>
       </div>
     </div>
   );
@@ -142,7 +192,7 @@ const styles = {
     minHeight: "100vh",
   },
   container: {
-    maxWidth: "750px", 
+    maxWidth: "750px",
     margin: "0 auto",
     padding: "75px",
     border: "1px solid #ccc",
@@ -155,7 +205,7 @@ const styles = {
   },
   button: {
     display: "block",
-    width: "100px", 
+    width: "100px",
     padding: "0 auto",
     marginBottom: "5px",
     borderRadius: "0 auto",
@@ -169,7 +219,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
-  },  
+  },
 };
 
 export default UpdateUserForm;
