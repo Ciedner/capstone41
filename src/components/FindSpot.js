@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { GoogleMap, LoadScript, Autocomplete, Marker } from '@react-google-maps/api';
+import { useNavigate } from 'react-router-dom';
 import {
   MDBBtn,
   MDBContainer,
@@ -9,7 +9,7 @@ import {
   MDBCard,
   MDBCardBody,
   MDBCardImage,
-} from "mdb-react-ui-kit";
+} from 'mdb-react-ui-kit';
 
 const Map = () => {
   const [map, setMap] = useState(null);
@@ -18,11 +18,14 @@ const Map = () => {
     lat: 10.3157,
     lng: 123.8854
   });
+  const [recentSearches, setRecentSearches] = useState([]);
+  const [selectedPlace, setSelectedPlace] = useState(null);
 
   const navigate = useNavigate();
   const handleHome = () => {
-    navigate("/home");
+    navigate('/home');
   };
+
   const containerStyle = {
     position: 'relative',
     width: '100vw',
@@ -54,8 +57,6 @@ const Map = () => {
     justifyContent: 'space-between',
     padding: '16px'
   };
-  
-  
 
   const onLoad = (mapInstance) => {
     setMap(mapInstance);
@@ -69,25 +70,57 @@ const Map = () => {
         setCenter({ lat: lat(), lng: lng() });
         map.panTo({ lat: lat(), lng: lng() });
         map.setZoom(15);
+
+        // Add the searched place to the recent searches
+        const searchedPlace = {
+          name: place.name,
+          address: place.formatted_address,
+          lat: lat(),
+          lng: lng()
+        };
+        setRecentSearches(prevSearches => [searchedPlace, ...prevSearches]);
+        setSelectedPlace(searchedPlace);
       }
     }
   };
 
+  useEffect(() => {
+    // Load recent searches from local storage on component mount
+    const savedRecentSearches = JSON.parse(localStorage.getItem('recentSearches'));
+    if (savedRecentSearches) {
+      setRecentSearches(savedRecentSearches);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save recent searches to local storage whenever it changes
+    localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+  }, [recentSearches]);
+
   return (
     <div style={containerStyle}>
       <div style={menuBarStyle}>
-        {}
         <h3>Recent places</h3>
-        <div>
+        {recentSearches.map((search, index) => (
+          <div key={index}>
+            <p>{search.name}</p>
+            <p>{search.address}</p>
+          </div>
+        ))}
         <MDBBtn color="primary" onClick={handleHome}>
           Home
         </MDBBtn>
       </div>
-      </div>
       <div style={mapStyle}>
         <div style={searchContainerStyle}>
-          <LoadScript googleMapsApiKey="AIzaSyCp4Nj7ff2ulUeutLOP0aYTNKQqD5DeGAs" libraries={['places']}>
-            <Autocomplete onLoad={(auto) => setAutocomplete(auto)} onPlaceChanged={onPlaceChanged}>
+          <LoadScript
+            googleMapsApiKey="AIzaSyCp4Nj7ff2ulUeutLOP0aYTNKQqD5DeGAs"
+            libraries={['places']}
+          >
+            <Autocomplete
+              onLoad={(auto) => setAutocomplete(auto)}
+              onPlaceChanged={onPlaceChanged}
+            >
               <input
                 type="text"
                 placeholder="Search for a place"
@@ -108,13 +141,22 @@ const Map = () => {
             </Autocomplete>
           </LoadScript>
         </div>
-        <LoadScript googleMapsApiKey="AIzaSyCp4Nj7ff2ulUeutLOP0aYTNKQqD5DeGAs" libraries={['places']}>
+        <LoadScript
+          googleMapsApiKey="AIzaSyCp4Nj7ff2ulUeutLOP0aYTNKQqD5DeGAs"
+          libraries={['places']}
+        >
           <GoogleMap
             mapContainerStyle={{ height: '100%', width: '100%' }}
             center={center}
             zoom={10}
             onLoad={onLoad}
-          />
+          >
+            {selectedPlace && (
+              <Marker
+                position={{ lat: selectedPlace.lat, lng: selectedPlace.lng }}
+              />
+            )}
+          </GoogleMap>
         </LoadScript>
       </div>
     </div>

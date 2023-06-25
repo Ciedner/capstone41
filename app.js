@@ -8,41 +8,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 const multer = require('multer');
+
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Set the destination folder for uploaded avatars
-  },
+  destination: './uploads', // Specify the upload directory
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname); // Set the filename to be unique
-  }
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, uniqueSuffix + '-' + file.originalname);
+  },
 });
+
 const upload = multer({ storage });
 
-// Define the endpoint for uploading avatars
-app.post('/upload-avatar', upload.single('avatar'), async (req, res) => {
+app.post('/upload-avatar', upload.single('avatar'), (req, res) => {
   try {
-    if (!req.file) {
-      res.status(400).json({ error: 'No file uploaded' });
-      return;
-    }
-
-    const { email } = req.query;
-    const avatarUrl = `http://localhost:8000/${req.file.path}`; // Assuming the avatar files are served at this URL
-
-    const user = await collection.findOne({ email: email });
-    if (!user) {
-      return res.status(404).send("User not found");
-    }
-
-    // Update the user's profile with the new avatar URL
-    user.avatar = avatarUrl;
-    await user.save();
-
-    // Return the avatar URL in the response
+    const avatarUrl = req.file.path;
     res.json({ avatarUrl });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: 'An error occurred' });
+    res.status(500).send('Error uploading avatar');
   }
 });
 

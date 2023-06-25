@@ -9,7 +9,7 @@ import Profile from "./components/Profile";
 import Transaction from "./components/Transaction"
 import Gcash from "./MoP/Gcash"
 import PayPal from "./MoP/PayPal"
-
+import Recommendation from "./components/Recommendation"
 function App() {
   return (
     <div className="App">
@@ -25,6 +25,7 @@ function App() {
           <Route path="/transact" element={<Transaction />} />
           <Route path="/gcash" element={<Gcash />} />
           <Route path="/paypal" element={<PayPal />} />
+          <Route path="/recommend" element={<Recommendation />} />
         </Routes>
       </Router>
     </div>

@@ -35,24 +35,28 @@ function UpdateUserForm() {
     navigate("/delete");
   };
 
-  
   const handleUpdate = () => {
+    navigate("/change");
+  };
+
+  
+  const handleSave = () => {
     if (selectedFile) {
       const formData = new FormData();
-      formData.append("avatar", selectedFile);
-
-      // Perform the upload logic here (e.g., using axios)
+      formData.append('avatar', selectedFile);
+  
       axios
-        .post("http://localhost:8000/upload-avatar", formData)
+        .post('http://localhost:8000/upload-avatar', formData)
         .then((response) => {
+          // Handle the response from the server, which should contain the URL or file path for the uploaded file
           const avatarUrl = response.data.avatarUrl;
-
+  
           // Update the user's profile with the new avatar URL
           const updatedUserData = { ...userData, avatar: avatarUrl };
-
+  
           // Store the updated user data in local storage
-          localStorage.setItem("user", JSON.stringify(updatedUserData));
-
+          localStorage.setItem('user', JSON.stringify(updatedUserData));
+  
           // Perform the update logic (e.g., using axios)
           axios
             .put(`http://localhost:8000/user/${userData.id}`, updatedUserData)
@@ -69,15 +73,38 @@ function UpdateUserForm() {
           console.log(error);
         });
     } else {
-      // Other update logic...
-      navigate("/change");
+      console.log('No avatar selected');
     }
   };
+
   const handleLogOut = () => {
     localStorage.removeItem('user');
     navigate("/");
   };
   
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const loggedInUser = localStorage.getItem('user');
+        
+        if (loggedInUser) {
+          const user = JSON.parse(loggedInUser);
+          const response = await axios.get(`http://localhost:8000/user/${user.id}`);
+          
+          if (response.data) {
+            setUserData(response.data);
+            setProfileImage(response.data.avatar); // Fetch avatar from user data
+          }
+        } else {
+          navigate("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchUserData();
+  }, [navigate]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -119,12 +146,12 @@ function UpdateUserForm() {
                 <MDBCard style={{ borderRadius: '15px' }}>
                   <MDBCardBody className="text-center">
                     <div className="mt-3 mb-4">
-                      <MDBCardImage
-                        src={profileImage || "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"}
-                        className="rounded-circle"
-                        fluid
-                        style={{ width: '150px' }}
-                      />
+                    <MDBCardImage
+  src={profileImage ? profileImage : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"}
+  className="rounded-circle"
+  fluid
+  style={{ width: '150px' }}
+/>
                     </div>
                     <>
                       <MDBCardText className="text-muted mb-4">Email: {userData?.email || ""}</MDBCardText>
@@ -175,7 +202,7 @@ function UpdateUserForm() {
           />
         </form>
         <div style={styles.buttonContainer}>
-          <MDBBtn rounded size="lg" onClick={handleUpdate}>
+          <MDBBtn rounded size="lg" onClick={handleSave}>
             Save
           </MDBBtn>
         </div>
