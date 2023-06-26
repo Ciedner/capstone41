@@ -8,11 +8,11 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBCardText,
-  MDBTypography,
-  MDBIcon
 } from "mdb-react-ui-kit";
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCar, faEnvelope, faListOl, faMoneyBill} from "@fortawesome/free-solid-svg-icons";
 
 function UpdateUserForm() {
   const [showPopup, setShowPopup] = useState(false);
@@ -130,77 +130,121 @@ function UpdateUserForm() {
   }, []);
 
   return (
-    
-      <div style={styles.container}>
-        <div className="text-center">
-          <div className="vh-100" style={{ backgroundColor: '#5885AF' }}>
-            <MDBRow className="justify-content-center align-items-center h-100">
-              <MDBCol md="12" xl="6">
-                <MDBCard style={{ borderRadius: '15px' }}>
-                  <p>My Profile</p>
-                  <MDBCardBody className="text-center">
-                    <div className="mt-3 mb-4">
-                      <MDBCardImage
-                        src={profileImage ? profileImage : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"}
-                        className="rounded-circle"
-                        fluid
-                        style={{ width: '100px', marginLeft: '0' }}
+    <div style={styles.pageContainer}>
+      <div className="text-center">
+        <div className="vh-100" style={{ backgroundColor: "#5885AF" }}>
+          <MDBRow className="justify-content-center align-items-center h-100">
+            <MDBCol md="12" xl="6">
+              <MDBCard style={{ borderRadius: "15px" }}>
+                <p>My Profile</p>
+                <MDBCardBody className="text-center">
+                  <div className="mt-3 mb-4">
+                    <MDBCardImage
+                      src={
+                        profileImage
+                          ? profileImage
+                          : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                      }
+                      className="rounded-circle"
+                      fluid
+                      style={{ width: "100px", marginLeft: "0" }}
+                    />
+                  </div>
+                  <div className="d-flex justify-content-center mb-3">
+                    <button className="btn btn-outline-primary rounded-pill me-3" style={{ backgroundColor: "#33F1D5" }}>
+                      <FontAwesomeIcon
+                        icon={faEnvelope}
+                        className="me-2"
                       />
-                    </div>
-                    <>
-                      <MDBCardText className="text-muted mb-4">Email: {userData?.email || ""}</MDBCardText>
-                      <MDBCardText className="text-muted mb-4">Vehicle: {userData?.vehicle || ""}</MDBCardText>
-                      <MDBCardText className="text-muted mb-4">Vehicle plate: {userData?.plate || ""}</MDBCardText>
-                    </>
-                    <MDBBtn rounded size="lg" onClick={togglePopup}>
-                      Edit Profile
-                    </MDBBtn>
-                    {showPopup && (
-                      <div className="popup">
-                        <div className="popup-inner">
-                          <h2>Edit Profile</h2>
-                          <div style={styles.buttonContainer}>
-                            <button style={styles.button} onClick={handleDelete}>
-                              Delete All Users
-                            </button>
-                            <button style={styles.button} type="button" onClick={handleUpdate}>
-                              Update User
-                            </button>
-                            <button style={styles.button} type="button" onClick={handleButtonClick}>
-                              Home
-                            </button>
-                            <button style={styles.button} type="button" onClick={handleLogOut}>
-                              Log Out
-                            </button>
-                            <button style={styles.button} onClick={togglePopup}>
-                              Close
-                            </button>
-                          </div>
+                      {userData?.email || ""}
+                    </button>
+                    <button className="btn btn-outline-primary rounded-pill me-3"style={{ backgroundColor: "#EF2EB4" }}>
+                      <FontAwesomeIcon icon={faCar} className="me-2" />
+                      {userData?.vehicle || ""}
+                    </button>
+                    <button className="btn btn-outline-primary rounded-pill"style={{ backgroundColor: "#A1EF52" }}>
+                      <FontAwesomeIcon icon={faListOl} className="me-2" />
+                      {userData?.plate || ""}
+                    </button>
+                    
+                  </div>
+                  <div>
+                  <p>Dashboard</p>
+                  <button
+                       className="btn btn-outline-primary rounded-pill"
+                       style={{ backgroundColor: "#D4F1F4" }}
+                       onClick={() => navigate("/payment")}
+                  >
+                  <FontAwesomeIcon icon={faMoneyBill} /> Payment
+                  </button>
+                  </div>
+
+                  <MDBBtn rounded size="lg" onClick={togglePopup}>
+                    Edit Profile
+                  </MDBBtn>
+                  {showPopup && (
+                    <div className="popup">
+                      <div className="popup-inner">
+                        <div style={styles.buttonContainer}>
+                          <button
+                            style={styles.button}
+                            onClick={handleDelete}
+                          >
+                            Delete All Users
+                          </button>
+                          <button
+                            style={styles.button}
+                            type="button"
+                            onClick={handleUpdate}
+                          >
+                            Update User
+                          </button>
+                          <button
+                            style={styles.button}
+                            type="button"
+                            onClick={handleButtonClick}
+                          >
+                            Home
+                          </button>
+                          <button
+                            style={styles.button}
+                            type="button"
+                            onClick={handleLogOut}
+                          >
+                            Log Out
+                          </button>
+                          <button
+                            style={styles.button}
+                            onClick={togglePopup}
+                          >
+                            Close
+                          </button>
                         </div>
                       </div>
-                    )}
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
-            </MDBRow>
-          </div>
-        </div>
-        <form>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              setSelectedFile(e.target.files[0]);
-              setProfileImage(URL.createObjectURL(e.target.files[0])); 
-            }}
-          />
-        </form>
-        <div style={styles.buttonContainer}>
-          <MDBBtn rounded size="lg" onClick={handleSave}>
-            Save
-          </MDBBtn>
+                    </div>
+                  )}
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
         </div>
       </div>
+      <form>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            setSelectedFile(e.target.files[0]);
+            setProfileImage(URL.createObjectURL(e.target.files[0]));
+          }}
+        />
+      </form>
+      <div style={styles.buttonContainer}>
+        <MDBBtn rounded size="lg" onClick={handleSave}>
+          Save
+        </MDBBtn>
+      </div>
+    </div>
   );
 }
 
@@ -210,18 +254,6 @@ const styles = {
     backgroundSize: "cover",
     backgroundPosition: "center",
     minHeight: "100vh",
-  },
-  container: {
-    maxWidth: "750px",
-    margin: "0 auto",
-    padding: "75px",
-    border: "1px solid #ccc",
-    borderRadius: "4px",
-    backgroundColor: "rgba(255, 255, 255, 0.6)",
-  },
-  heading: {
-    textAlign: "center",
-    marginBottom: "0 auto",
   },
   button: {
     display: "block",
@@ -239,6 +271,7 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
+    marginBottom: "10px",   
   },
 };
 
