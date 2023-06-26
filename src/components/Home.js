@@ -71,12 +71,9 @@ function Home() {
   };
 
   const backgroundStyle = {
-    backgroundImage:
-      'url("https://i.nextmedia.com.au/News/crn-14_carpark_iStock-177136206.jpg")',
-    backgroundSize: "cover",
+    backgroundColor: "#5885AF",
     backgroundPosition: "center",
     height: "100vh",
-    backgroundColor: "yellow",
   };
 
   const dashboardStyle = {
@@ -88,6 +85,7 @@ function Home() {
 
   const cardStyle = {
     width: "300px",
+    backgroundColor: "#C3E0E5",
   };
   const styles = {
     welcomeMessage: {
@@ -104,10 +102,17 @@ function Home() {
     },
   };
 
+  const handleCardClick = (path) => {
+    navigate(path);
+  };
+
   return (
     <div className="homepage">
       <div style={backgroundStyle}>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav
+          className="navbar navbar-expand-lg navbar-dark"
+          style={{ backgroundColor: "#274472" }}
+        >
           <div className="container">
             <Link className="navbar-brand" to="/">
               SpotWise Parking Management System
@@ -120,40 +125,62 @@ function Home() {
         <div style={dashboardStyle}>
           <MDBContainer>
             <MDBRow>
-            <MDBCol>
-                    <MDBCard style={cardStyle}>
-                      <MDBCardImage
-                        src="https://cdn-icons-png.flaticon.com/512/8/8206.png"
-                        alt="Card image"
-                        top
-                      />
-                      <MDBCardBody>
-                        <h5 className="card-title">Recommendation</h5>
-                        <p className="card-text">Parking alternative</p>
-                        <MDBBtn color="primary" onClick={handleRecommend}>
-                          Go
-                        </MDBBtn>
-                      </MDBCardBody>
-                    </MDBCard>
-                  </MDBCol>
               <MDBCol>
-                <MDBCard style={cardStyle}>
+                <MDBCard
+                  style={cardStyle}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.transform = "translateY(-10px)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.transform = "translateY(0)")
+                  }
+                  onClick={() => handleCardClick("/recommend")}
+                >
                   <MDBCardImage
-                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHA0shn2z9SzmuROBAE2TsrGGEkgq2FciYhA&usqp=CAU"
+                    src="https://cdn-icons-png.flaticon.com/512/8/8206.png"
                     alt="Card image"
                     top
                   />
-                <MDBCardBody>
-                   <h5 className="card-title">Routes</h5>
-                   <p className="card-text">Direction Provider</p>
-                    <MDBBtn color="primary" onClick={handleFind}>
-                      Go
-                   </MDBBtn>
+                  <MDBCardBody>
+                    <h5 className="card-title">Recommendation</h5>
+                    <p className="card-text">Parking alternative</p>
                   </MDBCardBody>
                 </MDBCard>
-             </MDBCol>
+              </MDBCol>
               <MDBCol>
-                <MDBCard style={cardStyle}>
+                <MDBCard
+                  style={cardStyle}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.transform = "translateY(-10px)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.transform = "translateY(0)")
+                  }
+                  onClick={() => handleCardClick("/find")}
+                >
+                  <MDBCardImage
+                    src="https://cdn.onlinewebfonts.com/svg/img_567369.png"
+                    alt="Card image"
+                    top
+                  />
+                  <MDBCardBody>
+                    <h5 className="card-title">Routes</h5>
+                    <p className="card-text">Direction Provider</p>
+
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+              <MDBCol>
+                <MDBCard
+                  style={cardStyle}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.transform = "translateY(-10px)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.transform = "translateY(0)")
+                  }
+                  onClick={() => handleCardClick("/profile")}
+                >
                   <MDBCardImage
                     src="https://cdn0.iconfinder.com/data/icons/avatars-3/512/avatar_smart_guy-512.png"
                     alt="Card image"
@@ -162,16 +189,22 @@ function Home() {
                   <MDBCardBody>
                     <h5 className="card-title">Profile</h5>
                     <p className="card-text">Modify profile</p>
-                    <MDBBtn color="primary" onClick={handleProfile}>
-                      Go
-                    </MDBBtn>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
               <MDBCol>
                 <MDBRow>
                   <MDBCol>
-                    <MDBCard style={cardStyle}>
+                    <MDBCard
+                      style={cardStyle}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.transform = "translateY(-10px)")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.transform = "translateY(0)")
+                      }
+                      onClick={() => handleCardClick("/transact")}
+                    >
                       <MDBCardImage
                         src="https://cdn-icons-png.flaticon.com/512/4222/4222025.png"
                         alt="Card image"
@@ -180,9 +213,6 @@ function Home() {
                       <MDBCardBody>
                         <h5 className="card-title">Payment</h5>
                         <p className="card-text">Choose Payment</p>
-                        <MDBBtn color="primary" onClick={handleTransaction}>
-                          Go
-                        </MDBBtn>
                       </MDBCardBody>
                     </MDBCard>
                   </MDBCol>

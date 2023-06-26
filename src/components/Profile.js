@@ -48,22 +48,16 @@ function UpdateUserForm() {
       axios
         .post('http://localhost:8000/upload-avatar', formData)
         .then((response) => {
-          // Handle the response from the server, which should contain the URL or file path for the uploaded file
           const avatarUrl = response.data.avatarUrl;
-  
-          // Update the user's profile with the new avatar URL
           const updatedUserData = { ...userData, avatar: avatarUrl };
   
-          // Store the updated user data in local storage
           localStorage.setItem('user', JSON.stringify(updatedUserData));
   
-          // Perform the update logic (e.g., using axios)
           axios
             .put(`http://localhost:8000/user/${userData.id}`, updatedUserData)
             .then(() => {
-              // Once the update is successful, update the profile image state
               setProfileImage(avatarUrl);
-              setShowPopup(false); // Close the popup after saving
+              setShowPopup(false);
             })
             .catch((error) => {
               console.log(error);
@@ -93,7 +87,7 @@ function UpdateUserForm() {
           
           if (response.data) {
             setUserData(response.data);
-            setProfileImage(response.data.avatar); // Fetch avatar from user data
+            setProfileImage(response.data.avatar);
           }
         } else {
           navigate("/");
@@ -136,22 +130,22 @@ function UpdateUserForm() {
   }, []);
 
   return (
-    <div style={styles.pageContainer}>
+    
       <div style={styles.container}>
-        <h1 style={styles.heading}>Profile Settings</h1>
         <div className="text-center">
-          <div className="vh-100" style={{ backgroundColor: '#eee' }}>
+          <div className="vh-100" style={{ backgroundColor: '#5885AF' }}>
             <MDBRow className="justify-content-center align-items-center h-100">
               <MDBCol md="12" xl="6">
                 <MDBCard style={{ borderRadius: '15px' }}>
+                  <p>My Profile</p>
                   <MDBCardBody className="text-center">
                     <div className="mt-3 mb-4">
-                    <MDBCardImage
-  src={profileImage ? profileImage : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"}
-  className="rounded-circle"
-  fluid
-  style={{ width: '150px' }}
-/>
+                      <MDBCardImage
+                        src={profileImage ? profileImage : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"}
+                        className="rounded-circle"
+                        fluid
+                        style={{ width: '100px', marginLeft: '0' }}
+                      />
                     </div>
                     <>
                       <MDBCardText className="text-muted mb-4">Email: {userData?.email || ""}</MDBCardText>
@@ -197,7 +191,7 @@ function UpdateUserForm() {
             accept="image/*"
             onChange={(e) => {
               setSelectedFile(e.target.files[0]);
-              setProfileImage(URL.createObjectURL(e.target.files[0])); // Update profileImage with the selected file URL
+              setProfileImage(URL.createObjectURL(e.target.files[0])); 
             }}
           />
         </form>
@@ -207,7 +201,6 @@ function UpdateUserForm() {
           </MDBBtn>
         </div>
       </div>
-    </div>
   );
 }
 
