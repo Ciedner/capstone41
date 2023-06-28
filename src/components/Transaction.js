@@ -101,7 +101,6 @@ function Home() {
                 style={styles.arrowIcon}
                 onClick={handleGoBack}
               />
-              Mode of Payment
               <p style={styles.welcomeMessage}>
                 <FaUserCircle style={styles.icon} /> {userData?.email || ""}
               </p>

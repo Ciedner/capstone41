@@ -23,73 +23,87 @@ import axios from 'axios';
 
 
 function Manage() {
-const navigate = useNavigate();
-const [userData, setUserData] = useState(null);
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [vehicle, setVehicle] = useState('');
-  const [plateNumber, setPlateNumber] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
+    const navigate = useNavigate();
+    const [userData, setUserData] = useState(null);
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [vehicle, setVehicle] = useState('');
+    const [plateNumber, setPlateNumber] = useState('');
+    const [isEditing, setIsEditing] = useState(false);
+  
+    useEffect(() => {
+      const fetchUserData = async () => {
+        try {
+          const loggedInUser = localStorage.getItem('user');
+          
+          if (loggedInUser) {
+            const response = await axios.get(`http://localhost:8000/user/${loggedInUser}`);
+            
+            if (response.data) {
+              setUserData(response.data);
+            }
+          } else {
+            navigate("/");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    
+      fetchUserData();
+    }, [navigate]);
+  
+    useEffect(() => {
+      const loggedInUser = localStorage.getItem('user');
+      if (!loggedInUser) {
+        navigate("/");
+      }
+    }, []);
+  
+    function handleFullNameChange(event) {
+      setFullName(event.target.value);
+    }
+  
+    function handleEmailChange(event) {
+      setEmail(event.target.value);
+    }
+  
+    function handleVehicleChange(event) {
+      setVehicle(event.target.value);
+    }
+  
+    function handlePlateNumberChange(event) {
+      setPlateNumber(event.target.value);
+    }
+  
+    function handleEditProfile() {
+      setIsEditing(true);
+    }
+  
+    async function handleSaveProfile() {
+      const updatedUserData = {
+        fullName: fullName,
+        email: email,
+        vehicle: vehicle,
+        plate: plateNumber
+      };
+  
       try {
         const loggedInUser = localStorage.getItem('user');
-        
         if (loggedInUser) {
-          const response = await axios.get(`http://localhost:8000/user/${loggedInUser}`);
-          
-          if (response.data) {
-            setUserData(response.data);
-          }
-        } else {
-          navigate("/");
+          await axios.put(`http://localhost:8000/user/${loggedInUser}`, updatedUserData);
+          setUserData(updatedUserData);
+          setIsEditing(false);
         }
       } catch (error) {
         console.log(error);
       }
-    };
-  
-    fetchUserData();
-  }, [navigate]);
-
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem('user');
-    if (!loggedInUser) {
-      navigate("/");
     }
-  }, []);
   
-
-  function handleFullNameChange(event) {
-    setFullName(event.target.value);
-  }
-
-  function handleEmailChange(event) {
-    setEmail(event.target.value);
-  }
-
-  function handleVehicleChange(event) {
-    setVehicle(event.target.value);
-  }
-
-  function handlePlateNumberChange(event) {
-    setPlateNumber(event.target.value);
-  }
-
-  function handleEditProfile() {
-    setIsEditing(true);
-  }
-
-  function handleSaveProfile() {
-    const updatedUserData = {
-      fullName: fullName,
-      email: email,
-      vehicle: vehicle,
-      plate: plateNumber
+    const handleLogOut = () => {
+      localStorage.removeItem('user');
+      navigate("/");
     };
-
-  }
 
   return (
     <section style={{ backgroundColor: '#eee' }}>
@@ -158,6 +172,15 @@ const [userData, setUserData] = useState(null);
                 </MDBListGroup>
               </MDBCardBody>
             </MDBCard>
+            <MDBCol
+         className="text-danger"
+         style={{ cursor: 'pointer', transition: 'color 0.3s' }}
+         onMouseEnter={(e) => (e.target.style.color = 'black')}
+        onMouseLeave={(e) => (e.target.style.color = 'red')}
+        onClick={handleLogOut}
+         >
+         Log Out
+        </MDBCol>
           </MDBCol>
           <MDBCol lg="8">
             <MDBCard className="mb-4">

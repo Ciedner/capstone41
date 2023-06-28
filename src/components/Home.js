@@ -42,34 +42,6 @@ function Home() {
     fetchUserData();
   }, [navigate]);
 
-  const handleButtonClick = () => {
-    navigate("/");
-  };
-
-  const handleDelete = () => {
-    navigate("/delete");
-  };
-
-  const handleUpdate = () => {
-    navigate("/change");
-  };
-
-  const handleFind = () => {
-    navigate("/find");
-  };
-
-  const handleProfile = () => {
-    navigate("/manage");
-  };
-
-  const handleTransaction = () => {
-    navigate("/transact");
-  };
-
-  const handleRecommend = () => {
-    navigate("/recommend");
-  };
-
   const backgroundStyle = {
     backgroundColor: "#5885AF",
     backgroundPosition: "center",

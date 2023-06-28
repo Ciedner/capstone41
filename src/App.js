@@ -11,6 +11,8 @@ import Gcash from "./MoP/Gcash"
 import PayPal from "./MoP/PayPal"
 import Recommendation from "./components/Recommendation"
 import Manage from "./Profile/Manage"
+import Register from "./Profile/Register"
+
 function App() {
   return (
     <div className="App">
@@ -28,6 +30,7 @@ function App() {
           <Route path="/paypal" element={<PayPal />} />
           <Route path="/recommend" element={<Recommendation />} />
           <Route path="/manage" element={<Manage />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </div>
