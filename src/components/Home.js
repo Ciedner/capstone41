@@ -59,7 +59,7 @@ function Home() {
   };
 
   const handleProfile = () => {
-    navigate("/profile");
+    navigate("/manage");
   };
 
   const handleTransaction = () => {
@@ -179,7 +179,7 @@ function Home() {
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.transform = "translateY(0)")
                   }
-                  onClick={() => handleCardClick("/profile")}
+                  onClick={() => handleCardClick("/manage")}
                 >
                   <MDBCardImage
                     src="https://cdn0.iconfinder.com/data/icons/avatars-3/512/avatar_smart_guy-512.png"

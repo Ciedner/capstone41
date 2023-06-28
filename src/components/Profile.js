@@ -46,6 +46,9 @@
     const handleUpdate = () => {
       navigate("/change");
     };
+    const handleManage = () => {
+      navigate("/manage");
+    };
 
     
     const handleSave = () => {
@@ -187,6 +190,7 @@
       }}
     />
   </div>
+  
                     <div className="d-flex justify-content-center mb-3">
                       <button className="btn btn-outline-primary rounded-pill me-3" style={{ backgroundColor: "#33F1D5" }}>
                         <FontAwesomeIcon
@@ -216,7 +220,7 @@
                       <button
                         className="btn btn-outline-primary rounded-pill"
                         style={{ backgroundColor: "#D4F1F4",  marginLeft: "20px" }}
-                        onClick={togglePopup}
+                        onClick={handleManage}
                       >
                         <FontAwesomeIcon icon={faPenToSquare} /> Edit Profile
                       </button>

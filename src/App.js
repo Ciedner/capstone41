@@ -10,6 +10,7 @@ import Transaction from "./components/Transaction"
 import Gcash from "./MoP/Gcash"
 import PayPal from "./MoP/PayPal"
 import Recommendation from "./components/Recommendation"
+import Manage from "./Profile/Manage"
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,7 @@ function App() {
           <Route path="/gcash" element={<Gcash />} />
           <Route path="/paypal" element={<PayPal />} />
           <Route path="/recommend" element={<Recommendation />} />
+          <Route path="/manage" element={<Manage />} />
         </Routes>
       </Router>
     </div>
