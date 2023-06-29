@@ -23,87 +23,92 @@ import axios from 'axios';
 
 
 function Manage() {
-    const navigate = useNavigate();
-    const [userData, setUserData] = useState(null);
-    const [fullName, setFullName] = useState('');
-    const [email, setEmail] = useState('');
-    const [vehicle, setVehicle] = useState('');
-    const [plateNumber, setPlateNumber] = useState('');
-    const [isEditing, setIsEditing] = useState(false);
-  
-    useEffect(() => {
-      const fetchUserData = async () => {
-        try {
-          const loggedInUser = localStorage.getItem('user');
-          
-          if (loggedInUser) {
-            const response = await axios.get(`http://localhost:8000/user/${loggedInUser}`);
-            
-            if (response.data) {
-              setUserData(response.data);
-            }
-          } else {
-            navigate("/");
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      };
-    
-      fetchUserData();
-    }, [navigate]);
-  
-    useEffect(() => {
-      const loggedInUser = localStorage.getItem('user');
-      if (!loggedInUser) {
-        navigate("/");
-      }
-    }, []);
-  
-    function handleFullNameChange(event) {
-      setFullName(event.target.value);
-    }
-  
-    function handleEmailChange(event) {
-      setEmail(event.target.value);
-    }
-  
-    function handleVehicleChange(event) {
-      setVehicle(event.target.value);
-    }
-  
-    function handlePlateNumberChange(event) {
-      setPlateNumber(event.target.value);
-    }
-  
-    function handleEditProfile() {
-      setIsEditing(true);
-    }
-  
-    async function handleSaveProfile() {
-      const updatedUserData = {
-        fullName: fullName,
-        email: email,
-        vehicle: vehicle,
-        plate: plateNumber
-      };
-  
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+  const [fName, setFname] = useState('');
+  const [lName, setLname] = useState('');
+  const [email, setEmail] = useState('');
+  const [vehicle, setVehicle] = useState('');
+  const [plateNumber, setPlateNumber] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
       try {
         const loggedInUser = localStorage.getItem('user');
+
         if (loggedInUser) {
-          await axios.put(`http://localhost:8000/user/${loggedInUser}`, updatedUserData);
-          setUserData(updatedUserData);
-          setIsEditing(false);
+          const response = await axios.get(`http://localhost:8000/user/${loggedInUser}`);
+
+          if (response.data) {
+            setUserData(response.data);
+          }
+        } else {
+          navigate("/");
         }
       } catch (error) {
         console.log(error);
       }
-    }
-  
-    const handleLogOut = () => {
-      localStorage.removeItem('user');
-      navigate("/");
     };
+
+    fetchUserData();
+  }, [navigate]);
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (!loggedInUser) {
+      navigate("/");
+    }
+  }, []);
+
+  function handleFNameChange(event) {
+    setFname(event.target.value);
+  }
+  function handleLNameChange(event) {
+    setFname(event.target.value);
+  }
+
+  function handleEmailChange(event) {
+    setEmail(event.target.value);
+  }
+
+  function handleVehicleChange(event) {
+    setVehicle(event.target.value);
+  }
+
+  function handlePlateNumberChange(event) {
+    setPlateNumber(event.target.value);
+  }
+
+  function handleEditProfile() {
+    setIsEditing(true);
+  }
+
+  async function handleSaveProfile() {
+    const updatedUserData = {
+      fName: fName,
+      lName: lName,
+      email: email,
+      vehicle: vehicle,
+      plate: plateNumber
+    };
+
+    try {
+      const loggedInUser = localStorage.getItem('user');
+      if (loggedInUser) {
+        await axios.put(`http://localhost:8000/user/${loggedInUser}`, updatedUserData);
+        setUserData(updatedUserData);
+        setIsEditing(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleLogOut = () => {
+    localStorage.removeItem('user');
+    navigate("/");
+  };
 
   return (
     <section style={{ backgroundColor: '#eee' }}>
@@ -114,10 +119,6 @@ function Manage() {
               <MDBBreadcrumbItem>
                 <a href="/home">Home</a>
               </MDBBreadcrumbItem>
-              <MDBBreadcrumbItem>
-                <a href="#">User</a>
-              </MDBBreadcrumbItem>
-              <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
             </MDBBreadcrumb>
           </MDBCol>
         </MDBRow>
@@ -145,119 +146,146 @@ function Manage() {
                 </div>
               </MDBCardBody>
             </MDBCard>
-
+            <p>General Information</p>
             <MDBCard className="mb-4 mb-lg-0">
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fas icon="globe fa-lg text-warning" />
-                    <MDBCardText>https://mdbootstrap.com</MDBCardText>
+                    <MDBIcon fas icon="fa-solid fa-user" />
+                    <MDBCardText>{userData?.fName || ""} {userData?.lName || ""}
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={fName}
+                        onChange={handleFNameChange}
+                      />
+                    ) : (
+                      <MDBCardText className="text-muted">{fName}</MDBCardText>
+                    )}
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={lName}
+                        onChange={handleLNameChange}
+                      />
+                    ) : (
+                      <MDBCardText className="text-muted">{lName}</MDBCardText>
+                    )}
+                    </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="github fa-lg" style={{ color: '#333333' }} />
-                    <MDBCardText>mdbootstrap</MDBCardText>
+                    <MDBIcon fas icon="envelope" style={{ color: '#333333' }} />
+                    <MDBCardText> {userData?.email || ""}</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="twitter fa-lg" style={{ color: '#55acee' }} />
-                    <MDBCardText>@mdbootstrap</MDBCardText>
+                    <MDBIcon fas icon="map-marker" style={{ color: '#333333' }} />
+                    <MDBCardText>{userData?.address || ""}</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="instagram fa-lg" style={{ color: '#ac2bac' }} />
-                    <MDBCardText>mdbootstrap</MDBCardText>
+                    <MDBIcon fas icon="phone" style={{ color: '#333333' }} />
+                    <MDBCardText>{userData?.contact || ""}</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="facebook fa-lg" style={{ color: '#3b5998' }} />
-                    <MDBCardText>mdbootstrap</MDBCardText>
+                    <MDBIcon fas icon="calendar" style={{ color: '#333333' }} />
+                    <MDBCardText>{userData?.birthday || ""}</MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <MDBIcon fas icon="car" style={{ color: '#333333' }} />
+                    <MDBCardText>{userData?.vehicle || ""}</MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <MDBIcon fas icon="list-ol" style={{ color: '#333333' }} />
+                    <MDBCardText>{userData?.plate || ""}</MDBCardText>
                   </MDBListGroupItem>
                 </MDBListGroup>
               </MDBCardBody>
             </MDBCard>
             <MDBCol
-         className="text-danger"
-         style={{ cursor: 'pointer', transition: 'color 0.3s' }}
-         onMouseEnter={(e) => (e.target.style.color = 'black')}
-        onMouseLeave={(e) => (e.target.style.color = 'red')}
-        onClick={handleLogOut}
-         >
-         Log Out
-        </MDBCol>
+              className="text-danger"
+              style={{ cursor: 'pointer', transition: 'color 0.3s' }}
+              onMouseEnter={(e) => (e.target.style.color = 'black')}
+              onMouseLeave={(e) => (e.target.style.color = 'red')}
+              onClick={handleLogOut}
+            >
+              Log Out
+            </MDBCol>
           </MDBCol>
           <MDBCol lg="8">
             <MDBCard className="mb-4">
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Full Name</MDBCardText>
+                    <MDBCardText>First Name: {userData?.fName || ""}</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                {isEditing ? (
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={fullName}
-                    onChange={handleFullNameChange}
-                  />
-                ) : (
-                  <MDBCardText className="text-muted">{fullName}</MDBCardText>
-                )}
-              </MDBCol>
-            </MDBRow>
-            <hr />
-            <MDBRow>
-              <MDBCol sm="3">
-                <MDBCardText >Email: {userData?.email || ""}</MDBCardText>
-              </MDBCol>
-              <MDBCol sm="9">
-                {isEditing ? (
-                   <input
-                   type="email"
-                   className="form-control"
-                   value={email}
-                   onChange={handleEmailChange}
-                 />
-                ) : (
-                  <MDBCardText className="text-muted">{email}</MDBCardText>
-                )}
-              </MDBCol>
-            </MDBRow>
-            <hr />
-            <MDBRow>
-              <MDBCol sm="3">
-                <MDBCardText>Vehicle: {userData?.vehicle || ""}</MDBCardText>
-              </MDBCol>
-              <MDBCol sm="9">
-                {isEditing ? (
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={vehicle}
-                    onChange={handleVehicleChange}
-                  />
-                ) : (
-                  <MDBCardText className="text-muted">{vehicle}</MDBCardText>
-                )}
-              </MDBCol>
-            </MDBRow>
-            <hr />
-            <MDBRow>
-              <MDBCol sm="3">
-                <MDBCardText>Vehicle Plate: {userData?.plate || ""}</MDBCardText>
-              </MDBCol>
-              <MDBCol sm="9">
-                {isEditing ? (
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={plateNumber}
-                    onChange={handlePlateNumberChange}
-                  />
-                ) : (
-                  <MDBCardText className="text-muted">{plateNumber}</MDBCardText>
-                )}
+                   
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText >Email: {userData?.email || ""}</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    {isEditing ? (
+                      <input
+                        type="email"
+                        className="form-control"
+                        value={email}
+                        onChange={handleEmailChange}
+                      />
+                    ) : (
+                      <MDBCardText className="text-muted">{email}</MDBCardText>
+                    )}
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Vehicle: {userData?.vehicle || ""}</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={vehicle}
+                        onChange={handleVehicleChange}
+                      />
+                    ) : (
+                      <MDBCardText className="text-muted">{vehicle}</MDBCardText>
+                    )}
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Vehicle Plate: {userData?.plate || ""}</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={plateNumber}
+                        onChange={handlePlateNumberChange}
+                      />
+                    ) : (
+                      <MDBCardText className="text-muted">{plateNumber}</MDBCardText>
+                    )}
                   </MDBCol>
                 </MDBRow>
               </MDBCardBody>
             </MDBCard>
+            <MDBCol lg="4">
+              <MDBCard className="mb-4">
+              </MDBCard>
+            </MDBCol>
+
+
 
             <MDBRow>
               <MDBCol md="6">

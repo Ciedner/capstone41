@@ -24,7 +24,28 @@ const newSchema=new mongoose.Schema({
     plate:{
         type:String,
         required:true
+    },
+    fName:{
+        type:String,
+        required:true
+    },
+    lName:{
+        type:String,
+        required:true
+    },
+    address:{
+        type:String,
+        required:true
+    },
+    birthday:{
+        type:String,
+        required:true
+    },
+    contact:{
+        type:String,
+        required:true
     }
+    
 })
 
 const collection = mongoose.model("collection",newSchema)

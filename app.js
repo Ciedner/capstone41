@@ -10,7 +10,7 @@ app.use(cors());
 const multer = require('multer');
 
 const storage = multer.diskStorage({
-  destination: './uploads', // Specify the upload directory
+  destination: './uploads',
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     cb(null, uniqueSuffix + '-' + file.originalname);
@@ -85,7 +85,7 @@ app.get("/user/:email", async (req, res) => {
 
 app.get('/', cors(), (req, res) => {});
 app.post('/', async (req, res) => {
-  const { email, password, vehicle, plate } = req.body;
+  const { email, password, vehicle, plate, fName, lName, address, birthday,contact} = req.body;
 
   try {
     const check = await collection.findOne({ email: email });
@@ -105,13 +105,18 @@ app.post('/', async (req, res) => {
 });
 
 app.post('/signup', async (req, res) => {
-  const { email, password, vehicle, plate } = req.body;
+  const { email, password, vehicle, plate, fName, lName, address, birthday, contact} = req.body;
 
   const data = {
     email: email,
     password: password,
     vehicle: vehicle,
     plate: plate,
+    fName: fName,
+    lName: lName,
+    address: address,
+    birthday: birthday,
+    contact: contact
   };
 
   try {

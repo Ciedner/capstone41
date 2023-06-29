@@ -22,6 +22,11 @@ function Login() {
     const [password, setPassword] = useState('');
     const [vehicle, setVehicle] = useState('');
     const [plate, setPlate] = useState('');
+    const [fName, setFname] = useState('');
+    const [lName, setLname] = useState('');
+    const [address, setAddress] = useState('');
+    const [birthday, setBday] = useState('');
+    const [contact, setContact] = useState('');
 
     async function submit(e) {
         e.preventDefault();
@@ -31,7 +36,12 @@ function Login() {
                 email,
                 password,
                 vehicle,
-                plate
+                plate,
+                fName,
+                lName,
+                address,
+                birthday,
+                contact,
             })
             .then(res => {
                 if (res.data === "exist") {
@@ -66,17 +76,27 @@ function Login() {
                             <MDBCol md="10" lg="6" className="order-2 order-lg-1 d-flex flex-column align-items-center">
                                 <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
                                 <div className="d-flex flex-row align-items-center mb-4">
-                                    <MDBIcon fas icon="envelope me-3" size="lg" />
+                                    <MDBIcon size="lg" />
                                     <MDBInput
-                                        label="Your Email"
+                                        label="First Name"
+                                        id="form1"
+                                        type="text"
+                                        value={fName}
+                                        onChange={(e) => setFname(e.target.value)}
+                                        />
+                                </div>
+                                <div className="d-flex flex-row align-items-center">
+                                    <MDBIcon size="lg" />
+                                    <MDBInput
+                                        label="Last Name"
                                         id="form2"
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />
+                                        type="text"
+                                        value={lName}
+                                        onChange={(e) => setLname(e.target.value)}
+                                        />
                                 </div>
                                 <div className="d-flex flex-row align-items-center mb-4">
-                                    <MDBIcon fas icon="lock me-3" size="lg" />
+                                    <MDBIcon size="lg" />
                                     <MDBInput
                                         label="Password"
                                         id="form3"
@@ -85,24 +105,35 @@ function Login() {
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
-                                <div className="d-flex flex-row align-items-center mb-4">
-                                    <MDBIcon fas icon="lock me-3" size="lg" />
+                                <div className="d-flex flex-row align-items-center">
+                                    <MDBIcon size="lg" />
                                     <MDBInput
-                                        label="Vehicle"
-                                        id="form4"
-                                        type="text"
-                                        value={vehicle}
-                                        onChange={(e) => setVehicle(e.target.value)}
-                                    />
-                                </div>
-                                <div className="d-flex flex-row align-items-center mb-4">
-                                    <MDBIcon fas icon="lock me-3" size="lg" />
-                                    <MDBInput
-                                        label="Plate Number"
+                                        label="Address"
                                         id="form5"
                                         type="text"
-                                        value={plate}
-                                        onChange={(e) => setPlate(e.target.value)}
+                                        value={address}
+                                        onChange={(e) => setAddress(e.target.value)}
+                                        />
+                                </div>
+                                <div className="d-flex flex-row align-items-center">
+                                    <MDBIcon size="lg" />
+                                    <MDBInput
+                                        label="Contact"
+                                        id="form5"
+                                        type="text"
+                                        value={contact}
+                                        onChange={(e) => setContact(e.target.value)}
+                                        />
+                                </div>
+
+                                <div className="d-flex flex-row align-items-center">
+                                    <MDBIcon size="lg" />
+                                    <MDBInput
+                                        label="Birthday"
+                                        id="form5"
+                                        type="date"
+                                        value={birthday}
+                                        onChange={(e) => setBday(e.target.value)}
                                     />
                                 </div>
                                 <div className="mb-4">
@@ -113,7 +144,38 @@ function Login() {
                                 </MDBBtn>
                             </MDBCol>
                             <MDBCol md="10" lg="6" className="order-1 order-lg-2 d-flex align-items-center">
-                                <MDBCardImage src="https://cdn.luxe.digital/media/20230103133024/most-expensive-cars-2023-list-luxe-digital.jpg" fluid />
+                            <div className="d-flex flex-column align-items-center mb-4">
+                            <div className="d-flex flex-row align-items-center mb-4">
+                                    <MDBIcon size="lg" />
+                                    <MDBInput
+                                        label="Your Email"
+                                        id="form6"
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                </div>
+                                <div className="d-flex flex-row align-items-center mb-4">
+                                    <MDBIcon size="lg" />
+                                    <MDBInput
+                                        label="Vehicle"
+                                        id="form7"
+                                        type="text"
+                                        value={vehicle}
+                                        onChange={(e) => setVehicle(e.target.value)}
+                                    />
+                                </div>
+                                <div className="d-flex flex-row align-items-center mb-4">
+                                    <MDBIcon size="lg" />
+                                    <MDBInput
+                                        label="Plate Number"
+                                        id="form6"
+                                        type="text"
+                                        value={plate}
+                                        onChange={(e) => setPlate(e.target.value)}
+                                    />
+                                </div>
+                            </div>
                             </MDBCol>
                         </MDBRow>
                     </MDBCardBody>
