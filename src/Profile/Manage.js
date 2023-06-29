@@ -30,6 +30,9 @@ function Manage() {
   const [email, setEmail] = useState('');
   const [vehicle, setVehicle] = useState('');
   const [plateNumber, setPlateNumber] = useState('');
+  const [address, setAddress] = useState('');
+  const [contact, setContact] = useState('');
+  const [birthday, setBirthday] = useState('');
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -83,14 +86,26 @@ function Manage() {
   function handleEditProfile() {
     setIsEditing(true);
   }
+  function handleAddressChange() {
+    setIsEditing(true);
+  }
 
+  function handleContactChange() {
+    setIsEditing(true);
+  }
+  function handleBirthdayChange() {
+    setIsEditing(true);
+  }
   async function handleSaveProfile() {
     const updatedUserData = {
       fName: fName,
       lName: lName,
       email: email,
       vehicle: vehicle,
-      plate: plateNumber
+      plate: plateNumber,
+      address: address,
+      birthday: birthday,
+      contact: contact,
     };
 
     try {
@@ -177,23 +192,67 @@ function Manage() {
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                     <MDBIcon fas icon="envelope" style={{ color: '#333333' }} />
-                    <MDBCardText> {userData?.email || ""}</MDBCardText>
+                    <MDBCardText> {userData?.email || ""}
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={email}
+                        onChange={handleEmailChange}
+                      />
+                    ) : (
+                      <MDBCardText className="text-muted">{email}</MDBCardText>
+                    )}
+                    </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                     <MDBIcon fas icon="map-marker" style={{ color: '#333333' }} />
-                    <MDBCardText>{userData?.address || ""}</MDBCardText>
+                    <MDBCardText>{userData?.address || ""}
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={address}
+                        onChange={handleAddressChange}
+                      />
+                    ) : (
+                      <MDBCardText className="text-muted">{address}</MDBCardText>
+                    )}</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                     <MDBIcon fas icon="phone" style={{ color: '#333333' }} />
-                    <MDBCardText>{userData?.contact || ""}</MDBCardText>
+                    <MDBCardText>{userData?.contact || ""}
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={contact}
+                        onChange={handleContactChange}
+                      />
+                    ) : (
+                      <MDBCardText className="text-muted">{contact}</MDBCardText>
+                    )}
+                    </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                     <MDBIcon fas icon="calendar" style={{ color: '#333333' }} />
-                    <MDBCardText>{userData?.birthday || ""}</MDBCardText>
+                    <MDBCardText>{userData?.birthday || ""}
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={birthday}
+                        onChange={handleBirthdayChange}
+                      />
+                    ) : (
+                      <MDBCardText className="text-muted">{birthday}</MDBCardText>
+                    )}
+                    </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                     <MDBIcon fas icon="car" style={{ color: '#333333' }} />
-                    <MDBCardText>{userData?.vehicle || ""}</MDBCardText>
+                    <MDBCardText>{userData?.vehicle || ""}
+                    </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                     <MDBIcon fas icon="list-ol" style={{ color: '#333333' }} />
