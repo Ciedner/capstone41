@@ -13,11 +13,11 @@ import {
   MDBProgress,
   MDBProgressBar,
   MDBListGroupItem,
-  MDBIcon,
   MDBCardImage,
   MDBListGroup,
   MDBBreadcrumbItem,
-  MDBBreadcrumb
+  MDBBreadcrumb,
+  MDBIcon
 } from 'mdb-react-ui-kit';
 import axios from 'axios';
 
@@ -64,6 +64,9 @@ function Manage() {
     }
   }, []);
 
+  function handleHome(event) {
+    navigate("/home");
+  }
   function handleFNameChange(event) {
     setFname(event.target.value);
   }
@@ -132,7 +135,8 @@ function Manage() {
           <MDBCol>
             <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
               <MDBBreadcrumbItem>
-                <a href="/home">Home</a>
+              <p onClick={handleHome}> Back </p>
+             
               </MDBBreadcrumbItem>
             </MDBBreadcrumb>
           </MDBCol>
@@ -252,11 +256,32 @@ function Manage() {
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                     <MDBIcon fas icon="car" style={{ color: '#333333' }} />
                     <MDBCardText>{userData?.vehicle || ""}
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={vehicle}
+                        onChange={handleVehicleChange}
+                      />
+                    ) : (
+                      <MDBCardText className="text-muted">{vehicle}</MDBCardText>
+                    )}
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                     <MDBIcon fas icon="list-ol" style={{ color: '#333333' }} />
-                    <MDBCardText>{userData?.plate || ""}</MDBCardText>
+                    <MDBCardText>{userData?.plate || ""}
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={plateNumber}
+                        onChange={handlePlateNumberChange}
+                      />
+                    ) : (
+                      <MDBCardText className="text-muted">{plateNumber}</MDBCardText>
+                    )}
+                    </MDBCardText>
                   </MDBListGroupItem>
                 </MDBListGroup>
               </MDBCardBody>
@@ -276,65 +301,10 @@ function Manage() {
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>First Name: {userData?.fName || ""}</MDBCardText>
+                    <MDBCardText>Parking Information</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
                    
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText >Email: {userData?.email || ""}</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    {isEditing ? (
-                      <input
-                        type="email"
-                        className="form-control"
-                        value={email}
-                        onChange={handleEmailChange}
-                      />
-                    ) : (
-                      <MDBCardText className="text-muted">{email}</MDBCardText>
-                    )}
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Vehicle: {userData?.vehicle || ""}</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    {isEditing ? (
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={vehicle}
-                        onChange={handleVehicleChange}
-                      />
-                    ) : (
-                      <MDBCardText className="text-muted">{vehicle}</MDBCardText>
-                    )}
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Vehicle Plate: {userData?.plate || ""}</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    {isEditing ? (
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={plateNumber}
-                        onChange={handlePlateNumberChange}
-                      />
-                    ) : (
-                      <MDBCardText className="text-muted">{plateNumber}</MDBCardText>
-                    )}
                   </MDBCol>
                 </MDBRow>
               </MDBCardBody>

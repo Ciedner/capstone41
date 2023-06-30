@@ -11,6 +11,9 @@ import axios from 'axios';
 
 function Login() {
     const navigate = useNavigate();
+    function handleForgot(event) {
+        navigate("/forgot");
+      }
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -45,11 +48,10 @@ function Login() {
     }
 
     const backgroundStyle = {
-        backgroundImage: 'url("https://www.motoringresearch.com/wp-content/uploads/2016/07/02_Parking.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
-        backgroundColor: 'yellow',
+        backgroundColor: "#5885AF",
     };
 
     const backgroundPage ={
@@ -69,7 +71,8 @@ function Login() {
     return (
         <div style={backgroundStyle}>
             <div style={backgroundPage}>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+                <nav  className="navbar navbar-expand-lg navbar-dark"
+                        style={{ backgroundColor: "#274472" }}>
                     <div className="container">
                         <Link className="navbar-brand" to="/" align="center">
                             SpotWise Parking Management System
@@ -104,7 +107,7 @@ function Login() {
                                 label="Remember me"
                                 onChange={() => setRememberMe(!rememberMe)}
                             />
-                            <a href="#!">Forgot password?</a>
+                            <p onClick={handleForgot}>Forgot password?</p>
                         </div>
 
                         <MDBBtn className="mb-4" onClick={submit}>

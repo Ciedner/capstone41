@@ -11,7 +11,7 @@ const FormWithImage = () => {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    backgroundImage: "url('https://images.unsplash.com/photo-1470224114660-3f6686c562eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGFya2luZ3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80')",
+    backgroundColor: "#5885AF",
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
@@ -81,7 +81,8 @@ const FormWithImage = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-dark"
+          style={{ backgroundColor: "#274472" }}>
         <div className="container">
           <Link className="navbar-brand" to="/">
             SpotWise Parking Management System

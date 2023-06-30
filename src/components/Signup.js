@@ -16,7 +16,31 @@ import {
 } from 'mdb-react-ui-kit';
 
 function Login() {
+    const backgroundStyle = {
+        backgroundColor: "#5885AF",
+        backgroundPosition: "center",
+      };
+      const styles = {
+        back: {
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+            margin: "0",
+            color: "#fff",
+            fontFamily: "Rockwell, sans-serif",
+            textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+        },
+        icon: {
+          marginRight: "5px",
+        },
+      };
+      
     const history = useNavigate();
+    const navigate = useNavigate();
+
+    function handleHome(event) {
+        navigate("/");
+      }
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -62,10 +86,17 @@ function Login() {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div style={backgroundStyle}>
+            <nav
+          className="navbar navbar-expand-lg navbar-dark"
+          style={{ backgroundColor: "#274472" }}
+        >
                 <div className="container">
                     <Link className="navbar-brand" to="/">
                         SpotWise Parking Management System
+                        <p style={styles.back} onClick ={handleHome}>
+                            Log in
+                        </p>
                     </Link>
                 </div>
             </nav>
@@ -74,7 +105,7 @@ function Login() {
                     <MDBCardBody>
                         <MDBRow>
                             <MDBCol md="10" lg="6" className="order-2 order-lg-1 d-flex flex-column align-items-center">
-                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">General Information</p>
                                 <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
@@ -136,6 +167,8 @@ function Login() {
                                         onChange={(e) => setBday(e.target.value)}
                                     />
                                 </div>
+                                
+                                <br></br>
                                 <div className="mb-4">
                                     <MDBCheckbox name="flexCheck" value="" id="flexCheckDefault" label="Accept terms and conditions" />
                                 </div>
@@ -143,8 +176,9 @@ function Login() {
                                     Register
                                 </MDBBtn>
                             </MDBCol>
+                            
                             <MDBCol md="10" lg="6" className="order-1 order-lg-2 d-flex align-items-center">
-                            <div className="d-flex flex-column align-items-center mb-4">
+                            <div className="d-flex flex-column align-items-center mb-4"> <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Other Information</p>
                             <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
@@ -181,6 +215,7 @@ function Login() {
                     </MDBCardBody>
                 </MDBCard>
             </MDBContainer>
+        </div>
         </div>
     );
 }
