@@ -11,6 +11,10 @@ import axios from 'axios';
 
 function Login() {
     const navigate = useNavigate();
+
+    function handleAdmin(event) {
+        navigate("/adminRegister");
+      }
     function handleForgot(event) {
         navigate("/forgot");
       }
@@ -107,10 +111,11 @@ function Login() {
                                 label="Remember me"
                                 onChange={() => setRememberMe(!rememberMe)}
                             />
-                            <p onClick={handleForgot}>Forgot password?</p>
+                            <MDBBtn className="mb-4" size="sm" color="danger" onClick={handleForgot}>
+                            Forgot Password
+                        </MDBBtn>
                         </div>
-
-                        <MDBBtn className="mb-4" onClick={submit}>
+                        <MDBBtn className="mb-4" size="sm" color="success"onClick={submit}>
                             Sign in
                         </MDBBtn>
 
@@ -118,6 +123,10 @@ function Login() {
                             <p>
                                 Not a member? <Link to="/signup">Sign up</Link>
                             </p>
+                            <div>
+                        <p>An administrator? <Link to="adminRegister">Sign up as an admin</Link>
+                        </p>
+                        </div>
 
                             <div className="d-flex justify-content-between mx-auto" style={{ width: '40%' }}>
                                 <MDBBtn tag="a" color="none" className="m-1" style={{ color: '#1266f1' }}>

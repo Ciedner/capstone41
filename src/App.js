@@ -12,7 +12,8 @@ import PayPal from "./MoP/PayPal"
 import Recommendation from "./components/Recommendation"
 import Manage from "./Profile/Manage"
 import ForgotPassword from "./Profile/ForgotPassword"
-
+import AdminRegister from "./admin/AdminRegister"
+import AdminDashboard from "./admin/AdminDashboard"
 function App() {
   return (
     <div className="App">
@@ -31,6 +32,8 @@ function App() {
           <Route path="/recommend" element={<Recommendation />} />
           <Route path="/manage" element={<Manage />} />
           <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/adminRegister" element={<AdminRegister />} />
+          <Route path="/adminBoard" element={<AdminDashboard/>} />
         </Routes>
       </Router>
     </div>

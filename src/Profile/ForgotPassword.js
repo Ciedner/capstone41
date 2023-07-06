@@ -67,12 +67,6 @@ function ChangePassword() {
       setErrorMessage('New password and confirm password do not match.');
       return;
     }
-
-    if (email !== email) {
-        setErrorMessage('Email does not exist.');
-        return;
-      }
-
     try {
       const response = await axios.put(`http://localhost:8000/update/${email}`, {
         newPassword: newPassword,
