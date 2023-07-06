@@ -14,8 +14,11 @@ import {
   MDBProgressBar,
   MDBIcon,
   MDBListGroup,
-  MDBListGroupItem
+  MDBListGroupItem,
+  MDBCardTitle
 } from 'mdb-react-ui-kit';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faRightLeft, faClock} from '@fortawesome/free-solid-svg-icons';
 
 export default function ProfilePage() {
   return (
@@ -45,7 +48,8 @@ export default function ProfilePage() {
                   alt="avatar"
                   className="rounded-circle"
                   style={{ width: '70px' }}
-                  fluid />
+                  fluid
+                />
                 <p className="text-muted mb-1">Marky Parking Management</p>
                 <p className="text-muted mb-4">Talamban, Cebu</p>
                 <div className="d-flex justify-content-center mb-2">
@@ -59,16 +63,16 @@ export default function ProfilePage() {
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fas icon="globe fa-lg text-warning" />
-                    <MDBCardText>https://mdbootstrap.com</MDBCardText>
+                  <FontAwesomeIcon icon={faBars} />
+                    <MDBCardText>Dashboard</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="github fa-lg" style={{ color: '#333333' }} />
-                    <MDBCardText>mdbootstrap</MDBCardText>
+                    <FontAwesomeIcon icon={faRightLeft} />
+                    <MDBCardText>Transactions</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="twitter fa-lg" style={{ color: '#55acee' }} />
-                    <MDBCardText>@mdbootstrap</MDBCardText>
+                  <FontAwesomeIcon icon={faClock} />
+                    <MDBCardText>Time Duration</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                     <MDBIcon fab icon="instagram fa-lg" style={{ color: '#ac2bac' }} />
@@ -85,58 +89,68 @@ export default function ProfilePage() {
           <MDBCol lg="8">
             <MDBCard className="mb-4">
               <MDBCardBody>
+                
+                <MDBCardText className="mb-4"  > <FontAwesomeIcon icon={faClock} /> <span className="text-primary font-italic me-1"> Recent Added Vehicle</span></MDBCardText>
                 <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Full Name</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Johnatan Smith</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Email</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">example@example.com</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Phone</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(097) 234-5678</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Mobile</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(098) 765-4321</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Address</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Bay Area, San Francisco, CA</MDBCardText>
-                  </MDBCol>
+                <MDBCol md="4">
+                    <MDBCard>
+                        <img
+                        src="https://tse3.mm.bing.net/th?id=OIP.dofiS1lbDbvM7eFL_9AMQAHaEE&pid=Api&P=0&h=180"
+                        className="img-fluid"
+                        alt="img"
+                        />
+                        <MDBCardBody>
+                        <MDBCardTitle>Parking Information</MDBCardTitle>
+                        <p>Vehicle Plate: </p>
+                        <p>Plate Number: </p>
+                        <p>Time in: </p>
+                        <p>Time out: </p>
+                        </MDBCardBody>
+                    </MDBCard>
+
+                    </MDBCol>
+                    <MDBCol md="4">
+                    <MDBCard >
+                        <img
+                            src="http://www.pngmart.com/files/4/Car-PNG-Photo.png"
+                            className="img-fluid"
+                            alt="Another Vehicle"
+                        />
+                        <MDBCardBody>
+                            <MDBCardTitle>Parking Information</MDBCardTitle>
+                            <p>Vehicle Plate: </p>
+                            <p>Plate Number: </p>
+                            <p>Time in: </p>
+                            <p>Time out: </p>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+                <MDBCol md="4">
+                    <MDBCard >
+                        <img
+                            src="http://www.pngmart.com/files/4/Car-PNG-Picture.png"
+                            className="img-fluid"
+                            alt="Another Vehicle"
+                        />
+                        <MDBCardBody>
+                            <MDBCardTitle>Parking Information</MDBCardTitle>
+                            <p>Vehicle Plate: </p>
+                            <p>Plate Number: </p>
+                            <p>Time in: </p>
+                            <p>Time out: </p>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
                 </MDBRow>
               </MDBCardBody>
             </MDBCard>
-
+         
             <MDBRow>
               <MDBCol md="6">
                 <MDBCard className="mb-4 mb-md-0">
                   <MDBCardBody>
-                    <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status</MDBCardText>
+                    <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">Assignment</span> Project Status</MDBCardText>
+                   
                     <MDBCardText className="mb-1" style={{ fontSize: '.77rem' }}>Web Design</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={80} valuemin={0} valuemax={100} />
@@ -168,7 +182,7 @@ export default function ProfilePage() {
               <MDBCol md="6">
                 <MDBCard className="mb-4 mb-md-0">
                   <MDBCardBody>
-                    <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status</MDBCardText>
+                    <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">Assignment</span> Project Status</MDBCardText>
                     <MDBCardText className="mb-1" style={{ fontSize: '.77rem' }}>Web Design</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={80} valuemin={0} valuemax={100} />

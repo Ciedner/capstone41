@@ -20,6 +20,8 @@ import {
   MDBIcon
 } from 'mdb-react-ui-kit';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faEnvelope, faLocationDot, faPhone, faCakeCandles, faCar, faListOl} from '@fortawesome/free-solid-svg-icons';
 
 
 function Manage() {
@@ -150,7 +152,7 @@ function Manage() {
                   src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                   alt="avatar"
                   className="rounded-circle"
-                  style={{ width: '150px' }}
+                  style={{ width: '100px' }}
                   fluid
                 />
                 <div className="d-flex justify-content-center mb-2">
@@ -170,7 +172,7 @@ function Manage() {
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fas icon="fa-solid fa-user" />
+                  <FontAwesomeIcon icon={faUser} />
                     <MDBCardText>{userData?.fName || ""} {userData?.lName || ""}
                     {isEditing ? (
                       <input
@@ -195,7 +197,7 @@ function Manage() {
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fas icon="envelope" style={{ color: '#333333' }} />
+                  <FontAwesomeIcon icon={faEnvelope} />
                     <MDBCardText> {userData?.email || ""}
                     {isEditing ? (
                       <input
@@ -210,7 +212,7 @@ function Manage() {
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fas icon="map-marker" style={{ color: '#333333' }} />
+                  <FontAwesomeIcon icon={faLocationDot} />
                     <MDBCardText>{userData?.address || ""}
                     {isEditing ? (
                       <input
@@ -224,7 +226,7 @@ function Manage() {
                     )}</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fas icon="phone" style={{ color: '#333333' }} />
+                  <FontAwesomeIcon icon={faPhone} />
                     <MDBCardText>{userData?.contact || ""}
                     {isEditing ? (
                       <input
@@ -239,7 +241,7 @@ function Manage() {
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fas icon="calendar" style={{ color: '#333333' }} />
+                  <FontAwesomeIcon icon={faCakeCandles} />
                     <MDBCardText>{userData?.birthday || ""}
                     {isEditing ? (
                       <input
@@ -254,7 +256,7 @@ function Manage() {
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fas icon="car" style={{ color: '#333333' }} />
+                  <FontAwesomeIcon icon={faCar} />
                     <MDBCardText>{userData?.vehicle || ""}
                     {isEditing ? (
                       <input
@@ -269,7 +271,7 @@ function Manage() {
                     </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fas icon="list-ol" style={{ color: '#333333' }} />
+                  <FontAwesomeIcon icon={faListOl} />
                     <MDBCardText>{userData?.plate || ""}
                     {isEditing ? (
                       <input
