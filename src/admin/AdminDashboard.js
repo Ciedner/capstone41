@@ -17,6 +17,7 @@ import {
   MDBListGroupItem,
   MDBCardTitle
 } from 'mdb-react-ui-kit';
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaste, faCoins, faBars, faCar, faClock, faUser, faBarsProgress} from '@fortawesome/free-solid-svg-icons';
 
@@ -24,11 +25,15 @@ const image = {
     flex: '0 0 150px', 
     marginRight: '20px', 
   };
-  
+
   
   
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate("/adminParking");
+  };
   return (
     <section style={{ backgroundColor: '#eee' }}>
       <MDBContainer className="py-5">
@@ -76,7 +81,7 @@ export default function ProfilePage() {
               </MDBListGroupItem>
               <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                 <FontAwesomeIcon icon={faCar} />
-                <MDBCardText>View Parking</MDBCardText>
+                <MDBCardText onClick={handleButtonClick}>View Parking</MDBCardText>
               </MDBListGroupItem>
               <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                 <FontAwesomeIcon icon={faPaste} />

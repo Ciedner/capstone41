@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 function ResponsiveExample() {
   const [data, setData] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const [foundUser, setFoundUser] = useState(null);
+  const [idCounter, setIdCounter] = useState(1);
 
   const handleSearchInputChange = (event) => {
     setSearchInput(event.target.value);
@@ -18,22 +20,41 @@ function ResponsiveExample() {
       const response = await fetch(`http://localhost:8000/user/${searchInput}`);
       if (response.ok) {
         const user = await response.json();
-        setData([user]);
+        setFoundUser(user);
       } else {
-        setData([]);
+        setFoundUser(null);
       }
     } catch (error) {
       console.error(error);
-      setData([]);
+      setFoundUser(null);
     }
   };
 
-  useEffect(() => {
-    // Reset data when the search input is cleared
-    if (searchInput === '') {
-      setData([]);
+  const handleInVehicleClick = () => {
+    if (foundUser) {
+      const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const newRow = {
+        id: idCounter,
+        name: `${foundUser.fName} ${foundUser.lName}`,
+        vehicle: foundUser.vehicle,
+        plateNo: foundUser.plate,
+        timeIn: currentTime,
+        paymentStatus: 'Pending'
+      };
+      setData((prevData) => [...prevData, newRow]);
+      setIdCounter((prevCounter) => prevCounter + 1);
     }
-  }, [searchInput]);
+  };
+
+  const handleOutVehicleClick = () => {
+    if (foundUser) {
+      setData((prevData) => prevData.filter((row) => row.name !== `${foundUser.fName} ${foundUser.lName}`));
+      setFoundUser(null);
+    }
+  };
+  
+  
+  
 
   return (
     <Container>
@@ -61,6 +82,31 @@ function ResponsiveExample() {
               </button>
             </div>
           </Form>
+          {foundUser && (
+            <div>
+              <h4>User Information:</h4>
+              <p>First Name: {foundUser.fName}</p>
+              <p>Last Name: {foundUser.lName}</p>
+              <p>Vehicle: {foundUser.vehicle}</p>
+              <p>Plate No: {foundUser.plate}</p>
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                <button
+                  className="button"
+                  style={{ marginRight: '20px', backgroundColor: '#86FF33' }}
+                  onClick={handleInVehicleClick}
+                >
+                  In Vehicle
+                </button>
+                <button
+                  className="button"
+                  style={{ marginRight: '20px', backgroundColor: '#FF6433' }}
+                  onClick={handleOutVehicleClick}
+                >
+                  Vehicle Out
+                </button>
+              </div>
+            </div>
+          )}
         </div>
         <Table responsive>
           <thead>
@@ -78,9 +124,9 @@ function ResponsiveExample() {
             {data.map((row) => (
               <tr key={row.id}>
                 <td>{row.id}</td>
-                <td>{row.fName}</td>
+                <td>{row.name}</td>
                 <td>{row.vehicle}</td>
-                <td>{row.plate}</td>
+                <td>{row.plateNo}</td>
                 <td>{row.timeIn}</td>
                 <td>{row.timeOut}</td>
                 <td>{row.paymentStatus}</td>
