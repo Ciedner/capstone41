@@ -25,17 +25,7 @@ const image = {
     marginRight: '20px', 
   };
   
-  const imageHolderStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-  };
   
-  const cardImageStyle = {
-    maxWidth: '100%',
-    maxHeight: '100%',
-  };  
   
 
 export default function ProfilePage() {

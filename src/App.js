@@ -14,6 +14,7 @@ import Manage from "./Profile/Manage"
 import ForgotPassword from "./Profile/ForgotPassword"
 import AdminRegister from "./admin/AdminRegister"
 import AdminDashboard from "./admin/AdminDashboard"
+import AdminParking from "./admin/AdminParking"
 function App() {
   return (
     <div className="App">
@@ -34,6 +35,7 @@ function App() {
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path="/adminRegister" element={<AdminRegister />} />
           <Route path="/adminBoard" element={<AdminDashboard/>} />
+          <Route path="/adminParking" element={<AdminParking/>} />
         </Routes>
       </Router>
     </div>
