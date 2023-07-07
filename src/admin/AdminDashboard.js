@@ -18,12 +18,25 @@ import {
   MDBCardTitle
 } from 'mdb-react-ui-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faRightLeft, faClock, faUser} from '@fortawesome/free-solid-svg-icons';
+import { faPaste, faCoins, faBars, faCar, faClock, faUser, faBarsProgress} from '@fortawesome/free-solid-svg-icons';
 
 const image = {
     flex: '0 0 150px', 
     marginRight: '20px', 
   };
+  
+  const imageHolderStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+  };
+  
+  const cardImageStyle = {
+    maxWidth: '100%',
+    maxHeight: '100%',
+  };  
+  
 
 export default function ProfilePage() {
   return (
@@ -65,31 +78,31 @@ export default function ProfilePage() {
             </MDBCard>
 
             <MDBCard className="mb-4 mb-lg-0">
-              <MDBCardBody className="p-0">
-                <MDBListGroup flush className="rounded-3">
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                  <FontAwesomeIcon icon={faBars} />
-                    <MDBCardText>Dashboard</MDBCardText>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <FontAwesomeIcon icon={faRightLeft} />
-                    <MDBCardText>Transactions</MDBCardText>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                  <FontAwesomeIcon icon={faClock} />
-                    <MDBCardText>Time Duration</MDBCardText>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="instagram fa-lg" style={{ color: '#ac2bac' }} />
-                    <MDBCardText>mdbootstrap</MDBCardText>
-                  </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <MDBIcon fab icon="facebook fa-lg" style={{ color: '#3b5998' }} />
-                    <MDBCardText>mdbootstrap</MDBCardText>
-                  </MDBListGroupItem>
-                </MDBListGroup>
-              </MDBCardBody>
-            </MDBCard>
+          <MDBCardBody className="p-0">
+            <MDBListGroup flush className="rounded-3">
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                <FontAwesomeIcon icon={faBars} />
+                <MDBCardText>Dashboard</MDBCardText>
+              </MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                <FontAwesomeIcon icon={faCar} />
+                <MDBCardText>View Parking</MDBCardText>
+              </MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                <FontAwesomeIcon icon={faPaste} />
+                <MDBCardText>View Report</MDBCardText>
+              </MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                <FontAwesomeIcon icon={faCoins} />
+                <MDBCardText>Total Income</MDBCardText>
+              </MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                <FontAwesomeIcon icon={faUser} />
+                <MDBCardText>Total Users</MDBCardText>
+              </MDBListGroupItem>
+            </MDBListGroup>
+          </MDBCardBody>
+        </MDBCard>
           </MDBCol> 
           <MDBCol lg="8">
             <MDBCard className="mb-4">
@@ -223,31 +236,24 @@ export default function ProfilePage() {
               <MDBCol md="6">
                 <MDBCard className="mb-4 mb-md-0">
                   <MDBCardBody>
-                    <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">Assignment</span> Project Status</MDBCardText>
-                    <MDBCardText className="mb-1" style={{ fontSize: '.77rem' }}>Web Design</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={80} valuemin={0} valuemax={100} />
-                    </MDBProgress>
+                  <MDBCardText className="mb-4"  > <FontAwesomeIcon icon={faBarsProgress} /> <span className="text-primary font-italic me-1"> Management Information</span></MDBCardText>
+                  <MDBCard>
+                               
+                  <button className="card-button" color="" >
+                    <img src="https://www.freeiconspng.com/thumbs/reservation-icon/reservation-icon-14.png" style= {{height:'80px'}}alt="Card 1" className="card-image" />
+                    <p>Reservation</p>
+                  </button>
+                  
+                  <button className="card-button" color="" >
+                    <img src="https://www.pngmart.com/files/7/Graph-PNG-Transparent-Image.png" style= {{height:'80px'}}alt="Card 1" className="card-image" />
+                    <p>View Parking Revenue Graph</p>
+                  </button>
 
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Website Markup</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={72} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>One Page</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={89} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Mobile Template</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={55} valuemin={0} valuemax={100} />
-                    </MDBProgress>
-
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Backend API</MDBCardText>
-                    <MDBProgress className="rounded">
-                      <MDBProgressBar width={66} valuemin={0} valuemax={100} />
-                    </MDBProgress>
+                  <button className="card-button" color="" >
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTve4v7bfNT-wW9I1k9nskn3UFXnZuVGlgsjF2qjq0&s" style= {{height:'80px'}}alt="Card 1" className="card-image" />
+                    <p>Feedback</p>
+                  </button>
+                            </MDBCard>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
