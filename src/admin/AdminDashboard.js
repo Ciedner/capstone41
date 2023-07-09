@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import ResponsiveExample from './AdminParking';
 import {
   MDBCol,
   MDBContainer,
@@ -29,12 +30,14 @@ const image = {
   
   
 
-export default function ProfilePage() {
+export default function AdminDashboard() {
   const navigate = useNavigate();
+  const [recentAddedUser, setRecentAddedUser] = useState(null);
   const handleButtonClick = () => {
     navigate("/adminParking");
+    setRecentAddedUser(null);
   };
-  return (
+  return (  
     <section style={{ backgroundColor: '#eee' }}>
       <MDBContainer className="py-5">
         <MDBRow>
@@ -114,10 +117,10 @@ export default function ProfilePage() {
                         />
                         <MDBCardBody>
                         <MDBCardTitle>Parking Information</MDBCardTitle>
-                        <MDBCardText>Vehicle: </MDBCardText>
-                        <MDBCardText>Vehicle Plate: </MDBCardText>
-                        <MDBCardText>Time in:  </MDBCardText>
-                        <MDBCardText>Time out:  </MDBCardText>
+                        <MDBCardText>Vehicle: {recentAddedUser.vehicle}</MDBCardText>
+                        <MDBCardText>Vehicle Plate:{recentAddedUser.plate}  </MDBCardText>
+                        <MDBCardText>Time in: {recentAddedUser.timeIn} </MDBCardText>
+                        <MDBCardText>Time out:  {recentAddedUser.timeOut}</MDBCardText>
                         </MDBCardBody>
                     </MDBCard>
 
