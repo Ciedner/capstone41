@@ -5,12 +5,13 @@ import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-
 function ViewParking() {
   const [data, setData] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [foundUser, setFoundUser] = useState(null);
   const [idCounter, setIdCounter] = useState(1);
+  const [userOccupy, setOccupants] = useState(0);
+  const [totalUsers, setTotalUsers] = useState(0);
   const navigate = useNavigate();
 
   const handleSearchInputChange = (event) => {
@@ -48,10 +49,12 @@ function ViewParking() {
       };
       setData((prevData) => [...prevData, newRow]);
       setIdCounter((prevCounter) => prevCounter + 1);
+      setOccupants((prevTotal) => prevTotal + 1); 
+      setTotalUsers((prevTotal) => prevTotal + 1);
       navigate("/adminParking", { state: { user: foundUser } });
     }
   };
-  
+
   const handleOutVehicleClick = () => {
     const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     const newRow = {
@@ -73,13 +76,9 @@ function ViewParking() {
         return updatedData;
       });
       setFoundUser(null);
+      setOccupants((prevTotal) => prevTotal - 1);
     }
   };
-  
-  
-  
-  
-  
 
   return (
     <Container>
@@ -134,32 +133,39 @@ function ViewParking() {
           )}
         </div>
         <div style={{ marginTop: '20px'}}>
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Vehicle</th>
-              <th>Plate No</th>
-              <th>Time In</th>
-              <th>Time Out</th>
-              <th>Payment Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((row) => (
-              <tr key={row.id}>
-                <td>{row.id}</td>
-                <td>{row.name}</td>
-                <td>{row.vehicle}</td>
-                <td>{row.plateNo}</td>
-                <td>{row.timeIn}</td>
-                <td>{row.timeOut}</td>
-                <td style={{ color: row.paymentStatusColor }}>{row.paymentStatus}</td>
+          <Table responsive>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Vehicle</th>
+                <th>Plate No</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+                <th>Payment Status</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {data.map((row) => (
+                <tr key={row.id}>
+                  <td>{row.id}</td>
+                  <td>{row.name}</td>
+                  <td>{row.vehicle}</td>
+                  <td>{row.plateNo}</td>
+                  <td>{row.timeIn}</td>
+                  <td>{row.timeOut}</td>
+                  <td style={{ color: row.paymentStatusColor }}>{row.paymentStatus}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+            <p style={{ color: '#000000' }}>Occupants in the Parking: {userOccupy}</p>
+            <p style={{ color: '#FF6433' }}>Total Users for the day: {totalUsers}</p>
+          </div>
+          <Link to={{ pathname: "/report", state: { totalUsers } }}>
+        View Report
+      </Link>
         </div>
       </div>
     </Container>

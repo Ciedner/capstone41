@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ResponsiveExample from './AdminParking';
 import {
   MDBCol,
   MDBContainer,
@@ -11,32 +10,29 @@ import {
   MDBBtn,
   MDBBreadcrumb,
   MDBBreadcrumbItem,
-  MDBProgress,
-  MDBProgressBar,
-  MDBIcon,
   MDBListGroup,
   MDBListGroupItem,
   MDBCardTitle
 } from 'mdb-react-ui-kit';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaste, faCoins, faBars, faCar, faClock, faUser, faBarsProgress} from '@fortawesome/free-solid-svg-icons';
 
 const image = {
-    flex: '0 0 150px', 
-    marginRight: '20px', 
-  };
+  flex: '0 0 150px', 
+  marginRight: '20px', 
+};
 
-  
-  
-
-export default function AdminDashboard() {
+const AdminDashboard = ({recentAddedUser }) => {
+  const location = useLocation();
   const navigate = useNavigate();
-  const [recentAddedUser, setRecentAddedUser] = useState(null);
+
+  
+
   const handleButtonClick = () => {
     navigate("/adminParking");
-    setRecentAddedUser(null);
   };
+
   return (  
     <section style={{ backgroundColor: '#eee' }}>
       <MDBContainer className="py-5">
@@ -76,31 +72,31 @@ export default function AdminDashboard() {
             </MDBCard>
 
             <MDBCard className="mb-4 mb-lg-0">
-          <MDBCardBody className="p-0">
-            <MDBListGroup flush className="rounded-3">
-              <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                <FontAwesomeIcon icon={faBars} />
-                <MDBCardText>Dashboard</MDBCardText>
-              </MDBListGroupItem>
-              <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                <FontAwesomeIcon icon={faCar} />
-                <MDBCardText onClick={handleButtonClick}>View Parking</MDBCardText>
-              </MDBListGroupItem>
-              <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                <FontAwesomeIcon icon={faPaste} />
-                <MDBCardText>View Report</MDBCardText>
-              </MDBListGroupItem>
-              <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                <FontAwesomeIcon icon={faCoins} />
-                <MDBCardText>Total Income</MDBCardText>
-              </MDBListGroupItem>
-              <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                <FontAwesomeIcon icon={faUser} />
-                <MDBCardText>Total Users</MDBCardText>
-              </MDBListGroupItem>
-            </MDBListGroup>
-          </MDBCardBody>
-        </MDBCard>
+              <MDBCardBody className="p-0">
+                <MDBListGroup flush className="rounded-3">
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <FontAwesomeIcon icon={faBars} />
+                    <MDBCardText>Dashboard</MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <FontAwesomeIcon icon={faCar} />
+                    <MDBCardText onClick={() => handleButtonClick()}>View Parking</MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <FontAwesomeIcon icon={faPaste} />
+                    <MDBCardText>View Report</MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <FontAwesomeIcon icon={faCoins} />
+                    <MDBCardText>Total Income</MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <FontAwesomeIcon icon={faUser} />
+                    <MDBCardText>Total Users</MDBCardText>
+                  </MDBListGroupItem>
+                </MDBListGroup>
+              </MDBCardBody>
+            </MDBCard>
           </MDBCol> 
           <MDBCol lg="8">
             <MDBCard className="mb-4">
@@ -110,148 +106,145 @@ export default function AdminDashboard() {
                 <MDBRow>
                 <MDBCol md="4">
                     <MDBCard>
-                        <img
+                      <img
                         src="https://tse3.mm.bing.net/th?id=OIP.dofiS1lbDbvM7eFL_9AMQAHaEE&pid=Api&P=0&h=180"
                         className="img-fluid"
                         alt="img"
-                        />
-                        <MDBCardBody>
+                      />
+                      <MDBCardBody>
+                        <MDBCardTitle>Parking Information</MDBCardTitle>
+                        <MDBCardText>Vehicle: </MDBCardText>
+                        <MDBCardText>Vehicle Plate: </MDBCardText>
+                        <MDBCardText>Time in: </MDBCardText>
+                        <MDBCardText>Time out: </MDBCardText>
+                      </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+
+                  <MDBCol md="4">
+                  {recentAddedUser && (
+                    <MDBCard>
+                      <img
+                        src="http://www.pngmart.com/files/4/Car-PNG-Photo.png"
+                        className="img-fluid"
+                        alt="Another Vehicle"
+                      />
+                      <MDBCardBody>
                         <MDBCardTitle>Parking Information</MDBCardTitle>
                         <MDBCardText>Vehicle: {recentAddedUser.vehicle}</MDBCardText>
-                        <MDBCardText>Vehicle Plate:{recentAddedUser.plate}  </MDBCardText>
-                        <MDBCardText>Time in: {recentAddedUser.timeIn} </MDBCardText>
-                        <MDBCardText>Time out:  {recentAddedUser.timeOut}</MDBCardText>
-                        </MDBCardBody>
+                        <MDBCardText>Vehicle Plate: {recentAddedUser.plate}</MDBCardText>
+                        <MDBCardText>Time in: {recentAddedUser.timeIn}</MDBCardText>
+                        <MDBCardText>Time out: {recentAddedUser.timeOut}</MDBCardText>
+                      </MDBCardBody>
                     </MDBCard>
-
-                    </MDBCol>
-                    <MDBCol md="4">
-                    <MDBCard >
-                        <img
-                            src="http://www.pngmart.com/files/4/Car-PNG-Photo.png"
-                            className="img-fluid"
-                            alt="Another Vehicle"
-                        />
-                        <MDBCardBody>
-                            <MDBCardTitle>Parking Information</MDBCardTitle>
-                            <MDBCardText>Vehicle: </MDBCardText>
-                            <MDBCardText>Vehicle Plate: </MDBCardText>
-                            <MDBCardText>Time in:  </MDBCardText>
-                            <MDBCardText>Time out:  </MDBCardText>
-                        </MDBCardBody>
+                  )}
+                  </MDBCol>
+                  <MDBCol md="4">
+                  {recentAddedUser && (
+                    <MDBCard>
+                      <img
+                        src="http://www.pngmart.com/files/4/Car-PNG-Picture.png"
+                        className="img-fluid"
+                        alt="Another Vehicle"
+                      />
+                      <MDBCardBody>
+                        <MDBCardTitle>Parking Information</MDBCardTitle>
+                        <MDBCardText>Vehicle: {recentAddedUser.vehicle}</MDBCardText>
+                        <MDBCardText>Vehicle Plate: {recentAddedUser.plate}</MDBCardText>
+                        <MDBCardText>Time in: {recentAddedUser.timeIn}</MDBCardText>
+                        <MDBCardText>Time out: {recentAddedUser.timeOut}</MDBCardText>
+                      </MDBCardBody>
                     </MDBCard>
-                </MDBCol>
-                <MDBCol md="4">
-                    <MDBCard >
-                        <img
-                            src="http://www.pngmart.com/files/4/Car-PNG-Picture.png"
-                            className="img-fluid"
-                            alt="Another Vehicle"
-                        />
-                        <MDBCardBody>
-                            <MDBCardTitle>Parking Information</MDBCardTitle>
-                            <MDBCardText>Vehicle: </MDBCardText>
-                            <MDBCardText>Vehicle Plate: </MDBCardText>
-                            <MDBCardText>Time in:  </MDBCardText>
-                            <MDBCardText>Time out:  </MDBCardText>
-                        </MDBCardBody>
-                    </MDBCard>
-                </MDBCol>
+                     )}
+                  </MDBCol>
                 </MDBRow>
               </MDBCardBody>
             </MDBCard>
 
-                            <MDBRow>
-                            <MDBCol md="6">
-                            <MDBCard className="mb-4 mb-md-0">
-                    <MDBCardBody>
-                        <MDBRow>
-                        <MDBCardText className="mb-4"  > <FontAwesomeIcon icon={faUser} /> <span className="text-primary font-italic me-1"> Recent Parking User</span></MDBCardText>
-                        <MDBCol md="12">
-                            <MDBCard>
-                                <MDBCardBody className="d-flex">
-                                    <div style={image}className="image">
-                                        <img
-                                            src="https://www.pngplay.com/wp-content/uploads/5/Mark-Zuckerberg-Transparent-Images.png"
-                                            className="img-fluid"
-                                            alt="Another Vehicle"
-                                           
-                                        />
-                                    </div>
-                                    <div>
-                                        <MDBCardText>First Name: Mark </MDBCardText>
-                                        <MDBCardText>Last Name: Zuckerberg </MDBCardText>
-                                    </div>
-                                </MDBCardBody>
-                            </MDBCard>
-                        </MDBCol>
-                        </MDBRow>
-                        <MDBRow>
-                            <MDBCol md="12">
-                                <MDBCard>
-                                <MDBCardBody className="d-flex">
-                                    <div style={image}className="image">
-                                        <img
-                                            src="https://pngimg.com/uploads/conor_mcgregor/conor_mcgregor_PNG46.png"
-                                            className="img-fluid"
-                                            alt="Another Vehicle"
-                                           
-                                        />
-                                    </div>
-                                    <div>
-                                        <MDBCardText>First Name: Conor  </MDBCardText>
-                                        <MDBCardText>Last Name: McGregor </MDBCardText>
-                                    </div>
-                                </MDBCardBody>
-                                </MDBCard>
-                            </MDBCol>
-                        </MDBRow>
-                        <MDBRow>
-                            <MDBCol md="12">
-                                <MDBCard>
-                                <MDBCardBody className="d-flex">
-                                    <div style={image}className="image">
-                                        <img
-                                            src="https://www.techtrends.bg/wp-content/uploads/2019/07/Elon-Musk-Quote.png"
-                                            className="img-fluid"
-                                            alt="Another Vehicle"
-                                           
-                                        />
-                                    </div>
-                                    <div>
-                                        <MDBCardText>First Name: Elon  </MDBCardText>
-                                        <MDBCardText>Last Name: Musk </MDBCardText>
-                                    </div>
-                                </MDBCardBody>
-                                </MDBCard>
-                            </MDBCol>
-                        </MDBRow>
-                    </MDBCardBody>
+            <MDBRow>
+              <MDBCol md="6">
+                <MDBCard className="mb-4 mb-md-0">
+                  <MDBCardBody>
+                    <MDBCardText className="mb-4"  > <FontAwesomeIcon icon={faUser} /> <span className="text-primary font-italic me-1"> Recent Parking User</span></MDBCardText>
+                    <MDBCol md="12">
+                      <MDBCard>
+                        <MDBCardBody className="d-flex">
+                          <div style={{ ...image }} className="image">
+                            <img
+                              src="https://www.pngplay.com/wp-content/uploads/5/Mark-Zuckerberg-Transparent-Images.png"
+                              className="img-fluid"
+                              alt="Another Vehicle"
+                            />
+                          </div>
+                          <div>
+                            <MDBCardText>First Name: Mark</MDBCardText>
+                            <MDBCardText>Last Name: Zuckerberg</MDBCardText>
+                          </div>
+                        </MDBCardBody>
+                      </MDBCard>
+                    </MDBCol>
+                    <MDBRow>
+                      <MDBCol md="12">
+                        <MDBCard>
+                          <MDBCardBody className="d-flex">
+                            <div style={{ ...image }} className="image">
+                              <img
+                                src="https://pngimg.com/uploads/conor_mcgregor/conor_mcgregor_PNG46.png"
+                                className="img-fluid"
+                                alt="Another Vehicle"
+                              />
+                            </div>
+                            <div>
+                              <MDBCardText>First Name: Conor</MDBCardText>
+                              <MDBCardText>Last Name: McGregor</MDBCardText>
+                            </div>
+                          </MDBCardBody>
+                        </MDBCard>
+                      </MDBCol>
+                    </MDBRow>
+                    <MDBRow>
+                      <MDBCol md="12">
+                        <MDBCard>
+                          <MDBCardBody className="d-flex">
+                            <div style={{ ...image }} className="image">
+                              <img
+                                src="https://www.techtrends.bg/wp-content/uploads/2019/07/Elon-Musk-Quote.png"
+                                className="img-fluid"
+                                alt="Another Vehicle"
+                              />
+                            </div>
+                            <div>
+                              <MDBCardText>First Name: Elon</MDBCardText>
+                              <MDBCardText>Last Name: Musk</MDBCardText>
+                            </div>
+                          </MDBCardBody>
+                        </MDBCard>
+                      </MDBCol>
+                    </MDBRow>
+                  </MDBCardBody>
                 </MDBCard>
-
               </MDBCol>
 
               <MDBCol md="6">
                 <MDBCard className="mb-4 mb-md-0">
                   <MDBCardBody>
-                  <MDBCardText className="mb-4"  > <FontAwesomeIcon icon={faBarsProgress} /> <span className="text-primary font-italic me-1"> Management Information</span></MDBCardText>
-                  <MDBCard>
-                               
-                  <button className="card-button" color="" >
-                    <img src="https://www.freeiconspng.com/thumbs/reservation-icon/reservation-icon-14.png" style= {{height:'80px'}}alt="Card 1" className="card-image" />
-                    <p>Reservation</p>
-                  </button>
-                  
-                  <button className="card-button" color="" >
-                    <img src="https://www.pngmart.com/files/7/Graph-PNG-Transparent-Image.png" style= {{height:'80px'}}alt="Card 1" className="card-image" />
-                    <p>View Parking Revenue Graph</p>
-                  </button>
+                    <MDBCardText className="mb-4"  > <FontAwesomeIcon icon={faBarsProgress} /> <span className="text-primary font-italic me-1"> Management Information</span></MDBCardText>
+                    <MDBCard>
+                      <button className="card-button" color="">
+                        <img src="https://www.freeiconspng.com/thumbs/reservation-icon/reservation-icon-14.png" style={{ height: '80px' }} alt="Card 1" className="card-image" />
+                        <p>Reservation</p>
+                      </button>
 
-                  <button className="card-button" color="" >
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTve4v7bfNT-wW9I1k9nskn3UFXnZuVGlgsjF2qjq0&s" style= {{height:'80px'}}alt="Card 1" className="card-image" />
-                    <p>Feedback</p>
-                  </button>
-                            </MDBCard>
+                      <button className="card-button" color="">
+                        <img src="https://www.pngmart.com/files/7/Graph-PNG-Transparent-Image.png" style={{ height: '80px' }} alt="Card 1" className="card-image" />
+                        <p>View Parking Revenue Graph</p>
+                      </button>
+
+                      <button className="card-button" color="">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTve4v7bfNT-wW9I1k9nskn3UFXnZuVGlgsjF2qjq0&s" style={{ height: '80px' }} alt="Card 1" className="card-image" />
+                        <p>Feedback</p>
+                      </button>
+                    </MDBCard>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
@@ -261,4 +254,6 @@ export default function AdminDashboard() {
       </MDBContainer>
     </section>
   );
-}
+};
+
+export default AdminDashboard;
