@@ -36,6 +36,7 @@ function Manage() {
   const [birthday, setBirthday] = useState('');
   const [isEditing, setIsEditing] = useState(false);
 
+  
   const listItemStyle = {
     display: "flex",
     justifyContent: "space-between",
@@ -143,23 +144,18 @@ function Manage() {
   };
 
   return (
-    <div style={{ backgroundColor: '#B0E0E6' }}>
+    <div style={{ backgroundColor: '#3b89ac' }}>
       <MDBContainer className="py-5">
         <MDBRow>
           <MDBCol>
-            <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-              <MDBBreadcrumbItem>
-              <p onClick={handleHome}> Back </p>
-             
-              </MDBBreadcrumbItem>
-            </MDBBreadcrumb>
+         
           </MDBCol>
         </MDBRow>
 
         <MDBRow>
           <MDBCol lg="4">
             <MDBCard className="mb-4">
-              <MDBCardBody className="text-center">
+              <MDBCardBody style={{textAlign:'center', backgroundColor:'#bfd2d9'}}>
                 <MDBCardImage
                   src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                   alt="avatar"
@@ -179,9 +175,9 @@ function Manage() {
                 </div>
               </MDBCardBody>
             </MDBCard>
-            <p>General Information</p>
             <MDBCard className="mb-4 mb-lg-0">
-              <MDBCardBody className="p-0">
+              <MDBCardBody style={{textAlign:'center', backgroundColor:'#bfd2d9'}}>
+              <p style={{fontFamily:'Courier New', fontSize:'18px', textAlign:'center'}}>General Information</p>
                 <MDBListGroup flush className="rounded-3">
                   <MDBListGroupItem style={listItemStyle}
                     hover
@@ -325,25 +321,25 @@ function Manage() {
                     )}
                     </MDBCardText>
                   </MDBListGroupItem>
+                  <MDBCol
+                    className="text-danger"
+                    style={{ cursor: 'pointer', transition: 'color 0.3s', fontFamily:'Garamond' }}
+                    onMouseEnter={(e) => (e.target.style.color = 'black')}
+                    onMouseLeave={(e) => (e.target.style.color = 'red')}
+                    onClick={handleLogOut}
+                  >
+                  Log Out
+                  </MDBCol>
                 </MDBListGroup>
               </MDBCardBody>
             </MDBCard>
-            <MDBCol
-              className="text-danger"
-              style={{ cursor: 'pointer', transition: 'color 0.3s' }}
-              onMouseEnter={(e) => (e.target.style.color = 'black')}
-              onMouseLeave={(e) => (e.target.style.color = 'red')}
-              onClick={handleLogOut}
-            >
-              Log Out
-            </MDBCol>
           </MDBCol>
           <MDBCol lg="8">
             <MDBCard className="mb-4">
-              <MDBCardBody>
+              <MDBCardBody style={{textAlign:'center', backgroundColor:'#bfd2d9'}}>
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Parking Information</MDBCardText>
+                    <MDBCardText style={{fontFamily:'Courier New', fontSize:'15px'}}>Parking Information</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
                    
@@ -359,31 +355,31 @@ function Manage() {
             <MDBRow>
               <MDBCol md="6">
                 <MDBCard className="mb-4 mb-md-0">
-                  <MDBCardBody>
+                  <MDBCardBody style={{backgroundColor:'#bfd2d9'}}>
                     <MDBCardText className="mb-4">
-                      <span className="text-primary font-italic me-1">Parking</span> Place
+                      <span style={{fontFamily:'Courier New', fontSize:'15px'}}>Parking Place</span>
                     </MDBCardText>
-                    <MDBCardText className="mb-1" style={{ fontSize: '.77rem' }}>Country Mall Parking</MDBCardText>
+                    <MDBCardText className="mb-1" style={{fontFamily:'Garamond', fontSize:'15px'}}>Country Mall Parking</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={80} valuemin={0} valuemax={100} />
                     </MDBProgress>
 
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>University of Cebu</MDBCardText>
+                    <MDBCardText className="mt-4 mb-1" style={{fontFamily:'Garamond', fontSize:'15px'}}>University of Cebu</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={72} valuemin={0} valuemax={100} />
                     </MDBProgress>
 
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>BTC Parking Space</MDBCardText>
+                    <MDBCardText className="mt-4 mb-1" style={{fontFamily:'Garamond', fontSize:'15px'}}>BTC Parking Space</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={89} valuemin={0} valuemax={100} />
                     </MDBProgress>
 
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Gaisano Mandaue City</MDBCardText>
+                    <MDBCardText className="mt-4 mb-1" style={{fontFamily:'Garamond', fontSize:'15px'}}>Gaisano Mandaue City</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={55} valuemin={0} valuemax={100} />
                     </MDBProgress>
 
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Ayala Block</MDBCardText>
+                    <MDBCardText className="mt-4 mb-1" style={{fontFamily:'Garamond', fontSize:'15px'}}>Ayala Block</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={66} valuemin={0} valuemax={100} />
                     </MDBProgress>
@@ -393,31 +389,31 @@ function Manage() {
 
               <MDBCol md="6">
                 <MDBCard className="mb-4 mb-md-0">
-                  <MDBCardBody>
+                  <MDBCardBody style={{backgroundColor:'#bfd2d9'}}>
                     <MDBCardText className="mb-4">
-                      <span className="text-primary font-italic me-1">Duration</span> Hours/Week
+                      <span style={{fontFamily:'Courier New', fontSize:'15px'}}>Duration / Hours</span>
                     </MDBCardText>
-                    <MDBCardText className="mb-1" style={{ fontSize: '.77rem' }}>17 hours in a week</MDBCardText>
+                    <MDBCardText className="mb-1" style={{fontFamily:'Garamond', fontSize:'15px'}}>17 hours in a week</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={80} valuemin={0} valuemax={100} />
                     </MDBProgress>
 
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>15 hours in a week</MDBCardText>
+                    <MDBCardText className="mt-4 mb-1" style={{fontFamily:'Garamond', fontSize:'15px'}}>15 hours in a week</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={72} valuemin={0} valuemax={100} />
                     </MDBProgress>
 
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>20 hours in a week</MDBCardText>
+                    <MDBCardText className="mt-4 mb-1" style={{fontFamily:'Garamond', fontSize:'15px'}}>20 hours in a week</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={89} valuemin={0} valuemax={100} />
                     </MDBProgress>
 
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>11 hours in a week</MDBCardText>
+                    <MDBCardText className="mt-4 mb-1" style={{fontFamily:'Garamond', fontSize:'15px'}}>11 hours in a week</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={55} valuemin={0} valuemax={100} />
                     </MDBProgress>
 
-                    <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>14 hours in a week</MDBCardText>
+                    <MDBCardText className="mt-4 mb-1" style={{fontFamily:'Garamond', fontSize:'15px'}}>14 hours in a week</MDBCardText>
                     <MDBProgress className="rounded">
                       <MDBProgressBar width={66} valuemin={0} valuemax={100} />
                     </MDBProgress>

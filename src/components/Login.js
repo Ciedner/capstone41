@@ -18,7 +18,7 @@ function Login() {
     function handleForgot(event) {
         navigate("/forgot");
       }
-
+  
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
@@ -55,7 +55,7 @@ function Login() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
-        backgroundColor: "#5885AF",
+        backgroundColor: "#3b89ac",
     };
 
     const backgroundPage ={
@@ -64,7 +64,7 @@ function Login() {
         padding: "20px",
         border: "1px solid #ccc",
         borderRadius: "4px",
-        backgroundColor: "rgba(255, 255, 255, 0.6)", 
+        backgroundColor: "#bfd2d9", 
     };
 
     const textStyle = {
@@ -76,7 +76,7 @@ function Login() {
         <div style={backgroundStyle}>
             <div style={backgroundPage}>
                 <nav  className="navbar navbar-expand-lg navbar-dark"
-                        style={{ backgroundColor: "#274472" }}>
+                        style={{ backgroundColor: "#003851" }}>
                     <div className="container">
                         <Link className="navbar-brand" to="/" align="center">
                             SpotWise Parking Management System
@@ -84,26 +84,26 @@ function Login() {
                     </div>
                 </nav>
 
-                <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+                <MDBContainer className="p-3 my-5 d-flex flex-column w-50 back" color="#bfd2d9">
                     <form>
                         <MDBInput
+                            style={{fontFamily: "Courier New"}}
                             wrapperClass="mb-4"
-                            label="Email address"
                             id="form1"
                             type="email"
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Email"
                         />
                         <MDBInput
+                            style={{fontFamily:"Courier New"}}
                             wrapperClass="mb-4"
-                            label="Password"
                             id="form2"
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Password"
                         />
 
-                        <div className="d-flex justify-content-between mx-3 mb-4">
+                        <div className="d-flex justify-content-between mx-3 mb-4" style={{marginTop:"50px",fontFamily:"Courier New", fontSize:"16px"}}>
                             <MDBCheckbox
                                 name="flexCheck"
                                 value=""
@@ -111,20 +111,20 @@ function Login() {
                                 label="Remember me"
                                 onChange={() => setRememberMe(!rememberMe)}
                             />
-                            <MDBBtn className="mb-4" size="sm" color="danger" onClick={handleForgot}>
+                            <MDBBtn className="mb-4" size="sm" color="danger" style={{fontFamily:"Courier New", fontSize:"12px"}} onClick={handleForgot}>
                             Forgot Password
                         </MDBBtn>
-                        </div>
-                        <MDBBtn className="mb-4" size="sm" color="success"onClick={submit}>
+                        </div>  
+                        <MDBBtn className="mb-4" size="sm" color="success" style={{fontFamily:"Courier New", fontSize:"15px"}} onClick={submit}>
                             Sign in
                         </MDBBtn>
-
                         <div className="text-center">
-                            <p>
-                                Not a member? <Link to="/signup">Sign up</Link>
+                            <p style={{fontFamily: "Courier New", fontSize:"15px"}}>
+                                    <Link to="signup">Sign up as a member</Link>
                             </p>
                             <div>
-                        <p>An administrator? <Link to="adminRegister">Sign up as an admin</Link>
+                        <p style={{fontFamily: "Courier New", fontSize:"15px"}}>
+                        <Link to="adminRegister">Sign up as an Admin</Link>
                         </p>
                         </div>
 

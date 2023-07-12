@@ -17,7 +17,7 @@ import {
 
 function Login() {
     const backgroundStyle = {
-        backgroundColor: "#5885AF",
+        backgroundColor: "#3b89ac",
         backgroundPosition: "center",
       };
       const styles = {
@@ -89,7 +89,7 @@ function Login() {
             <div style={backgroundStyle}>
             <nav
           className="navbar navbar-expand-lg navbar-dark"
-          style={{ backgroundColor: "#274472" }}
+          style={{ backgroundColor: "#003851" }}
         >
                 <div className="container">
                     <Link className="navbar-brand" to="/">
@@ -101,25 +101,27 @@ function Login() {
                 </div>
             </nav>
             <MDBContainer fluid>
-                <MDBCard className="text-black m-5" style={{ borderRadius: '25px' }}>
+                <MDBCard className="text-black m-5" style={{ borderRadius: '25px', backgroundColor:"#bfd2d9"}}>
                     <MDBCardBody>
                         <MDBRow>
                             <MDBCol md="10" lg="6" className="order-2 order-lg-1 d-flex flex-column align-items-center">
-                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">General Information</p>
+                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style={{fontFamily:"Courier New"}}>General Information</p>
                                 <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
-                                        label="First Name"
+                                    style={{fontFamily:"Courier New"}}
+                                       placeholder='First Name'
                                         id="form1"
                                         type="text"
                                         value={fName}
                                         onChange={(e) => setFname(e.target.value)}
                                         />
                                 </div>
-                                <div className="d-flex flex-row align-items-center">
+                                <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
-                                        label="Last Name"
+                                        style={{fontFamily:"Courier New"}}
+                                          placeholder='Last Name'
                                         id="form2"
                                         type="text"
                                         value={lName}
@@ -129,27 +131,30 @@ function Login() {
                                 <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
-                                        label="Password"
+                                        style={{fontFamily:"Courier New"}}
+                                        placeholder='Password'
                                         id="form3"
                                         type="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
-                                <div className="d-flex flex-row align-items-center">
+                                <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
-                                        label="Address"
+                                        style={{fontFamily:"Courier New"}}
+                                        placeholder='Address'
                                         id="form5"
                                         type="text"
                                         value={address}
                                         onChange={(e) => setAddress(e.target.value)}
                                         />
                                 </div>
-                                <div className="d-flex flex-row align-items-center">
+                                <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
-                                        label="Contact"
+                                        style={{fontFamily:"Courier New"}}
+                                        placeholder='Contact'
                                         id="form5"
                                         type="text"
                                         value={contact}
@@ -157,7 +162,7 @@ function Login() {
                                         />
                                 </div>
 
-                                <div className="d-flex flex-row align-items-center">
+                                <div className="d-flex flex-row align-items-center mb-4" style={{fontFamily:"Courier New"}}>
                                     <MDBIcon size="lg" />
                                     <MDBInput
                                         label="Birthday"
@@ -169,20 +174,21 @@ function Login() {
                                 </div>
                                 
                                 <br></br>
-                                <div className="mb-4">
-                                    <MDBCheckbox name="flexCheck" value="" id="flexCheckDefault" label="Accept terms and conditions" />
+                                <div className="mb-4" style={{fontFamily:"Courier New"}}>
+                                    <MDBCheckbox name="flexCheck" value="" id="flexCheckDefault" label="Accept terms and conditions"/>
                                 </div>
-                                <MDBBtn className="mb-4" size="lg" onClick={submit}>
+                                <MDBBtn className="mb-4" size="lg" style={{fontFamily:"Courier New"}}onClick={submit}>
                                     Register
                                 </MDBBtn>
                             </MDBCol>
                             
                             <MDBCol md="10" lg="6" className="order-1 order-lg-2 d-flex align-items-center">
-                            <div className="d-flex flex-column align-items-center mb-4"> <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Other Information</p>
+                            <div className="d-flex flex-column align-items-center mb-4"> <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style={{fontFamily:"Courier New"}}>Other Information</p>
                             <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
-                                        label="Your Email"
+                                          style={{fontFamily:"Courier New"}}
+                                          placeholder='Email'
                                         id="form6"
                                         type="email"
                                         value={email}
@@ -192,7 +198,8 @@ function Login() {
                                 <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
-                                        label="Vehicle"
+                                        style={{fontFamily:"Courier New"}}
+                                        placeholder='Vehicle'
                                         id="form7"
                                         type="text"
                                         value={vehicle}
@@ -202,7 +209,8 @@ function Login() {
                                 <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
-                                        label="Plate Number"
+                                        style={{fontFamily:"Courier New"}}
+                                        placeholder='Vehicle Plate Number'
                                         id="form6"
                                         type="text"
                                         value={plate}

@@ -11,7 +11,7 @@ const FormWithImage = () => {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    backgroundColor: "#5885AF",
+    backgroundColor: "#3b89ac",
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
@@ -52,21 +52,19 @@ const FormWithImage = () => {
     fontWeight: "bold",
     fontSize: "24px",
     textAlign: "left",
-  };
-
-  const titleCenterStyle = {
-    marginBottom: "20px",
-    fontWeight: "bold",
-    fontSize: "24px",
-    textAlign: "center",
+    fontFamily:"Courier New",
+    fontSize: "20px"
   };
 
   const textareaStyle = {
     width: "100%",
-    height: "120px",
+    height: "150px",
     padding: "10px",
     resize: "none",
     marginBottom: "20px",
+    backgroundColor:"#bfd2d9",
+    fontFamily: "Garamond",
+    fontSize:"20px"
   };
 
   const buttonStyle = {
@@ -76,11 +74,12 @@ const FormWithImage = () => {
     padding: "10px 20px",
     borderRadius: "4px",
     cursor: "pointer",
+    fontFamily: "Courier New",
   };
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#274472" }}>
+      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
         <div className="container">
           <Link className="navbar-brand" to="/">
             SpotWise Parking Management System
@@ -91,7 +90,7 @@ const FormWithImage = () => {
       <div style={parentContainerStyle}>
         <div style={searchContainerStyle}>
           <input type="text" placeholder="Search..." style={searchInputStyle} />
-          <button type="button">Search</button>
+          <button type="button" style={{fontFamily:"Courier New"}}>Search</button>
         </div>
 
         <div style={parkingContainerStyle}>
@@ -101,9 +100,9 @@ const FormWithImage = () => {
               <textarea
                 name="postContent"
                 defaultValue="Location: Banilad - Cebu
-    Fee: 20 Every consecutive hours
-    Free Hours: 1 hr
-    Parking Space Available: 105 spaces"
+                  Fee: 20 Every consecutive hours
+                  Free Hours: 1 hr
+                  Parking Space Available: 105 spaces"
                 style={textareaStyle}
                 readOnly
               />
@@ -113,13 +112,13 @@ const FormWithImage = () => {
 
           <div className="container">
             <form style={formStyle}>
-              <h2 style={titleCenterStyle}>Alternative Parking 2</h2>
+              <h2 style={titleLeftStyle}>Alternative Parking 2</h2>
               <textarea
                 name="postContent"
                 defaultValue="Location: Ayala - Cebu
-    Fee: 30 Every consecutive hours
-    Free Hours: 2 hrs
-    Parking Space Available: 15 spaces"
+                  Fee: 30 Every consecutive hours
+                  Free Hours: 2 hrs
+                  Parking Space Available: 15 spaces"
                 style={textareaStyle}
                 readOnly
               />
@@ -128,7 +127,7 @@ const FormWithImage = () => {
           </div>
         </div>
 
-        <a href="#" className="text-muted" onClick={() => navigate("/home")} style={{ marginTop: "20px" }}>
+        <a href="#" className="text-muted" onClick={() => navigate("/home")} style={{ marginTop: "20px", fontFamily:"Courier New"}}>
           Go back
         </a>
       </div>

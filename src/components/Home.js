@@ -43,9 +43,13 @@ function Home() {
   }, [navigate]);
 
   const backgroundStyle = {
-    backgroundColor: "#5885AF",
+    backgroundColor: "#3b89ac", 
     backgroundPosition: "center",
     height: "100vh",
+  };
+
+  const navbarStyle = {
+    backgroundColor: "#003851", 
   };
 
   const dashboardStyle = {
@@ -57,8 +61,9 @@ function Home() {
 
   const cardStyle = {
     width: "300px",
-    backgroundColor: "#C3E0E5",
+    backgroundColor: "#bfd2d9", 
   };
+
   const styles = {
     welcomeMessage: {
       position: "absolute",
@@ -81,10 +86,7 @@ function Home() {
   return (
     <div className="homepage">
       <div style={backgroundStyle}>
-        <nav
-          className="navbar navbar-expand-lg navbar-dark"
-          style={{ backgroundColor: "#274472" }}
-        >
+        <nav className="navbar navbar-expand-lg navbar-dark" style={navbarStyle}>
           <div className="container">
             <Link className="navbar-brand" to="/">
               SpotWise Parking Management System
@@ -114,8 +116,10 @@ function Home() {
                     top
                   />
                   <MDBCardBody>
-                    <h5 style={{fontSize:'15px'}}>Recommendation</h5>
-                    <p style={{fontSize:'20px', fontFamily:'Georgia', fontWeight:'bold'}}>Parking alternative</p>
+                    <h5 style={{ fontSize: "15px" }}>Recommendation</h5>
+                    <p style={{ fontSize: "20px", fontFamily: "Georgia", fontWeight: "bold", color:'' }}>
+                      Parking alternative
+                    </p>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
@@ -136,9 +140,10 @@ function Home() {
                     top
                   />
                   <MDBCardBody>
-                  <h5 style={{fontSize:'15px'}}>Routes</h5>
-                    <p style={{fontSize:'20px', fontFamily:'Georgia', fontWeight:'bold'}}>Direction Provider</p>
-
+                    <h5 style={{ fontSize: "15px" }}>Routes</h5>
+                    <p style={{ fontSize: "20px", fontFamily: "Georgia", fontWeight: "bold" }}>
+                      Direction Provider
+                    </p>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
@@ -159,8 +164,10 @@ function Home() {
                     top
                   />
                   <MDBCardBody>
-                  <h5 style={{fontSize:'15px'}}>Profile</h5>
-                    <p style={{fontSize:'20px', fontFamily:'Georgia', fontWeight:'bold'}}>My Profile</p>
+                    <h5 style={{ fontSize: "15px" }}>Profile</h5>
+                    <p style={{ fontSize: "20px", fontFamily: "Georgia", fontWeight: "bold" }}>
+                      My Profile
+                    </p>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
@@ -183,8 +190,10 @@ function Home() {
                         top
                       />
                       <MDBCardBody>
-                      <h5 style={{fontSize:'15px'}}>Payment</h5>
-                    <p style={{fontSize:'20px', fontFamily:'Georgia', fontWeight:'bold'}}>Choose Payment</p>
+                        <h5 style={{ fontSize: "15px" }}>Payment</h5>
+                        <p style={{ fontSize: "20px", fontFamily: "Georgia", fontWeight: "bold" }}>
+                          Choose Payment
+                        </p>
                       </MDBCardBody>
                     </MDBCard>
                   </MDBCol>

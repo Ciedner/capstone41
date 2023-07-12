@@ -5,7 +5,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 
 const styles = {
   pageContainer: {
-    backgroundColor: "#5885AF",
+    backgroundColor: "#3b89ac",
     backgroundSize: "cover",
     backgroundPosition: "center",
     minHeight: "100vh",
@@ -17,7 +17,7 @@ const styles = {
     padding: '20px',
     border: '1px solid #ccc',
     borderRadius: '4px',
-    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    backgroundColor: '#bfd2d9',
   },
   heading: {
     textAlign: 'center',
@@ -89,7 +89,7 @@ function ChangePassword() {
     <Container className="py-5">
       <Row className="justify-content-center">
         <Col xs={12} md={8} lg={6}>
-          <h2 className="text-center mb-4">Update User</h2>
+          <h2 className="text-center mb-4" style={{fontFamily:"Courier New", fontSize:"30px"}}>Reset Password</h2>
           {errorMessage && <div className="text-danger text-center mb-3">{errorMessage}</div>}
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formEmail">
@@ -97,34 +97,32 @@ function ChangePassword() {
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter email"
               />
             </Form.Group>
+            <Form.Label style={{fontFamily:"Courier New", textAlign:"center"}}>Email</Form.Label>
             <Form.Group controlId="formNewPassword">
-              <Form.Label>New Password</Form.Label>
-              <Form.Control
+              <Form.Control 
                 type="password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                placeholder="New password"
               />
+            <Form.Label style={{fontFamily:"Courier New", textAlign:"center"}}>Enter New Password</Form.Label>
             </Form.Group>
             <Form.Group controlId="formConfirmPassword">
-              <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm password"
               />
+              <Form.Label style={{fontFamily:"Courier New", textAlign:"center"}}>Confirm Password</Form.Label>
             </Form.Group>
             <div className="d-flex justify-content-center">
-              <Button variant="primary" type="submit" className="w-100 mt-4">
+              <Button variant="primary" type="submit" className="w-100 mt-4" style={{fontFamily:"Courier New", fontSize:"15px"}}>
                Reset Password
               </Button>
             </div>
             <div>
-            <Button variant="primary" type="submit" className="w-100 mt-4" onClick={handleButtonClick}>
+            <Button variant="primary" type="submit" className="w-100 mt-4" style={{fontFamily:"Courier New", fontSize:"15px"}} onClick={handleButtonClick}>
                 Home
               </Button>
             </div>

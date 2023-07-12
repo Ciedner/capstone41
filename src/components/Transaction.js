@@ -52,7 +52,7 @@ function Home() {
   };
 
   const backgroundStyle = {
-    backgroundColor: "#5885AF",
+    backgroundColor: "#3b89ac",
     backgroundPosition: "center",
     height: "100vh",
   };
@@ -66,7 +66,7 @@ function Home() {
 
   const cardStyle = {
     width: "300px",
-    backgroundColor: "#C3E0E5",
+    backgroundColor: "#bfd2d9",
   };
 
   const styles = {
@@ -93,7 +93,7 @@ function Home() {
       <div style={backgroundStyle}>
         <nav
           className="navbar navbar-expand-lg navbar-dark"
-          style={{ backgroundColor: "#274472" }}
+          style={{ backgroundColor: "#003851" }}
         >
           <div className="container">
             <Link className="navbar-brand" to="/">
