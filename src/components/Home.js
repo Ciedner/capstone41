@@ -114,8 +114,8 @@ function Home() {
                     top
                   />
                   <MDBCardBody>
-                    <h5 className="card-title">Recommendation</h5>
-                    <p className="card-text">Parking alternative</p>
+                    <h5 style={{fontSize:'15px'}}>Recommendation</h5>
+                    <p style={{fontSize:'20px', fontFamily:'Georgia', fontWeight:'bold'}}>Parking alternative</p>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
@@ -136,8 +136,8 @@ function Home() {
                     top
                   />
                   <MDBCardBody>
-                    <h5 className="card-title">Routes</h5>
-                    <p className="card-text">Direction Provider</p>
+                  <h5 style={{fontSize:'15px'}}>Routes</h5>
+                    <p style={{fontSize:'20px', fontFamily:'Georgia', fontWeight:'bold'}}>Direction Provider</p>
 
                   </MDBCardBody>
                 </MDBCard>
@@ -159,8 +159,8 @@ function Home() {
                     top
                   />
                   <MDBCardBody>
-                    <h5 className="card-title">Profile</h5>
-                    <p className="card-text">Modify profile</p>
+                  <h5 style={{fontSize:'15px'}}>Profile</h5>
+                    <p style={{fontSize:'20px', fontFamily:'Georgia', fontWeight:'bold'}}>My Profile</p>
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
@@ -183,8 +183,8 @@ function Home() {
                         top
                       />
                       <MDBCardBody>
-                        <h5 className="card-title">Payment</h5>
-                        <p className="card-text">Choose Payment</p>
+                      <h5 style={{fontSize:'15px'}}>Payment</h5>
+                    <p style={{fontSize:'20px', fontFamily:'Georgia', fontWeight:'bold'}}>Choose Payment</p>
                       </MDBCardBody>
                     </MDBCard>
                   </MDBCol>

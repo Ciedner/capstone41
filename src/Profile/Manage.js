@@ -23,7 +23,6 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope, faLocationDot, faPhone, faCakeCandles, faCar, faListOl} from '@fortawesome/free-solid-svg-icons';
 
-
 function Manage() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
@@ -36,6 +35,19 @@ function Manage() {
   const [contact, setContact] = useState('');
   const [birthday, setBirthday] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+
+  const listItemStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "10px 15px",
+    transition: "background-color 0.3s ease",
+    cursor: "pointer",
+  };
+  
+  const listItemHoverStyle = {
+    backgroundColor: "#B7CEEC",
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -73,7 +85,7 @@ function Manage() {
     setFname(event.target.value);
   }
   function handleLNameChange(event) {
-    setFname(event.target.value);
+    setLname(event.target.value);
   }
 
   function handleEmailChange(event) {
@@ -131,7 +143,7 @@ function Manage() {
   };
 
   return (
-    <section style={{ backgroundColor: '#eee' }}>
+    <div style={{ backgroundColor: '#B0E0E6' }}>
       <MDBContainer className="py-5">
         <MDBRow>
           <MDBCol>
@@ -171,9 +183,13 @@ function Manage() {
             <MDBCard className="mb-4 mb-lg-0">
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                  <MDBListGroupItem style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}>
                   <FontAwesomeIcon icon={faUser} />
-                    <MDBCardText>{userData?.fName || ""} {userData?.lName || ""}
+                    <MDBCardText >{userData?.fName || ""} {userData?.lName || ""}
                     {isEditing ? (
                       <input
                         type="text"
@@ -196,7 +212,11 @@ function Manage() {
                     )}
                     </MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                  <MDBListGroupItem style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}>
                   <FontAwesomeIcon icon={faEnvelope} />
                     <MDBCardText> {userData?.email || ""}
                     {isEditing ? (
@@ -211,7 +231,11 @@ function Manage() {
                     )}
                     </MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                  <MDBListGroupItem style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}>
                   <FontAwesomeIcon icon={faLocationDot} />
                     <MDBCardText>{userData?.address || ""}
                     {isEditing ? (
@@ -225,7 +249,11 @@ function Manage() {
                       <MDBCardText className="text-muted">{address}</MDBCardText>
                     )}</MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                  <MDBListGroupItem style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}>
                   <FontAwesomeIcon icon={faPhone} />
                     <MDBCardText>{userData?.contact || ""}
                     {isEditing ? (
@@ -240,7 +268,11 @@ function Manage() {
                     )}
                     </MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                  <MDBListGroupItem style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}>
                   <FontAwesomeIcon icon={faCakeCandles} />
                     <MDBCardText>{userData?.birthday || ""}
                     {isEditing ? (
@@ -255,7 +287,11 @@ function Manage() {
                     )}
                     </MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                  <MDBListGroupItem style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}>
                   <FontAwesomeIcon icon={faCar} />
                     <MDBCardText>{userData?.vehicle || ""}
                     {isEditing ? (
@@ -270,7 +306,11 @@ function Manage() {
                     )}
                     </MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                  <MDBListGroupItem style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}>
                   <FontAwesomeIcon icon={faListOl} />
                     <MDBCardText>{userData?.plate || ""}
                     {isEditing ? (
@@ -315,8 +355,6 @@ function Manage() {
               <MDBCard className="mb-4">
               </MDBCard>
             </MDBCol>
-
-
 
             <MDBRow>
               <MDBCol md="6">
@@ -390,7 +428,7 @@ function Manage() {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-    </section>
+    </div>
   );
 }
 

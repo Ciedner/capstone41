@@ -16,6 +16,7 @@ import AdminRegister from "./admin/AdminRegister"
 import AdminDashboard from "./admin/AdminDashboard"
 import AdminParking from "./admin/AdminParking"
 import AdminReport from "./admin/AdminReport"
+import Revenues from "./admin/Revenues"
 function App() {
   return (
     <div className="App">
@@ -38,6 +39,7 @@ function App() {
           <Route path="/adminBoard" element={<AdminDashboard/>} />
           <Route path="/adminParking" element={<AdminParking/>} />
           <Route path="/report" element={<AdminReport/>} />
+          <Route path="/revenues" element={<Revenues/>} />
         </Routes>
       </Router>
     </div>

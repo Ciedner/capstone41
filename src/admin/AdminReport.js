@@ -108,6 +108,7 @@ function ViewReport() {
 
 
   return (
+    <div style={{ backgroundColor: '#B0E0E6', minHeight: "100vh"}}>
     <Container>
       <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#274472" }}>
         <div className="container">
@@ -116,39 +117,39 @@ function ViewReport() {
           </Link>
         </div>
       </nav>
-      <div className="container text-center" style={{ marginTop: '30px' }}>
+      <div className="container text-center" style={{ marginTop: '30px', fontFamily: 'Courier New', fontSize: '30px'}}>
         <p>Welcome to your Parking Management System</p>
       </div>
       <div className="row mt-4 ">
         <div className="col-md-3">
           <Card> 
             <Card.Body>
-              <Card.Title> <FontAwesomeIcon icon={faCar} color="green" /> Parking Availability</Card.Title>
-              <Card.Text style={{ textAlign: 'center', margin: '0 auto' }}>{userOccupy}</Card.Text>
+              <Card.Title style={{fontFamily:'Courier New', textAlign:'center'}}> <FontAwesomeIcon icon={faCar} color="green"/> Parking Availability</Card.Title>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto', fontFamily:'Copperplate', fontSize:'20px' }}>{userOccupy}</Card.Text>
             </Card.Body>
           </Card>
         </div>
         <div className="col-md-3">
           <Card>
             <Card.Body>
-              <Card.Title><FontAwesomeIcon icon={faCoins} color="red"/> Total Revenues</Card.Title>
-              <Card.Text style={{ textAlign: 'center', margin: '0 auto' }}>{totalRevenues}</Card.Text>
+              <Card.Title style={{fontFamily:'Courier New', textAlign:'center'}}><FontAwesomeIcon icon={faCoins} color="red"/> Total Revenues</Card.Title>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto', fontFamily:'Copperplate', fontSize:'20px' }}>{totalRevenues}</Card.Text>
             </Card.Body>
           </Card>
         </div>
         <div className="col-md-3">
           <Card>
             <Card.Body>
-              <Card.Title><FontAwesomeIcon icon={faUser} color="blue" /> Total Users today</Card.Title>
-              <Card.Text style={{ textAlign: 'center', margin: '0 auto' }}>{totalUsers}</Card.Text>
+              <Card.Title style={{fontFamily:'Courier New', textAlign:'center'}}><FontAwesomeIcon icon={faUser} color="blue" /> Total Users today</Card.Title>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto', fontFamily:'Copperplate', fontSize:'20px' }}>{totalUsers}</Card.Text>
             </Card.Body>
           </Card>
         </div>
         <div className="col-md-3">
           <Card>
             <Card.Body>
-              <Card.Title><FontAwesomeIcon icon={faFileInvoiceDollar} color="orange"/> Parking Payment</Card.Title>
-              <Card.Text style={{ textAlign: 'center', margin: '0 auto' }}>{fixedPrice}</Card.Text>
+              <Card.Title style={{fontFamily:'Courier New', textAlign:'center'}}><FontAwesomeIcon icon={faFileInvoiceDollar} color="orange"/> Parking Payment</Card.Title>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto', fontFamily:'Copperplate', fontSize:'20px' }}>{fixedPrice}</Card.Text>
             </Card.Body>
           </Card>
         </div>
@@ -159,12 +160,12 @@ function ViewReport() {
           <Form onSubmit={handleSearchSubmit}>
             <Form.Control type="text" placeholder="Search .." value={searchInput} onChange={handleSearchInputChange} />
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-              <button className="button" style={{ marginRight: '20px', backgroundColor: '#86FF33'}} type="submit">
+              <button className="button" style={{ marginRight: '20px', backgroundColor: '#86FF33', fontFamily:'Garamond'}} type="submit">
                 Search
               </button>
               <button
                 className="button"
-                style={{ marginRight: '20px', backgroundColor: '#FF6433' }}
+                style={{ marginRight: '20px', backgroundColor: '#FF6433', fontFamily:'Garamond'}}
                 onClick={() => setSearchInput('')}
               >
                 Clear
@@ -173,22 +174,22 @@ function ViewReport() {
           </Form>
           {foundUser && (
             <div>
-              <h4>User Information:</h4>
-              <p>First Name: {foundUser.fName}</p>
-              <p>Last Name: {foundUser.lName}</p>
-              <p>Vehicle: {foundUser.vehicle}</p>
-              <p>Plate No: {foundUser.plate}</p>
+              <h4 style={{fontFamily:'Courier New'}}>User Information:</h4>
+              <p style={{fontFamily:'Copperplate'}}>First Name: {foundUser.fName}</p>
+              <p style={{fontFamily:'Copperplate'}}>Last Name: {foundUser.lName}</p>
+              <p style={{fontFamily:'Copperplate'}}>Vehicle: {foundUser.vehicle}</p>
+              <p style={{fontFamily:'Copperplate'}}>Plate No: {foundUser.plate}</p>
               <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
                 <button
                   className="button"
-                  style={{ marginRight: '20px', backgroundColor: '#86FF33' }}
+                  style={{ marginRight: '20px', backgroundColor: '#86FF33', fontFamily:'Garamond' }}
                   onClick={handleInVehicleClick}
                 >
                   In Vehicle
                 </button>
                 <button
                   className="button"
-                  style={{ marginRight: '20px', backgroundColor: '#FF6433' }}
+                  style={{ marginRight: '20px', backgroundColor: '#FF6433', fontFamily:'Garamond' }}
                   onClick={handleOutVehicleClick}
                 >
                   Vehicle Out
@@ -197,7 +198,7 @@ function ViewReport() {
             </div>
           )}
         </div>
-        <div style={{ marginTop: '20px', textAlign: 'center', justifyContent: 'center' }}>
+        <div style={{marginLeft:'100px', marginTop: '20px', textAlign: 'center', justifyContent: 'center' }}>
           <Table responsive>
             <thead>
               <tr>
@@ -227,6 +228,7 @@ function ViewReport() {
           </div>
       </div>
     </Container>
+    </div>
   );
 }
 

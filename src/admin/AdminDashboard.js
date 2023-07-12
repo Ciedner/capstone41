@@ -39,15 +39,17 @@ const AdminDashboard = ({recentAddedUser }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-
-  
-
   const handleButtonClick = () => {
     navigate("/report");
   };
 
+  const handleRevenues = () => {
+    navigate("/revenues");
+  };
+
+
   return (  
-    <section style={{ backgroundColor: '#eee' }}>
+    <section style={{ backgroundColor: '#B7CEEC' }}>
       <MDBContainer className="py-5">
         <MDBRow>
           <MDBCol>
@@ -121,7 +123,7 @@ const AdminDashboard = ({recentAddedUser }) => {
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}
                   >
                     <FontAwesomeIcon icon={faCoins} />
-                    <MDBCardText>View Revenues</MDBCardText>
+                    <MDBCardText onClick={() => handleRevenues()}>View Revenues</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem style={listItemStyle}
                     hover
@@ -137,7 +139,7 @@ const AdminDashboard = ({recentAddedUser }) => {
             </MDBCard>
           </MDBCol> 
           <MDBCol lg="8">
-            <MDBCard className="mb-4">
+            <MDBCard style={{backgroundColor:''}}>
               <MDBCardBody>
                 
                 <MDBCardText className="mb-4"  > <FontAwesomeIcon icon={faClock} /> <span className="text-primary font-italic me-1"> Recent Added Vehicle</span></MDBCardText>
