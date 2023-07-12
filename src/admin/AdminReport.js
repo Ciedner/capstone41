@@ -2,13 +2,21 @@ import { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import { Link, useLocation } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faCoins, faUser, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
 
 function ViewReport() {
   const [data, setData] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
+  const [foundUser, setFoundUser] = useState(null);
+  const [idCounter, setIdCounter] = useState(1);
+  const [userOccupy, setOccupants] = useState(250);
   const [totalUsers, setTotalUsers] = useState(0);
+    const [fixedPrice, setFixedPrice] = useState(30);
+    const [totalRevenues, setTotalRevenues] = useState(0);
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -30,6 +38,74 @@ function ViewReport() {
     fetchData();
   }, []);
 
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const handleSearchSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch(`http://localhost:8000/user/${searchInput}`);
+      if (response.ok) {
+        const user = await response.json();
+        setFoundUser(user);
+      } else {
+        setFoundUser(null);
+      }
+    } catch (error) {
+      console.error(error);
+      setFoundUser(null);
+    }
+  };
+
+  const handleInVehicleClick = () => {
+    if (foundUser) {
+      const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const newRow = {
+        id: idCounter,
+        name: `${foundUser.fName} ${foundUser.lName}`,
+        vehicle: foundUser.vehicle,
+        plateNo: foundUser.plate,
+        timeIn: currentTime,
+        timeOut: '---',
+        paymentStatus: 'Pending',
+        paymentStatusColor: 'red',
+      };
+      setData((prevData) => [...prevData, newRow]);
+      setIdCounter((prevCounter) => prevCounter + 1);
+      setOccupants((prevTotal) => prevTotal - 1); 
+      setTotalUsers((prevTotal) => prevTotal + 1);
+      navigate("/report", { state: { user: foundUser } })
+    }
+  };
+
+  const handleOutVehicleClick = () => {
+    const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const newRow = {
+      timeOut: currentTime,
+      paymentStatus: 'Paid',
+      paymentStatusColor: 'green',
+    };
+    if (foundUser) {
+      setData((prevData) => {
+        const updatedData = prevData.map((row) => {
+          if (row.name === `${foundUser.fName} ${foundUser.lName}`) {
+            return {
+              ...row,
+              ...newRow,
+            };
+          }
+          return row;
+        });
+        return updatedData;
+      });
+      setFoundUser(null);
+      setOccupants((prevTotal) => prevTotal + 1);
+      setTotalRevenues((prevTotal) => prevTotal + fixedPrice);
+    }
+  };
+
+
 
   return (
     <Container>
@@ -41,14 +117,14 @@ function ViewReport() {
         </div>
       </nav>
       <div className="container text-center" style={{ marginTop: '30px' }}>
-        <p>Welcome your Parking Management System</p>
+        <p>Welcome to your Parking Management System</p>
       </div>
-      <div className="row mt-4">
-        <div className="col-md-3 text">
+      <div className="row mt-4 ">
+        <div className="col-md-3">
           <Card> 
             <Card.Body>
               <Card.Title> <FontAwesomeIcon icon={faCar} color="green" /> Parking Availability</Card.Title>
-              <Card.Text>Card 1 description</Card.Text>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto' }}>{userOccupy}</Card.Text>
             </Card.Body>
           </Card>
         </div>
@@ -56,15 +132,15 @@ function ViewReport() {
           <Card>
             <Card.Body>
               <Card.Title><FontAwesomeIcon icon={faCoins} color="red"/> Total Revenues</Card.Title>
-              <Card.Text>Card 2 description</Card.Text>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto' }}>{totalRevenues}</Card.Text>
             </Card.Body>
           </Card>
         </div>
         <div className="col-md-3">
           <Card>
             <Card.Body>
-              <Card.Title><FontAwesomeIcon icon={faUser} color="blue" /> Total Users</Card.Title>
-              <Card.Text>{totalUsers}</Card.Text>
+              <Card.Title><FontAwesomeIcon icon={faUser} color="blue" /> Total Users today</Card.Title>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto' }}>{totalUsers}</Card.Text>
             </Card.Body>
           </Card>
         </div>
@@ -72,10 +148,83 @@ function ViewReport() {
           <Card>
             <Card.Body>
               <Card.Title><FontAwesomeIcon icon={faFileInvoiceDollar} color="orange"/> Parking Payment</Card.Title>
-              <Card.Text>Card 3 description</Card.Text>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto' }}>{fixedPrice}</Card.Text>
             </Card.Body>
           </Card>
         </div>
+        
+      </div>
+      <div style={{ display: 'flex' }}>
+        <div style={{ marginRight: '20px', marginTop: '20px'  }}>
+          <Form onSubmit={handleSearchSubmit}>
+            <Form.Control type="text" placeholder="Search .." value={searchInput} onChange={handleSearchInputChange} />
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+              <button className="button" style={{ marginRight: '20px', backgroundColor: '#86FF33'}} type="submit">
+                Search
+              </button>
+              <button
+                className="button"
+                style={{ marginRight: '20px', backgroundColor: '#FF6433' }}
+                onClick={() => setSearchInput('')}
+              >
+                Clear
+              </button>
+            </div>
+          </Form>
+          {foundUser && (
+            <div>
+              <h4>User Information:</h4>
+              <p>First Name: {foundUser.fName}</p>
+              <p>Last Name: {foundUser.lName}</p>
+              <p>Vehicle: {foundUser.vehicle}</p>
+              <p>Plate No: {foundUser.plate}</p>
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                <button
+                  className="button"
+                  style={{ marginRight: '20px', backgroundColor: '#86FF33' }}
+                  onClick={handleInVehicleClick}
+                >
+                  In Vehicle
+                </button>
+                <button
+                  className="button"
+                  style={{ marginRight: '20px', backgroundColor: '#FF6433' }}
+                  onClick={handleOutVehicleClick}
+                >
+                  Vehicle Out
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+        <div style={{ marginTop: '20px', textAlign: 'center', justifyContent: 'center' }}>
+          <Table responsive>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Vehicle</th>
+                <th>Plate No</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+                <th>Payment Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((row) => (
+                <tr key={row.id}>
+                  <td>{row.id}</td>
+                  <td>{row.name}</td>
+                  <td>{row.vehicle}</td>
+                  <td>{row.plateNo}</td>
+                  <td>{row.timeIn}</td>
+                  <td>{row.timeOut}</td>
+                  <td style={{ color: row.paymentStatusColor }}>{row.paymentStatus}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          </div>
       </div>
     </Container>
   );

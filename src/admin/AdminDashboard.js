@@ -16,21 +16,34 @@ import {
 } from 'mdb-react-ui-kit';
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaste, faCoins, faBars, faCar, faClock, faUser, faBarsProgress} from '@fortawesome/free-solid-svg-icons';
+import { faComputer, faCoins, faBars, faCar, faClock, faUser, faBarsProgress} from '@fortawesome/free-solid-svg-icons';
 
 const image = {
   flex: '0 0 150px', 
   marginRight: '20px', 
+};
+const listItemStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  padding: "10px 15px",
+  transition: "background-color 0.3s ease",
+  cursor: "pointer",
+};
+
+const listItemHoverStyle = {
+  backgroundColor: "#CECECE",
 };
 
 const AdminDashboard = ({recentAddedUser }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
+
   
 
   const handleButtonClick = () => {
-    navigate("/adminParking");
+    navigate("/report");
   };
 
   return (  
@@ -74,23 +87,48 @@ const AdminDashboard = ({recentAddedUser }) => {
             <MDBCard className="mb-4 mb-lg-0">
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                  <MDBListGroupItem style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}
+                  >
                     <FontAwesomeIcon icon={faBars} />
                     <MDBCardText>Dashboard</MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                  <MDBListGroupItem style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}
+                  >
                     <FontAwesomeIcon icon={faCar} />
-                    <MDBCardText onClick={() => handleButtonClick()}>View Parking</MDBCardText>
+                    <MDBCardText>View Parking</MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
-                    <FontAwesomeIcon icon={faPaste} />
-                    <MDBCardText>View Report</MDBCardText>
+                  <MDBListGroupItem  style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}
+                  >
+                  <FontAwesomeIcon icon={faComputer} />
+                    <MDBCardText onClick={() => handleButtonClick()}>Operator Information</MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                  <MDBListGroupItem style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}
+                  >
                     <FontAwesomeIcon icon={faCoins} />
-                    <MDBCardText>Total Income</MDBCardText>
+                    <MDBCardText>View Revenues</MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                  <MDBListGroupItem style={listItemStyle}
+                    hover
+                    className="d-flex justify-content-between align-items-center p-3"
+                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}
+                  >
                     <FontAwesomeIcon icon={faUser} />
                     <MDBCardText>Total Users</MDBCardText>
                   </MDBListGroupItem>

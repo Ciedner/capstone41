@@ -32,20 +32,19 @@ const FormWithImage = () => {
     border: "1px solid #ccc",
   };
 
-  const containerStyle = {
-    position: "relative",
-    display: "inline-block",
-    padding: "40px",
-    backgroundColor: "#f2f2f2",
-    borderRadius: "8px",
-    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-    maxWidth: "400px",
+  const parkingContainerStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
   };
 
   const formStyle = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    margin: "10px",
+    width: "400px",
   };
 
   const titleLeftStyle = {
@@ -81,8 +80,7 @@ const FormWithImage = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark"
-          style={{ backgroundColor: "#274472" }}>
+      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#274472" }}>
         <div className="container">
           <Link className="navbar-brand" to="/">
             SpotWise Parking Management System
@@ -96,15 +94,32 @@ const FormWithImage = () => {
           <button type="button">Search</button>
         </div>
 
-        <div style={containerStyle}>
+        <div style={parkingContainerStyle}>
           <div className="container">
             <form style={formStyle}>
               <h2 style={titleLeftStyle}>Alternative Parking 1</h2>
               <textarea
                 name="postContent"
                 defaultValue="Location: Banilad - Cebu
-Fee: 20 Every consecutive hours
-Free Hours: 1 hr"
+    Fee: 20 Every consecutive hours
+    Free Hours: 1 hr
+    Parking Space Available: 105 spaces"
+                style={textareaStyle}
+                readOnly
+              />
+              <button style={buttonStyle}>Reserve Now</button>
+            </form>
+          </div>
+
+          <div className="container">
+            <form style={formStyle}>
+              <h2 style={titleCenterStyle}>Alternative Parking 2</h2>
+              <textarea
+                name="postContent"
+                defaultValue="Location: Ayala - Cebu
+    Fee: 30 Every consecutive hours
+    Free Hours: 2 hrs
+    Parking Space Available: 15 spaces"
                 style={textareaStyle}
                 readOnly
               />
@@ -113,23 +128,7 @@ Free Hours: 1 hr"
           </div>
         </div>
 
-        <div style={containerStyle}>
-          <div className="container">
-            <form style={formStyle}>
-              <h2 style={titleCenterStyle}>Alternative Parking 2</h2>
-              <textarea
-                name="postContent"
-                defaultValue="Location: Ayala - Cebu
-Fee: 30 Every consecutive hours
-Free Hours: 2 hrs"
-                style={textareaStyle}
-                readOnly
-              />
-              <button style={buttonStyle}>Reserve Now</button>
-            </form>
-          </div>
-        </div>
-        <a href="#" className="text-muted" onClick={() => navigate("/home")}>
+        <a href="#" className="text-muted" onClick={() => navigate("/home")} style={{ marginTop: "20px" }}>
           Go back
         </a>
       </div>
