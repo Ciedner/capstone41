@@ -7,7 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faCoins, faUser, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
 
-function ViewReport() {
+function OperatorDashboard() {
   const [data, setData] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [foundUser, setFoundUser] = useState(null);
@@ -108,9 +108,9 @@ function ViewReport() {
 
 
   return (
-    <div style={{ backgroundColor: '#B0E0E6', minHeight: "100vh"}}>
+    <div style={{ backgroundColor: '#3b89ac', minHeight: "100vh"}}>
     <Container>
-      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#274472" }}>
+      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
         <div className="container">
           <Link className="navbar-brand" to="/">
             SpotWise Parking Management System
@@ -120,7 +120,7 @@ function ViewReport() {
       <div className="container text-center" style={{ marginTop: '30px', fontFamily: 'Courier New', fontSize: '30px'}}>
         <p>Welcome to your Parking Management System</p>
       </div>
-      <div className="row mt-4 ">
+      <div className="row mt-3 ">
         <div className="col-md-3">
           <Card> 
             <Card.Body>
@@ -152,8 +152,7 @@ function ViewReport() {
               <Card.Text style={{ textAlign: 'center', margin: '0 auto', fontFamily:'Copperplate', fontSize:'20px' }}>{fixedPrice}</Card.Text>
             </Card.Body>
           </Card>
-        </div>
-        
+        </div>  
       </div>
       <div style={{ display: 'flex' }}>
         <div style={{ marginRight: '20px', marginTop: '20px'  }}>
@@ -198,7 +197,7 @@ function ViewReport() {
             </div>
           )}
         </div>
-        <div style={{marginLeft:'100px', marginTop: '20px', textAlign: 'center', justifyContent: 'center' }}>
+        <div style={{marginLeft:'20px', marginTop: '20px', textAlign: 'center', justifyContent: 'center'}}>
           <Table responsive>
             <thead>
               <tr>
@@ -226,10 +225,40 @@ function ViewReport() {
             </tbody>
           </Table>
           </div>
+          <div className="col-md-4" style={{ marginLeft: '30px', marginTop: '20px' }}>
+            <div style={{ maxHeight: '200px', borderRadius: '10px' }}>
+              <Card>
+                <Card.Body>
+                  <Table>
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Vehicle</th>
+                        <th>Plate No</th>
+                        <th>Reservation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>James Bulfa</td>
+                        <td>GSX</td>
+                        <td>ABC-2000</td>
+                        <td>09:00-09:30 AM</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                  <button style={{ color: 'green' }}>Accept</button>
+                  <button style={{ marginLeft: '10px', color: 'red', textAlign: 'center' }}>Decline</button>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
       </div>
     </Container>
     </div>
   );
 }
 
-export default ViewReport;
+export default OperatorDashboard;

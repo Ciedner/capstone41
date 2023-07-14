@@ -13,10 +13,12 @@ import Recommendation from "./components/Recommendation"
 import Manage from "./Profile/Manage"
 import ForgotPassword from "./Profile/ForgotPassword"
 import AdminRegister from "./admin/AdminRegister"
-import AdminDashboard from "./admin/AdminDashboard"
 import AdminParking from "./admin/AdminParking"
-import AdminReport from "./admin/AdminReport"
-import Revenues from "./admin/Revenues"
+import OperatorDashboard from "./admin/OperatorDashboard"
+import Revenues from "./establishment/Revenues"
+import EstablishmentDashboard from "./establishment/EstablishmentDashboard";
+import AgentRegistration from "./establishment/AgentRegistration"
+
 function App() {
   return (
     <div className="App">
@@ -36,10 +38,11 @@ function App() {
           <Route path="/manage" element={<Manage />} />
           <Route path="/forgot" element={<ForgotPassword />} />
           <Route path="/adminRegister" element={<AdminRegister />} />
-          <Route path="/adminBoard" element={<AdminDashboard/>} />
           <Route path="/adminParking" element={<AdminParking/>} />
-          <Route path="/report" element={<AdminReport/>} />
+          <Route path="/operator" element={<OperatorDashboard/>} />
           <Route path="/revenues" element={<Revenues/>} />
+          <Route path="/estDashBoard" element={<EstablishmentDashboard/>} />
+          <Route path="/agentRegister" element={<AgentRegistration/>} />
         </Routes>
       </Router>
     </div>

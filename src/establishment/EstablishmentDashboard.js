@@ -14,7 +14,7 @@ import {
   MDBListGroupItem,
   MDBCardTitle
 } from 'mdb-react-ui-kit';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComputer, faCoins, faBars, faCar, faClock, faUser, faBarsProgress} from '@fortawesome/free-solid-svg-icons';
 
@@ -29,18 +29,19 @@ const listItemStyle = {
   padding: "10px 15px",
   transition: "background-color 0.3s ease",
   cursor: "pointer",
+  backgroundColor:"#bfd2d9"
 };
 
 const listItemHoverStyle = {
-  backgroundColor: "#CECECE",
+  backgroundColor:"#bfd2d9",
 };
 
-const AdminDashboard = ({recentAddedUser }) => {
+const Establishment = ({recentAddedUser }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate("/report");
+    navigate("/operator");
   };
 
   const handleRevenues = () => {
@@ -49,44 +50,35 @@ const AdminDashboard = ({recentAddedUser }) => {
 
 
   return (  
-    <section style={{ backgroundColor: '#B7CEEC' }}>
+    <section style={{ backgroundColor: '#3b89ac' }}>
+       <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
+        <div className="container">
+          <Link className="navbar-brand" to="/">
+            SpotWise Parking Management System
+          </Link>
+        </div>
+      </nav>
       <MDBContainer className="py-5">
-        <MDBRow>
-          <MDBCol>
-            <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-              <MDBBreadcrumbItem>
-                <a href='#'>Home</a>
-              </MDBBreadcrumbItem>
-              <MDBBreadcrumbItem>
-                <a href="#">User</a>
-              </MDBBreadcrumbItem>
-              <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
-            </MDBBreadcrumb>
-          </MDBCol>
-        </MDBRow>
-
         <MDBRow>
           <MDBCol lg="4">
             <MDBCard className="mb-4">
-              <MDBCardBody className="text-center">
-                <p>Administrator</p>
+              <MDBCardBody className="text-center" style={{backgroundColor:"#bfd2d9"}}>
+                <p style={{fontFamily:"Courier New"}}>Administrator</p>
                 <MDBCardImage
                   src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                   alt="avatar"
                   className="rounded-circle"
-                  style={{ width: '70px' }}
+                  style={{ width: '70px', backgroundColor:"#003851"}}
                   fluid
                 />
-                <p className="text-muted mb-1">Marky Parking Management</p>
-                <p className="text-muted mb-4">Talamban, Cebu</p>
+                <p className="text-muted mb-1" style={{fontFamily:"Courier New", marginTop:'15px'}}>Marky Parking Management</p>
+                <p className="text-muted mb-4" style={{fontFamily:"Courier New"}}>Talamban, Cebu</p>
                 <div className="d-flex justify-content-center mb-2">
-                  <MDBBtn>Follow</MDBBtn>
-                  <MDBBtn outline className="ms-1">Message</MDBBtn>
                 </div>
               </MDBCardBody>
             </MDBCard>
 
-            <MDBCard className="mb-4 mb-lg-0">
+            <MDBCard className="mb-4 mb-lg-0" style={{backgroundColor:"#bfd2d9"}}>
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">
                   <MDBListGroupItem style={listItemStyle}
@@ -139,20 +131,19 @@ const AdminDashboard = ({recentAddedUser }) => {
             </MDBCard>
           </MDBCol> 
           <MDBCol lg="8">
-            <MDBCard style={{backgroundColor:''}}>
+            <MDBCard style={{marginBottom:"20px", backgroundColor:"#bfd2d9"}}>
               <MDBCardBody>
-                
-                <MDBCardText className="mb-4"  > <FontAwesomeIcon icon={faClock} /> <span className="text-primary font-italic me-1"> Recent Added Vehicle</span></MDBCardText>
+                <MDBCardText className="mb-4" style={{fontFamily:"Courier New"}}> <FontAwesomeIcon icon={faClock} /> <span className="text-primary font-italic me-1"> Recent Added Vehicle</span></MDBCardText>
                 <MDBRow>
                 <MDBCol md="4">
-                    <MDBCard>
+                    <MDBCard style={{backgroundColor:"#bfd2d9"}}>
                       <img
                         src="https://tse3.mm.bing.net/th?id=OIP.dofiS1lbDbvM7eFL_9AMQAHaEE&pid=Api&P=0&h=180"
                         className="img-fluid"
                         alt="img"
                       />
-                      <MDBCardBody>
-                        <MDBCardTitle>Parking Information</MDBCardTitle>
+                      <MDBCardBody style={{fontFamily:"Courier New", fontSize:"12px"}}>
+                        <MDBCardTitle style={{fontFamily:"Courier New", fontSize:"15px"}}>Parking Information</MDBCardTitle>
                         <MDBCardText>Vehicle: </MDBCardText>
                         <MDBCardText>Vehicle Plate: </MDBCardText>
                         <MDBCardText>Time in: </MDBCardText>
@@ -161,53 +152,49 @@ const AdminDashboard = ({recentAddedUser }) => {
                     </MDBCard>
                 </MDBCol>
 
-                  <MDBCol md="4">
-                  {recentAddedUser && (
-                    <MDBCard>
+                <MDBCol md="4">
+                    <MDBCard style={{backgroundColor:"#bfd2d9"}}>
                       <img
-                        src="http://www.pngmart.com/files/4/Car-PNG-Photo.png"
+                        src="https://tse3.mm.bing.net/th?id=OIP.dofiS1lbDbvM7eFL_9AMQAHaEE&pid=Api&P=0&h=180"
                         className="img-fluid"
-                        alt="Another Vehicle"
+                        alt="img"
                       />
-                      <MDBCardBody>
-                        <MDBCardTitle>Parking Information</MDBCardTitle>
-                        <MDBCardText>Vehicle: {recentAddedUser.vehicle}</MDBCardText>
-                        <MDBCardText>Vehicle Plate: {recentAddedUser.plate}</MDBCardText>
-                        <MDBCardText>Time in: {recentAddedUser.timeIn}</MDBCardText>
-                        <MDBCardText>Time out: {recentAddedUser.timeOut}</MDBCardText>
+                      <MDBCardBody style={{fontFamily:"Courier New", fontSize:"12px"}}>
+                        <MDBCardTitle style={{fontFamily:"Courier New", fontSize:"15px"}}>Parking Information</MDBCardTitle>
+                        <MDBCardText>Vehicle: </MDBCardText>
+                        <MDBCardText>Vehicle Plate: </MDBCardText>
+                        <MDBCardText>Time in: </MDBCardText>
+                        <MDBCardText>Time out: </MDBCardText>
                       </MDBCardBody>
                     </MDBCard>
-                  )}
-                  </MDBCol>
-                  <MDBCol md="4">
-                  {recentAddedUser && (
-                    <MDBCard>
+                </MDBCol>
+                <MDBCol md="4">
+                    <MDBCard style={{backgroundColor:"#bfd2d9"}}>
                       <img
-                        src="http://www.pngmart.com/files/4/Car-PNG-Picture.png"
+                        src="https://tse3.mm.bing.net/th?id=OIP.dofiS1lbDbvM7eFL_9AMQAHaEE&pid=Api&P=0&h=180"
                         className="img-fluid"
-                        alt="Another Vehicle"
+                        alt="img"
                       />
-                      <MDBCardBody>
-                        <MDBCardTitle>Parking Information</MDBCardTitle>
-                        <MDBCardText>Vehicle: {recentAddedUser.vehicle}</MDBCardText>
-                        <MDBCardText>Vehicle Plate: {recentAddedUser.plate}</MDBCardText>
-                        <MDBCardText>Time in: {recentAddedUser.timeIn}</MDBCardText>
-                        <MDBCardText>Time out: {recentAddedUser.timeOut}</MDBCardText>
+                      <MDBCardBody style={{fontFamily:"Courier New", fontSize:"12px"}}>
+                        <MDBCardTitle style={{fontFamily:"Courier New", fontSize:"15px"}}>Parking Information</MDBCardTitle>
+                        <MDBCardText>Vehicle: </MDBCardText>
+                        <MDBCardText>Vehicle Plate: </MDBCardText>
+                        <MDBCardText>Time in: </MDBCardText>
+                        <MDBCardText>Time out: </MDBCardText>
                       </MDBCardBody>
                     </MDBCard>
-                     )}
-                  </MDBCol>
+                </MDBCol>
                 </MDBRow>
               </MDBCardBody>
             </MDBCard>
 
             <MDBRow>
               <MDBCol md="6">
-                <MDBCard className="mb-4 mb-md-0">
+                <MDBCard className="mb-4 mb-md-0" style={{backgroundColor:"#bfd2d9"}}>
                   <MDBCardBody>
-                    <MDBCardText className="mb-4"  > <FontAwesomeIcon icon={faUser} /> <span className="text-primary font-italic me-1"> Recent Parking User</span></MDBCardText>
+                    <MDBCardText className="mb-4"  style={{fontFamily:"Courier New"}}> <FontAwesomeIcon icon={faUser} /> <span className="text-primary font-italic me-1"> Recent Parking User</span></MDBCardText>
                     <MDBCol md="12">
-                      <MDBCard>
+                      <MDBCard style={{backgroundColor:"#bfd2d9"}}>
                         <MDBCardBody className="d-flex">
                           <div style={{ ...image }} className="image">
                             <img
@@ -216,7 +203,7 @@ const AdminDashboard = ({recentAddedUser }) => {
                               alt="Another Vehicle"
                             />
                           </div>
-                          <div>
+                          <div style={{fontFamily:"Courier New"}}>
                             <MDBCardText>First Name: Mark</MDBCardText>
                             <MDBCardText>Last Name: Zuckerberg</MDBCardText>
                           </div>
@@ -224,8 +211,8 @@ const AdminDashboard = ({recentAddedUser }) => {
                       </MDBCard>
                     </MDBCol>
                     <MDBRow>
-                      <MDBCol md="12">
-                        <MDBCard>
+                      <MDBCol md="12" >
+                        <MDBCard style={{backgroundColor:"#bfd2d9"}}>
                           <MDBCardBody className="d-flex">
                             <div style={{ ...image }} className="image">
                               <img
@@ -234,7 +221,7 @@ const AdminDashboard = ({recentAddedUser }) => {
                                 alt="Another Vehicle"
                               />
                             </div>
-                            <div>
+                            <div style={{fontFamily:"Courier New"}}>
                               <MDBCardText>First Name: Conor</MDBCardText>
                               <MDBCardText>Last Name: McGregor</MDBCardText>
                             </div>
@@ -244,7 +231,7 @@ const AdminDashboard = ({recentAddedUser }) => {
                     </MDBRow>
                     <MDBRow>
                       <MDBCol md="12">
-                        <MDBCard>
+                        <MDBCard style={{backgroundColor:"#bfd2d9"}}>
                           <MDBCardBody className="d-flex">
                             <div style={{ ...image }} className="image">
                               <img
@@ -253,7 +240,7 @@ const AdminDashboard = ({recentAddedUser }) => {
                                 alt="Another Vehicle"
                               />
                             </div>
-                            <div>
+                            <div style={{fontFamily:"Courier New"}}>
                               <MDBCardText>First Name: Elon</MDBCardText>
                               <MDBCardText>Last Name: Musk</MDBCardText>
                             </div>
@@ -266,9 +253,9 @@ const AdminDashboard = ({recentAddedUser }) => {
               </MDBCol>
 
               <MDBCol md="6">
-                <MDBCard className="mb-4 mb-md-0">
+                <MDBCard className="mb-4 mb-md-0" style={{backgroundColor:"#bfd2d9"}}>
                   <MDBCardBody>
-                    <MDBCardText className="mb-4"  > <FontAwesomeIcon icon={faBarsProgress} /> <span className="text-primary font-italic me-1"> Management Information</span></MDBCardText>
+                    <MDBCardText className="mb-4" style={{fontFamily:"Courier New"}} > <FontAwesomeIcon icon={faBarsProgress} /> <span className="text-primary font-italic me-1"> Management Information</span></MDBCardText>
                     <MDBCard>
                       <button className="card-button" color="">
                         <img src="https://www.freeiconspng.com/thumbs/reservation-icon/reservation-icon-14.png" style={{ height: '80px' }} alt="Card 1" className="card-image" />
@@ -296,4 +283,4 @@ const AdminDashboard = ({recentAddedUser }) => {
   );
 };
 
-export default AdminDashboard;
+export default Establishment;
