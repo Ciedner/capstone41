@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Card from 'react-bootstrap/Card';
 import {
   MDBCol,
   MDBContainer,
@@ -7,21 +8,14 @@ import {
   MDBCardText,
   MDBCardBody,
   MDBCardImage,
-  MDBBtn,
-  MDBBreadcrumb,
-  MDBBreadcrumbItem,
   MDBListGroup,
   MDBListGroupItem,
-  MDBCardTitle
 } from 'mdb-react-ui-kit';
 import { useNavigate, useLocation, Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComputer, faCoins, faBars, faCar, faClock, faUser, faBarsProgress} from '@fortawesome/free-solid-svg-icons';
+import { faEye, faChartColumn, faBars, faPlus, faCar, faUser, faCoins, faFileInvoiceDollar} from '@fortawesome/free-solid-svg-icons';
 
-const image = {
-  flex: '0 0 150px', 
-  marginRight: '20px', 
-};
+
 const listItemStyle = {
   display: "flex",
   justifyContent: "space-between",
@@ -48,9 +42,13 @@ const Establishment = ({recentAddedUser }) => {
     navigate("/revenues");
   };
 
+  const handleRegister = () => {
+    navigate("/agentRegister");
+  };
+
 
   return (  
-    <section style={{ backgroundColor: '#3b89ac' }}>
+    <section style={{ backgroundColor: '#3b89ac', minHeight:'100vh'}}>
        <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
         <div className="container">
           <Link className="navbar-brand" to="/">
@@ -96,8 +94,8 @@ const Establishment = ({recentAddedUser }) => {
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}
                   >
-                    <FontAwesomeIcon icon={faCar} />
-                    <MDBCardText>View Parking</MDBCardText>
+                    <FontAwesomeIcon icon={faPlus} />
+                    <MDBCardText onClick={() => handleRegister()}>Register Ticket Operator</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem  style={listItemStyle}
                     hover
@@ -105,8 +103,8 @@ const Establishment = ({recentAddedUser }) => {
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}
                   >
-                  <FontAwesomeIcon icon={faComputer} />
-                    <MDBCardText onClick={() => handleButtonClick()}>Operator Information</MDBCardText>
+                  <FontAwesomeIcon icon={faEye} />
+                    <MDBCardText onClick={() => handleButtonClick()}>Ticketing Information</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem style={listItemStyle}
                     hover
@@ -114,8 +112,8 @@ const Establishment = ({recentAddedUser }) => {
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = listItemHoverStyle.backgroundColor)}
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}
                   >
-                    <FontAwesomeIcon icon={faCoins} />
-                    <MDBCardText onClick={() => handleRevenues()}>View Revenues</MDBCardText>
+                    <FontAwesomeIcon icon={faChartColumn} />
+                    <MDBCardText onClick={() => handleRevenues()}>View Parking Area Tracks</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem style={listItemStyle}
                     hover
@@ -124,158 +122,103 @@ const Establishment = ({recentAddedUser }) => {
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}
                   >
                     <FontAwesomeIcon icon={faUser} />
-                    <MDBCardText>Total Users</MDBCardText>
+                    <MDBCardText>Feedback</MDBCardText>
                   </MDBListGroupItem>
                 </MDBListGroup>
               </MDBCardBody>
             </MDBCard>
           </MDBCol> 
           <MDBCol lg="8">
-            <MDBCard style={{marginBottom:"20px", backgroundColor:"#bfd2d9"}}>
+            <p style={{fontFamily:'Courier New', textAlign:'center', fontSize:'20px', fontWeight:'bold'}}>Today's Information</p>
+          <div className="row mt-3 ">
+        <div className="col-md-3">
+          <Card> 
+            <Card.Body>
+              <Card.Title style={{fontFamily:'Courier New', textAlign:'center'}}> <FontAwesomeIcon icon={faCar} color="green"/> Parking Availability</Card.Title>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto', fontFamily:'Copperplate', fontSize:'20px' }}>250</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="col-md-3">
+          <Card>
+            <Card.Body>
+              <Card.Title style={{fontFamily:'Courier New', textAlign:'center'}}><FontAwesomeIcon icon={faCoins} color="red"/> Total Revenues</Card.Title>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto', fontFamily:'Copperplate', fontSize:'20px' }}>0</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="col-md-3">
+          <Card>
+            <Card.Body>
+              <Card.Title style={{fontFamily:'Courier New', textAlign:'center'}}><FontAwesomeIcon icon={faUser} color="blue" /> Total Users today</Card.Title>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto', fontFamily:'Copperplate', fontSize:'20px' }}>0</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="col-md-3">
+          <Card>
+            <Card.Body>
+              <Card.Title style={{fontFamily:'Courier New', textAlign:'center'}}><FontAwesomeIcon icon={faFileInvoiceDollar} color="orange"/> Parking Payment</Card.Title>
+              <Card.Text style={{ textAlign: 'center', margin: '0 auto', fontFamily:'Copperplate', fontSize:'20px' }}>30</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>  
+      </div>
+            <MDBCard style={{marginTop:"50px", backgroundColor:"#bfd2d9"}}>
               <MDBCardBody>
-                <MDBCardText className="mb-4" style={{fontFamily:"Courier New"}}> <FontAwesomeIcon icon={faClock} /> <span className="text-primary font-italic me-1"> Recent Added Vehicle</span></MDBCardText>
+              <MDBCardText className="mb-4"  style={{fontFamily:"Courier New"}}> <FontAwesomeIcon icon={faUser} /> <span className="text-primary font-italic me-1"> Recent Parking User</span></MDBCardText>
                 <MDBRow>
                 <MDBCol md="4">
                     <MDBCard style={{backgroundColor:"#bfd2d9"}}>
                       <img
-                        src="https://tse3.mm.bing.net/th?id=OIP.dofiS1lbDbvM7eFL_9AMQAHaEE&pid=Api&P=0&h=180"
+                        src="https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2023/06/931/523/Musk.jpg?ve=1&tl=1"
                         className="img-fluid"
                         alt="img"
                       />
-                      <MDBCardBody style={{fontFamily:"Courier New", fontSize:"12px"}}>
-                        <MDBCardTitle style={{fontFamily:"Courier New", fontSize:"15px"}}>Parking Information</MDBCardTitle>
-                        <MDBCardText>Vehicle: </MDBCardText>
-                        <MDBCardText>Vehicle Plate: </MDBCardText>
-                        <MDBCardText>Time in: </MDBCardText>
-                        <MDBCardText>Time out: </MDBCardText>
-                      </MDBCardBody>
-                    </MDBCard>
-                </MDBCol>
-
-                <MDBCol md="4">
-                    <MDBCard style={{backgroundColor:"#bfd2d9"}}>
-                      <img
-                        src="https://tse3.mm.bing.net/th?id=OIP.dofiS1lbDbvM7eFL_9AMQAHaEE&pid=Api&P=0&h=180"
-                        className="img-fluid"
-                        alt="img"
-                      />
-                      <MDBCardBody style={{fontFamily:"Courier New", fontSize:"12px"}}>
-                        <MDBCardTitle style={{fontFamily:"Courier New", fontSize:"15px"}}>Parking Information</MDBCardTitle>
-                        <MDBCardText>Vehicle: </MDBCardText>
-                        <MDBCardText>Vehicle Plate: </MDBCardText>
-                        <MDBCardText>Time in: </MDBCardText>
-                        <MDBCardText>Time out: </MDBCardText>
+                      <MDBCardBody style={{fontFamily:"Courier New", fontSize:"12px"}}>    
+                        <MDBCardText>Name: Elon Musk </MDBCardText>
+                        <MDBCardText>Vehicle: Tesla</MDBCardText>
+                        <MDBCardText>Vehicle Plate: DEF - T3F</MDBCardText>
+                        <MDBCardText>Time in: 10:10 AM </MDBCardText>
+                        <MDBCardText>Time out: 3:00 PM</MDBCardText>
                       </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
                 <MDBCol md="4">
                     <MDBCard style={{backgroundColor:"#bfd2d9"}}>
                       <img
-                        src="https://tse3.mm.bing.net/th?id=OIP.dofiS1lbDbvM7eFL_9AMQAHaEE&pid=Api&P=0&h=180"
+                        src="https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/dustin-poirier-conor-mcgregor-ufc-264-getty-5.jpg?w=1000&h=600&crop=1"
                         className="img-fluid"
                         alt="img"
                       />
-                      <MDBCardBody style={{fontFamily:"Courier New", fontSize:"12px"}}>
-                        <MDBCardTitle style={{fontFamily:"Courier New", fontSize:"15px"}}>Parking Information</MDBCardTitle>
-                        <MDBCardText>Vehicle: </MDBCardText>
-                        <MDBCardText>Vehicle Plate: </MDBCardText>
-                        <MDBCardText>Time in: </MDBCardText>
-                        <MDBCardText>Time out: </MDBCardText>
+                       <MDBCardBody style={{fontFamily:"Courier New", fontSize:"12px"}}>    
+                        <MDBCardText>Name: Conor McGregor </MDBCardText>
+                        <MDBCardText>Vehicle: Bugatti</MDBCardText>
+                        <MDBCardText>Vehicle Plate: GHI - X6B</MDBCardText>
+                        <MDBCardText>Time in: 8:45 AM </MDBCardText>
+                        <MDBCardText>Time out: 11:00 AM</MDBCardText>
+                      </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+                <MDBCol md="4">
+                    <MDBCard style={{backgroundColor:"#bfd2d9"}}>
+                      <img
+                        src="https://www.toolshero.com/wp-content/uploads/2020/12/mark-zuckerberg-toolshero.jpg"
+                        className="img-fluid"
+                        alt="img"
+                      />
+                      <MDBCardBody style={{fontFamily:"Courier New", fontSize:"12px"}}>    
+                        <MDBCardText>Name: Mark Zuckerberg </MDBCardText>
+                        <MDBCardText>Vehicle: BMW 600</MDBCardText>
+                        <MDBCardText>Vehicle Plate: ABC - U2F</MDBCardText>
+                        <MDBCardText>Time in: 9:00 AM </MDBCardText>
+                        <MDBCardText>Time out: 1:00 PM</MDBCardText>
                       </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
                 </MDBRow>
               </MDBCardBody>
             </MDBCard>
-
-            <MDBRow>
-              <MDBCol md="6">
-                <MDBCard className="mb-4 mb-md-0" style={{backgroundColor:"#bfd2d9"}}>
-                  <MDBCardBody>
-                    <MDBCardText className="mb-4"  style={{fontFamily:"Courier New"}}> <FontAwesomeIcon icon={faUser} /> <span className="text-primary font-italic me-1"> Recent Parking User</span></MDBCardText>
-                    <MDBCol md="12">
-                      <MDBCard style={{backgroundColor:"#bfd2d9"}}>
-                        <MDBCardBody className="d-flex">
-                          <div style={{ ...image }} className="image">
-                            <img
-                              src="https://www.pngplay.com/wp-content/uploads/5/Mark-Zuckerberg-Transparent-Images.png"
-                              className="img-fluid"
-                              alt="Another Vehicle"
-                            />
-                          </div>
-                          <div style={{fontFamily:"Courier New"}}>
-                            <MDBCardText>First Name: Mark</MDBCardText>
-                            <MDBCardText>Last Name: Zuckerberg</MDBCardText>
-                          </div>
-                        </MDBCardBody>
-                      </MDBCard>
-                    </MDBCol>
-                    <MDBRow>
-                      <MDBCol md="12" >
-                        <MDBCard style={{backgroundColor:"#bfd2d9"}}>
-                          <MDBCardBody className="d-flex">
-                            <div style={{ ...image }} className="image">
-                              <img
-                                src="https://pngimg.com/uploads/conor_mcgregor/conor_mcgregor_PNG46.png"
-                                className="img-fluid"
-                                alt="Another Vehicle"
-                              />
-                            </div>
-                            <div style={{fontFamily:"Courier New"}}>
-                              <MDBCardText>First Name: Conor</MDBCardText>
-                              <MDBCardText>Last Name: McGregor</MDBCardText>
-                            </div>
-                          </MDBCardBody>
-                        </MDBCard>
-                      </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                      <MDBCol md="12">
-                        <MDBCard style={{backgroundColor:"#bfd2d9"}}>
-                          <MDBCardBody className="d-flex">
-                            <div style={{ ...image }} className="image">
-                              <img
-                                src="https://www.techtrends.bg/wp-content/uploads/2019/07/Elon-Musk-Quote.png"
-                                className="img-fluid"
-                                alt="Another Vehicle"
-                              />
-                            </div>
-                            <div style={{fontFamily:"Courier New"}}>
-                              <MDBCardText>First Name: Elon</MDBCardText>
-                              <MDBCardText>Last Name: Musk</MDBCardText>
-                            </div>
-                          </MDBCardBody>
-                        </MDBCard>
-                      </MDBCol>
-                    </MDBRow>
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
-
-              <MDBCol md="6">
-                <MDBCard className="mb-4 mb-md-0" style={{backgroundColor:"#bfd2d9"}}>
-                  <MDBCardBody>
-                    <MDBCardText className="mb-4" style={{fontFamily:"Courier New"}} > <FontAwesomeIcon icon={faBarsProgress} /> <span className="text-primary font-italic me-1"> Management Information</span></MDBCardText>
-                    <MDBCard>
-                      <button className="card-button" color="">
-                        <img src="https://www.freeiconspng.com/thumbs/reservation-icon/reservation-icon-14.png" style={{ height: '80px' }} alt="Card 1" className="card-image" />
-                        <p>Reservation</p>
-                      </button>
-
-                      <button className="card-button" color="">
-                        <img src="https://www.pngmart.com/files/7/Graph-PNG-Transparent-Image.png" style={{ height: '80px' }} alt="Card 1" className="card-image" />
-                        <p>View Parking Revenue Graph</p>
-                      </button>
-
-                      <button className="card-button" color="">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTve4v7bfNT-wW9I1k9nskn3UFXnZuVGlgsjF2qjq0&s" style={{ height: '80px' }} alt="Card 1" className="card-image" />
-                        <p>Feedback</p>
-                      </button>
-                    </MDBCard>
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
-            </MDBRow>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
