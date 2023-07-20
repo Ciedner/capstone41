@@ -48,7 +48,7 @@ const CardLayout = () => {
       <Container>
         <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
           <div className="container">
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand" to="/estDashBoard">
               SpotWise Parking Management System
             </Link>
           </div>
@@ -83,7 +83,7 @@ const CardLayout = () => {
                     onMouseLeave={handleCardLeave}
                     className={hoveredCard === 2 ? 'hovered-card' : ''}
                   >
-                    <MDBCardImage src='https://assets.stickpng.com/thumbs/585e4beacb11b227491c3399.png' style={{ objectFit: 'cover', height: '50%' }} />
+                    <MDBCardImage src='https://png.pngitem.com/pimgs/s/80-800194_transparent-users-icon-png-flat-user-icon-png.png' style={{ objectFit: 'cover', height: '50%' }} />
                     <MDBCardBody style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflowY: 'auto' }}>
                       <div>
                         <MDBCardTitle style={{ fontFamily: 'Courier New', fontWeight: 'bold' }}>Users</MDBCardTitle>

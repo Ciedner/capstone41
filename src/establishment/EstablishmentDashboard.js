@@ -51,7 +51,7 @@ const Establishment = ({recentAddedUser }) => {
     <section style={{ backgroundColor: '#3b89ac', minHeight:'100vh'}}>
        <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
         <div className="container">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/estDashBoard">
             SpotWise Parking Management System
           </Link>
         </div>

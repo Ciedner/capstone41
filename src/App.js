@@ -16,8 +16,9 @@ import AdminRegister from "./admin/AdminRegister"
 import AdminParking from "./admin/AdminParking"
 import OperatorDashboard from "./admin/OperatorDashboard"
 import Revenues from "./establishment/Revenues"
-import EstablishmentDashboard from "./establishment/EstablishmentDashboard";
+import EstablishmentDashboard from "./establishment/EstablishmentDashboard"
 import AgentRegistration from "./establishment/AgentRegistration"
+import ViewSpace from "./admin/ViewSpace"
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="/revenues" element={<Revenues/>} />
           <Route path="/estDashBoard" element={<EstablishmentDashboard/>} />
           <Route path="/agentRegister" element={<AgentRegistration/>} />
+          <Route path="/view" element={<ViewSpace/>} />
         </Routes>
       </Router>
     </div>

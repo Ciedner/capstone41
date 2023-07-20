@@ -7,9 +7,6 @@ function RegistrationForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Perform form submission logic or validation here
-    // You can access the form data using the state variables (name, email, phoneNumber)
-    // For example:
     console.log('Name:', name);
     console.log('Email:', email);
     console.log('Phone Number:', phoneNumber);

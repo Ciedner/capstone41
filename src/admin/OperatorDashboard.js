@@ -3,8 +3,10 @@ import Table from 'react-bootstrap/Table';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
+import { DropdownButton, Dropdown } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaUserCircle } from "react-icons/fa";
 import { faCar, faCoins, faUser, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
 
 function OperatorDashboard() {
@@ -17,7 +19,22 @@ function OperatorDashboard() {
     const [fixedPrice, setFixedPrice] = useState(30);
     const [totalRevenues, setTotalRevenues] = useState(0);
   const navigate = useNavigate();
+
   const location = useLocation();
+  const styles = {
+    welcomeMessage: {
+      position: "absolute",
+      top: "10px",
+      right: "10px",
+      margin: "0",
+      color: "#fff",
+      fontFamily: "Rockwell, sans-serif",
+      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+    },
+    icon: {
+      marginRight: "5px",
+    },
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -75,7 +92,7 @@ function OperatorDashboard() {
       setIdCounter((prevCounter) => prevCounter + 1);
       setOccupants((prevTotal) => prevTotal - 1); 
       setTotalUsers((prevTotal) => prevTotal + 1);
-      navigate("/report", { state: { user: foundUser } })
+      navigate("/operator", { state: { user: foundUser } })
     }
   };
 
@@ -114,7 +131,19 @@ function OperatorDashboard() {
         <div className="container">
           <Link className="navbar-brand" to="/">
             SpotWise Parking Management System
-          </Link>
+            </Link>
+            <p style={styles.welcomeMessage}>
+            <DropdownButton 
+                alignRight
+                title={<FaUserCircle style={styles.icon} />}
+                id="dropdown-menu"
+              >
+                <Dropdown.Item href="view">View Parking Slots</Dropdown.Item>
+                <Dropdown.Item href="#settings">Settings</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item href="/">Logout</Dropdown.Item>
+              </DropdownButton>
+              </p>
         </div>
       </nav>
       <div className="container text-center" style={{ marginTop: '30px', fontFamily: 'Courier New', fontSize: '30px'}}>
@@ -171,9 +200,10 @@ function OperatorDashboard() {
               </button>
             </div>
           </Form>
+          <div style={{backgroundColor:'white', textAlign:'center', marginTop:'10px'}}>
           {foundUser && (
             <div>
-              <h4 style={{fontFamily:'Courier New'}}>User Information:</h4>
+              <h4 style={{fontFamily:'Courier New',}}>User Information:</h4>
               <p style={{fontFamily:'Copperplate'}}>First Name: {foundUser.fName}</p>
               <p style={{fontFamily:'Copperplate'}}>Last Name: {foundUser.lName}</p>
               <p style={{fontFamily:'Copperplate'}}>Vehicle: {foundUser.vehicle}</p>
@@ -181,14 +211,14 @@ function OperatorDashboard() {
               <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
                 <button
                   className="button"
-                  style={{ marginRight: '20px', backgroundColor: '#86FF33', fontFamily:'Garamond' }}
+                  style={{ marginRight: '20px', backgroundColor: '#86FF33', fontFamily:'Garamond', marginBottom:'10px'}}
                   onClick={handleInVehicleClick}
                 >
                   In Vehicle
                 </button>
                 <button
                   className="button"
-                  style={{ marginRight: '20px', backgroundColor: '#FF6433', fontFamily:'Garamond' }}
+                  style={{ marginRight: '20px', backgroundColor: '#FF6433', fontFamily:'Garamond', marginBottom:'10px' }}
                   onClick={handleOutVehicleClick}
                 >
                   Vehicle Out
@@ -197,7 +227,8 @@ function OperatorDashboard() {
             </div>
           )}
         </div>
-        <div style={{marginLeft:'20px', marginTop: '20px', textAlign: 'center', justifyContent: 'center'}}>
+        </div>
+        <div style={{marginLeft:'100px', marginTop: '20px', textAlign: 'center', justifyContent: 'center',  width: '70%'}}>
           <Table responsive>
             <thead>
               <tr>
@@ -224,36 +255,6 @@ function OperatorDashboard() {
               ))}
             </tbody>
           </Table>
-          </div>
-          <div className="col-md-4" style={{ marginLeft: '30px', marginTop: '20px' }}>
-            <div style={{ maxHeight: '200px', borderRadius: '10px' }}>
-              <Card>
-                <Card.Body>
-                  <Table>
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Vehicle</th>
-                        <th>Plate No</th>
-                        <th>Reservation</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>James Bulfa</td>
-                        <td>GSX</td>
-                        <td>ABC-2000</td>
-                        <td>09:00-09:30 AM</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                  <button style={{ color: 'green' }}>Accept</button>
-                  <button style={{ marginLeft: '10px', color: 'red', textAlign: 'center' }}>Decline</button>
-                </Card.Body>
-              </Card>
-            </div>
           </div>
       </div>
     </Container>
