@@ -27,14 +27,14 @@ function RegistrationForm() {
 
   return (
     <div style={{ backgroundColor: '#3b89ac', minHeight: "100vh" }}>
-      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
+        <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
           <div className="container">
             <Link className="navbar-brand" to="/estDashBoard">
               SpotWise Parking Management System
             </Link>
           </div>
         </nav>
-      <Container style={{backgroundColor:'#bfd2d9', marginTop:'40px', borderRadius:'25px'}}>
+      <Container style={{backgroundColor:'#bfd2d9', marginTop:'40px', borderRadius:'25px', height:'700px'}}>
       <h2 style={{fontFamily:'Courier New',textAlign:'center'}}>Agent Registration</h2>
       <Row style={{marginLeft:'40px', marginTop:'50px'}}>
         <h5 style={{fontFamily:'Courier New'}}>Profile Information</h5>
@@ -48,20 +48,6 @@ function RegistrationForm() {
             placeholder='Agent First Name'
             value={fName}
             onChange={(e) => setFName(e.target.value)}
-          />
-        </div>
-        </form>
-        </Col>
-        <Col md={3} style={{marginTop:'15px', marginLeft:'40px'}}>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <input style={{fontFamily:'Georgia', fontSize:'18px'}}
-            type="password"
-            id="password"
-            className="form-control"
-            placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         </form>
@@ -81,30 +67,6 @@ function RegistrationForm() {
           />
         </div>
         </form>
-        </Col>
-        <Col md={3} style={{marginTop:'25px', marginLeft:'60px',  transform: "scale(1.2)", }}>
-      <input
-        type="radio"
-        id="radioOption1"
-        className="form-check-input"
-        value="option1"
-        checked={selectedRadioOption === "option1"}
-        onChange={(e) => setSelectedRadioOption(e.target.value)}
-      />
-      <label className="form-check-label" htmlFor="radioOption1" style={{fontFamily:'Georgia', marginLeft:'5px'}}>
-        Male
-      </label>
-      <input style={{marginLeft:'35px'}}
-        type="radio"
-        id="radioOption2"
-        className="form-check-input"
-        value="option2"
-        checked={selectedRadioOption === "option2"}
-        onChange={(e) => setSelectedRadioOption(e.target.value)}
-      />
-      <label className="form-check-label" htmlFor="radioOption2" style={{fontFamily:'Georgia', marginLeft:'5px'}}>
-        Female
-      </label>
         </Col>
         </Row>
         <Row style={{marginLeft:'40px'}}>
@@ -152,16 +114,50 @@ function RegistrationForm() {
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
         </div>
-        <Col style={{marginBottom:'15px'}}>
-        <MDBBtn className="mb-3" size="lg" color="success" style={{fontFamily:"Courier New", marginTop:'15px'}}>
-            Register
-        </MDBBtn>
-        <MDBBtn className="mb-3" size="lg" color="light" style={{fontFamily:"Courier New", marginTop:'15px', marginLeft:'10px'}}>
-            Back
-        </MDBBtn>
-        </Col>
       </form>
       </Col>
+      </Row>
+      <Row style={{marginLeft:'40px'}}>
+      <Col md={3} style={{marginTop:'15px'}}>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <input style={{fontFamily:'Georgia', fontSize:'18px'}}
+            type="password"
+            id="password"
+            className="form-control"
+            placeholder='Password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        </form>
+        </Col>
+      </Row>
+      <Row style={{marginLeft:'40px'}}>
+      <Col md={3} style={{marginTop:'25px', marginLeft:'60px',  transform: "scale(1.2)", }}>
+      <input
+        type="radio"
+        id="radioOption1"
+        className="form-check-input"
+        value="option1"
+        checked={selectedRadioOption === "option1"}
+        onChange={(e) => setSelectedRadioOption(e.target.value)}
+      />
+      <label className="form-check-label" htmlFor="radioOption1" style={{fontFamily:'Georgia', marginLeft:'5px'}}>
+        Male
+      </label>
+      <input style={{marginLeft:'35px'}}
+        type="radio"
+        id="radioOption2"
+        className="form-check-input"
+        value="option2"
+        checked={selectedRadioOption === "option2"}
+        onChange={(e) => setSelectedRadioOption(e.target.value)}
+      />
+      <label className="form-check-label" htmlFor="radioOption2" style={{fontFamily:'Georgia', marginLeft:'5px'}}>
+        Female
+      </label>
+        </Col>
       </Row>
       </Container>
     </div>

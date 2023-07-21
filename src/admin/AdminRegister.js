@@ -1,7 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { useNavigate, Link } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
+import { Container } from 'react-bootstrap';
 import {
   MDBBtn,
   MDBContainer,
@@ -10,10 +13,6 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem
 } from 'mdb-react-ui-kit';
 
 function Registration() {
@@ -34,6 +33,20 @@ function Registration() {
 
   const navigate = useNavigate();
   
+  const styles = {
+    welcomeMessage: {
+      position: "absolute",
+      top: "10px",
+      right: "10px",
+      margin: "0",
+      color: "#fff",
+      fontFamily: "Rockwell, sans-serif",
+      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+    },
+    icon: {
+      marginRight: "5px",
+    },
+  };
 
   const handleNumberOfFloorsChange = (e) => {
     const value = parseInt(e.target.value, 10);
@@ -96,13 +109,30 @@ function Registration() {
   };
 
   return (
-    <MDBContainer fluid>
+    <div style={{ backgroundColor: '#3b89ac', minHeight: "100vh"}}>
+      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
+        <div className="container">
+          <Link className="navbar-brand" to="/">
+            SpotWise Parking Management System
+            </Link>
+            <p style={styles.welcomeMessage}>
+            <DropdownButton 
+                alignRight
+                variant="outline-light"
+                id="dropdown-menu"
+              >
+                <Dropdown.Item href="/">Back</Dropdown.Item>
+              </DropdownButton>
+              </p>
+        </div>
+      </nav>
+    <Container style={{ marginTop: '30px', fontFamily: 'Courier New', fontSize: '15px'}}>
       <MDBRow className='justify-content-center align-items-center m-5'>
         <MDBCard>
           <MDBCardBody className='px-4'>
             <MDBRow>
               <MDBCol md='6'>
-                <h3 className="fw-bold mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">Establishment Registration Form</h3>
                 <MDBInput wrapperClass='mb-4' placeholder='Parking Management Name'
                   id="form1"
                   type="text"
@@ -149,28 +179,20 @@ function Registration() {
               <MDBCol md='6'>
                 <MDBRow className='justify-content-center'>
                   <MDBCol md='10' className='mt-4'>
-                    <MDBDropdown className="mb-4">
-                      <MDBDropdownToggle    size="sm"
-                            color="info">
-                        Parking Type
-                      </MDBDropdownToggle>
-                      <MDBDropdownMenu className="static-menu">
-                        <MDBDropdownItem
-                          onClick={() => {
-                            handleOptionSelect2('Open Parking');
-                          }}
-                        >
-                          Open Parking
-                        </MDBDropdownItem>
-                        <MDBDropdownItem
-                          onClick={() => {
-                            handleOptionSelect('By floor');
-                          }}
-                        >
-                          By floor
-                        </MDBDropdownItem>
-                      </MDBDropdownMenu>
-                    </MDBDropdown>
+                    <DropdownButton 
+                      alignRight
+                      variant="outline-dark"
+                      title="Parking Type"
+                      id="dropdown-menu"
+                    >
+                      <Dropdown.Item onClick={() => {
+                        handleOptionSelect2('Open Parking');
+                      }}>Open Parking</Dropdown.Item>
+                      <Dropdown.Divider />
+                      <Dropdown.Item onClick={() => {
+                        handleOptionSelect('By floor');
+                      }}>By Floor</Dropdown.Item>
+                    </DropdownButton>
                   </MDBCol>
                   <MDBCol md='10' className='mt-4'>
                     {showTextBox2 && (
@@ -220,14 +242,15 @@ function Registration() {
                   size='md'
                   onClick={submit}
                 >
-                  Submit
+                  Register
                 </MDBBtn>
               </MDBCol>
             </MDBRow>
           </MDBCardBody>
         </MDBCard>
       </MDBRow>
-    </MDBContainer>
+    </Container>
+    </div>
   );
 }
 
