@@ -100,6 +100,7 @@ const ParkingLot = () => {
           </Link>
           <p style={styles.welcomeMessage}>
             <DropdownButton 
+            variant="outline-light"
                 alignRight
                 title={<FaUserCircle style={styles.icon} />}
                 id="dropdown-menu"
@@ -111,7 +112,7 @@ const ParkingLot = () => {
               </p>
         </div>
       </nav>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'Courier New', fontSize: '20px', fontWeight: 'bold', marginTop:'75px', backgroundColor:'white' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'Courier New', fontSize: '20px', fontWeight: 'bold', marginTop:'75px', backgroundColor:'#bfd2d9', borderRadius:'15px'}}>
         <h2>Parking Lot</h2>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', flexDirection: 'column', marginRight: '20px' }}>
@@ -132,7 +133,7 @@ const ParkingLot = () => {
           </div>
         </div>
         <div style={{marginTop:'20px', marginBottom:'20px'}}>
-          <label>Enter number of parking spaces: </label>
+          <label>Number of parking spaces: </label>
           <input
             type="number"
             value={numSpaces}

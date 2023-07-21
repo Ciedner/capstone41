@@ -85,11 +85,11 @@ function Login() {
     }
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#3b89ac', minHeight: '100vh' }}>
             <div style={backgroundStyle}>
             <nav
           className="navbar navbar-expand-lg navbar-dark"
-          style={{ backgroundColor: "#003851" }}
+          style={{ backgroundColor: "#003851"}}
         >
                 <div className="container">
                     <Link className="navbar-brand" to="/">
@@ -105,7 +105,7 @@ function Login() {
                     <MDBCardBody>
                         <MDBRow>
                             <MDBCol md="10" lg="6" className="order-2 order-lg-1 d-flex flex-column align-items-center">
-                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style={{fontFamily:"Courier New"}}>General Information</p>
+                                <p className="text-center h1 mb-5 mx-1 mx-md-4 mt-4" style={{fontFamily:"Courier New"}}>General Information</p>
                                 <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
@@ -177,13 +177,13 @@ function Login() {
                                 <div className="mb-4" style={{fontFamily:"Courier New"}}>
                                     <MDBCheckbox name="flexCheck" value="" id="flexCheckDefault" label="Accept terms and conditions"/>
                                 </div>
-                                <MDBBtn className="mb-4" size="lg" style={{fontFamily:"Courier New"}}onClick={submit}>
+                                <MDBBtn className="mb-4" size="lg" color="success" style={{fontFamily:"Courier New"}} onClick={submit}>
                                     Register
                                 </MDBBtn>
                             </MDBCol>
                             
                             <MDBCol md="10" lg="6" className="order-1 order-lg-2 d-flex align-items-center">
-                            <div className="d-flex flex-column align-items-center mb-4"> <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style={{fontFamily:"Courier New"}}>Other Information</p>
+                            <div className="d-flex flex-column align-items-center mb-4"> <p className="text-center h1 mb-5 mx-1 mx-md-4 mt-4" style={{fontFamily:"Courier New"}}>Other Information</p>
                             <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon size="lg" />
                                     <MDBInput
@@ -218,7 +218,7 @@ function Login() {
                                     />
                                 </div>
                             </div>
-                            </MDBCol>
+                            </MDBCol>                           
                         </MDBRow>
                     </MDBCardBody>
                 </MDBCard>

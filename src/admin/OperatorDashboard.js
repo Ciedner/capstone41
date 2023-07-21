@@ -127,7 +127,7 @@ function OperatorDashboard() {
   return (
     <div style={{ backgroundColor: '#3b89ac', minHeight: "100vh"}}>
     <Container>
-      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
+    <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
         <div className="container">
           <Link className="navbar-brand" to="/">
             SpotWise Parking Management System
@@ -135,11 +135,11 @@ function OperatorDashboard() {
             <p style={styles.welcomeMessage}>
             <DropdownButton 
                 alignRight
+                variant="outline-light"
                 title={<FaUserCircle style={styles.icon} />}
                 id="dropdown-menu"
               >
                 <Dropdown.Item href="view">View Parking Slots</Dropdown.Item>
-                <Dropdown.Item href="#settings">Settings</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item href="/">Logout</Dropdown.Item>
               </DropdownButton>
@@ -147,7 +147,7 @@ function OperatorDashboard() {
         </div>
       </nav>
       <div className="container text-center" style={{ marginTop: '30px', fontFamily: 'Courier New', fontSize: '30px'}}>
-        <p>Welcome to your Parking Management System</p>
+        <p style={{color:'white'}}>Welcome to your Parking Management System</p>
       </div>
       <div className="row mt-3 ">
         <div className="col-md-3">
@@ -200,10 +200,10 @@ function OperatorDashboard() {
               </button>
             </div>
           </Form>
-          <div style={{backgroundColor:'white', textAlign:'center', marginTop:'10px'}}>
+          <div style={{backgroundColor:'white', textAlign:'center', marginTop:'20px', borderRadius:'10px', height:'300px'}}>
           {foundUser && (
             <div>
-              <h4 style={{fontFamily:'Courier New',}}>User Information:</h4>
+              <h2 style={{fontFamily:'Courier New'}}>User Information:</h2>
               <p style={{fontFamily:'Copperplate'}}>First Name: {foundUser.fName}</p>
               <p style={{fontFamily:'Copperplate'}}>Last Name: {foundUser.lName}</p>
               <p style={{fontFamily:'Copperplate'}}>Vehicle: {foundUser.vehicle}</p>

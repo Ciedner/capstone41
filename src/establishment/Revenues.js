@@ -45,26 +45,26 @@ const CardLayout = () => {
 
   return (
     <div style={{ backgroundColor: '#3b89ac', minHeight: "100vh" }}>
-      <Container>
-        <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
+      <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#003851" }}>
           <div className="container">
             <Link className="navbar-brand" to="/estDashBoard">
               SpotWise Parking Management System
             </Link>
           </div>
         </nav>
-        <Row style={{ marginTop: '20px' }}>
-          <Col md={5}>
+      <Container style={{backgroundColor:'#bfd2d9', marginTop:'20px', borderRadius:'25px'}}>
+        <Row>
+          <Col md={5} style={{marginTop:'20px'}}>
             <Container>
               <Row>
                 <Col md={6}>
                   <MDBCard
-                    style={{ height: '400px' }}
+                    style={{ height: '350px', borderRadius:'20px'}}
                     onMouseEnter={() => handleCardHover(1)}
                     onMouseLeave={handleCardLeave}
                     className={hoveredCard === 1 ? 'hovered-card' : ''}
                   >
-                    <MDBCardImage src='https://media.istockphoto.com/id/1306314288/vector/monthly-financial-report-rgb-color-icon.jpg?s=612x612&w=0&k=20&c=hFZfzotHine6telPBHeMxuONa63THVczLWQJgC4h9HQ=' style={{ objectFit: 'cover', height: '50%' }} />
+                    <MDBCardImage src='https://media.istockphoto.com/id/1306314288/vector/monthly-financial-report-rgb-color-icon.jpg?s=612x612&w=0&k=20&c=hFZfzotHine6telPBHeMxuONa63THVczLWQJgC4h9HQ=' style={{ objectFit: 'cover', height: '50%', borderRadius:"20px" }} />
                     <MDBCardBody style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflowY: 'auto' }}>
                       <div>
                         <MDBCardTitle style={{ fontFamily: 'Courier New', fontWeight: 'bold' }}>Revenue</MDBCardTitle>
@@ -78,17 +78,17 @@ const CardLayout = () => {
                 </Col>
                 <Col md={6}>
                   <MDBCard
-                    style={{ height: '400px' }}
+                    style={{ height: '350px',  borderRadius:'20px' }}
                     onMouseEnter={() => handleCardHover(2)}
                     onMouseLeave={handleCardLeave}
                     className={hoveredCard === 2 ? 'hovered-card' : ''}
                   >
-                    <MDBCardImage src='https://png.pngitem.com/pimgs/s/80-800194_transparent-users-icon-png-flat-user-icon-png.png' style={{ objectFit: 'cover', height: '50%' }} />
+                    <MDBCardImage src='https://png.pngitem.com/pimgs/s/80-800194_transparent-users-icon-png-flat-user-icon-png.png' style={{ objectFit: 'cover', height: '50%', borderRadius:'20px'}} />
                     <MDBCardBody style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflowY: 'auto' }}>
                       <div>
                         <MDBCardTitle style={{ fontFamily: 'Courier New', fontWeight: 'bold' }}>Users</MDBCardTitle>
                         <MDBCardText style={{ fontFamily: 'serif' }}>
-                          This section offers a brief summary of the user base.
+                          This sections offers a summary of the user who parked today.
                         </MDBCardText>
                       </div>
                       <MDBBtn onClick={handleViewUserDetail} style={{ fontFamily: 'Courier New' }}>View User Detail</MDBBtn>
@@ -96,15 +96,15 @@ const CardLayout = () => {
                   </MDBCard>
                 </Col>
               </Row>
-              <Row style={{ marginTop: '10px' }}>
+              <Row style={{ marginTop: '20px', marginBottom:'20px'}}>
                 <Col md={6}>
                   <MDBCard
-                    style={{ height: '400px' }}
+                    style={{ height: '350px', borderRadius:'20px' }}
                     onMouseEnter={() => handleCardHover(3)}
                     onMouseLeave={handleCardLeave}
                     className={hoveredCard === 3 ? 'hovered-card' : ''}
                   >
-                    <MDBCardImage src='https://icon-library.com/images/reservation-icon-png/reservation-icon-png-29.jpg' style={{ objectFit: 'cover', height: '50%' }} />
+                    <MDBCardImage src='https://icon-library.com/images/reservation-icon-png/reservation-icon-png-29.jpg' style={{ objectFit: 'cover', height: '50%', borderRadius:'20px' }} />
                     <MDBCardBody style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflowY: 'auto' }}>
                       <div>
                         <MDBCardTitle style={{ fontFamily: 'Courier New', fontWeight: 'bold' }}>Reservation</MDBCardTitle>
@@ -118,12 +118,12 @@ const CardLayout = () => {
                 </Col>
                 <Col md={6}>
                   <MDBCard
-                    style={{ height: '400px' }}
+                    style={{ height: '350px', borderRadius:'20px' }}
                     onMouseEnter={() => handleCardHover(4)}
                     onMouseLeave={handleCardLeave}
                     className={hoveredCard === 4 ? 'hovered-card' : ''}
                   >
-                    <MDBCardImage src='https://media.istockphoto.com/id/1306314288/vector/monthly-financial-report-rgb-color-icon.jpg?s=612x612&w=0&k=20&c=hFZfzotHine6telPBHeMxuONa63THVczLWQJgC4h9HQ=' position='top' alt='...' style={{ objectFit: 'cover', height: '50%' }} />
+                    <MDBCardImage src='https://media.istockphoto.com/id/1306314288/vector/monthly-financial-report-rgb-color-icon.jpg?s=612x612&w=0&k=20&c=hFZfzotHine6telPBHeMxuONa63THVczLWQJgC4h9HQ=' position='top' alt='...' style={{ objectFit: 'cover', height: '50%', borderRadius:'20px' }} />
                     <MDBCardBody style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflowY: 'auto' }}>
                       <div>
                         <MDBCardTitle style={{ fontFamily: 'Courier New' }}>Monthly Revenue</MDBCardTitle>
@@ -138,8 +138,8 @@ const CardLayout = () => {
               </Row>
             </Container>
           </Col>
-          <Col md={7}>
-            <Container style={{ backgroundColor: '#fff', padding: '20px', marginTop: '20px', height: '600px' }}>
+          <Col md={6}>
+            <Container style={{marginLeft:'75px',backgroundColor: '#fff', padding: '20px', marginTop: '20px', height: '700px', borderRadius:'20px'}}>
               {showTable ? (
                 <>
                   <h3 style={{ fontFamily: 'Courier New', fontWeight: 'bold', textAlign: 'center' }}>INCOME DETAIL</h3>
@@ -226,9 +226,7 @@ const CardLayout = () => {
                 </>
               ) : (
                 <>
-                  <h3>Additional Information</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec posuere mauris, eget posuere dui. Nam suscipit urna at mauris aliquam, ac mattis justo pellentesque.</p>
-                  <p>Morbi laoreet lectus auctor felis aliquet, in lacinia leo varius. Vestibulum mollis nulla arcu, sit amet gravida erat efficitur sed.</p>
+                  <h3 style={{fontFamily:'Courier New', fontWeight:'bold', textAlign:'center'}}>OVERVIEW</h3>
                 </>
               )}
             </Container>
