@@ -19,7 +19,7 @@ import Revenues from "./establishment/Revenues"
 import EstablishmentDashboard from "./establishment/EstablishmentDashboard"
 import AgentRegistration from "./establishment/AgentRegistration"
 import ViewSpace from "./admin/ViewSpace"
-
+import Feedback from "./establishment/Feedback";
 function App() {
   return (
     <div className="App">
@@ -45,6 +45,7 @@ function App() {
           <Route path="/estDashBoard" element={<EstablishmentDashboard/>} />
           <Route path="/agentRegister" element={<AgentRegistration/>} />
           <Route path="/view" element={<ViewSpace/>} />
+          <Route path="/feed" element={<Feedback/>} />
         </Routes>
       </Router>
     </div>

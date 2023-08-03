@@ -86,21 +86,35 @@ function Login() {
 
                 <MDBContainer className="p-3 my-5 d-flex flex-column w-50 back" color="#bfd2d9">
                     <form>
+                    <MDBInput
+                        style={{
+                            fontFamily: "Courier New",
+                            backgroundImage: `url("/email.jpg")`,
+                            backgroundPosition: "left 5px center",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "20px 20px", 
+                            paddingLeft: "30px",
+                        }}
+                        wrapperClass="mb-4"
+                        id="form1"
+                        type="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email"
+                    />
                         <MDBInput
-                            style={{fontFamily: "Courier New"}}
-                            wrapperClass="mb-4"
-                            id="form1"
-                            type="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Email"
-                        />
-                        <MDBInput
-                            style={{fontFamily:"Courier New"}}
-                            wrapperClass="mb-4"
-                            id="form2"
-                            type="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Password"
+                           style={{
+                            fontFamily: "Courier New",
+                            backgroundImage: `url("/pass.png")`,
+                            backgroundPosition: "left 5px center",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "20px 20px", 
+                            paddingLeft: "30px",
+                        }}
+                        wrapperClass="mb-4"
+                        id="form2"
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
                         />
 
                         <div className="d-flex justify-content-between mx-3 mb-4" style={{marginTop:"50px",fontFamily:"Courier New", fontSize:"16px"}}>

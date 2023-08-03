@@ -46,6 +46,10 @@ const Establishment = ({recentAddedUser }) => {
     navigate("/agentRegister");
   };
 
+  const handleFeed = () => {
+    navigate("/feed");
+  };
+
 
   return (  
     <section style={{ backgroundColor: '#3b89ac', minHeight:'100vh'}}>
@@ -122,7 +126,7 @@ const Establishment = ({recentAddedUser }) => {
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "inherit")}
                   >
                     <FontAwesomeIcon icon={faUser} />
-                    <MDBCardText>Feedback</MDBCardText>
+                    <MDBCardText onClick={() => handleFeed()}>Feedback</MDBCardText>
                   </MDBListGroupItem>
                 </MDBListGroup>
               </MDBCardBody>
